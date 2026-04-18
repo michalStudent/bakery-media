@@ -1,6 +1,45 @@
 {
   "ideas": [
     {
+      "id": "mo4uk96ganyh",
+      "name": "כולם אומרים לי רום למה אתה ישן רק בישיבה אז האמת שלא קוראים לי רום ואני לא ישן בישיבה אבל יש לאבא שלי מאפיה …..",
+      "desc": "אופציה נוספת שהאבא עושה סרטון בסגנון",
+      "cat": "product",
+      "type": "reel",
+      "priority": 2,
+      "plats": [
+        "inst",
+        "tik"
+      ],
+      "link": "",
+      "tools": "",
+      "createdAt": 1776547584376,
+      "likes": 0,
+      "dislikes": 0,
+      "voted": null,
+      "inShootingDay": false,
+      "shotDone": false
+    },
+    {
+      "id": "mo4uiuv2z96z",
+      "name": "דור z מול הדור הישן טרנד",
+      "desc": "טרנד אבא מול ילד שמסמן לו 2 והוא מפרש כסימן אחר",
+      "cat": "product",
+      "type": "reel",
+      "priority": 3,
+      "plats": [
+        "tik"
+      ],
+      "link": "דור z מול הדור הישן טרנד",
+      "tools": "",
+      "createdAt": 1776547519166,
+      "likes": 0,
+      "dislikes": 0,
+      "voted": null,
+      "inShootingDay": false,
+      "shotDone": false
+    },
+    {
       "id": "mo4in0paaz5o",
       "name": "סרטון של הכנת כריך",
       "desc": "חצי עליון של המסך צילום מזווית קצת שונה של ההכנה\nחצי תחתון צילום מלמעלה של ההכנה שלב קודם",
