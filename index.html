@@ -1,47 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Studio Board — Bakery Content Dashboard</title>
+  <title>Michal Social — Bakery Content Dashboard</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
   <style>
     :root {
-      --ivory:       #FEF5F8;
-      --ivory-dark:  #FAEAEE;
-      --gold:        #E83E8C;
-      --gold-light:  #FF6B9E;
-      --gold-pale:   rgba(232, 62, 140, 0.12);
-      --olive:       #9C27B0;
+      --ivory: #FEF5F8;
+      --ivory-dark: #FAEAEE;
+      --gold: #E83E8C;
+      --gold-light: #FF6B9E;
+      --gold-pale: rgba(232, 62, 140, 0.12);
+      --olive: #9C27B0;
       --olive-light: #BA68C8;
-      --navy:        #301121;
-      --navy-light:  #491E34;
-      --cream:       #FAEAEE;
-      --cream-dark:  #F0D4DF;
-      --white:       #FFFFFF;
-      --text-dark:   #2B1B24;
-      --text-mid:    #4D3E46;
-      --text-muted:  #8E7D86;
-      --like:        #E83E8C;
-      --dislike:     #9E9E9E;
-      --border:      rgba(232, 62, 140, 0.15);
-      --shadow-sm:   0 2px 8px rgba(232, 62, 140, 0.06);
-      --shadow-md:   0 8px 24px rgba(232, 62, 140, 0.12);
-      --shadow-lg:   0 16px 40px rgba(232, 62, 140, 0.2);
-      --radius:      12px;
-      --cat-product:  #E83E8C;
-      --cat-behind:   #9C27B0;
-      --cat-story:    #301121;
-      --cat-reel:     #7B5EA7;
-      --cat-collab:   #F50057;
+      --navy: #301121;
+      --navy-light: #491E34;
+      --cream: #FAEAEE;
+      --cream-dark: #F0D4DF;
+      --white: #FFFFFF;
+      --text-dark: #2B1B24;
+      --text-mid: #4D3E46;
+      --text-muted: #8E7D86;
+      --like: #E83E8C;
+      --dislike: #9E9E9E;
+      --border: rgba(232, 62, 140, 0.15);
+      --shadow-sm: 0 2px 8px rgba(232, 62, 140, 0.06);
+      --shadow-md: 0 8px 24px rgba(232, 62, 140, 0.12);
+      --shadow-lg: 0 16px 40px rgba(232, 62, 140, 0.2);
+      --radius: 12px;
+      --cat-product: #E83E8C;
+      --cat-behind: #9C27B0;
+      --cat-story: #301121;
+      --cat-reel: #7B5EA7;
+      --cat-collab: #F50057;
       --cat-seasonal: #FF9800;
     }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; font-family: 'Inter', sans-serif; background: var(--ivory); color: var(--text-dark); -webkit-font-smoothing: antialiased; }
-    ::-webkit-scrollbar { width: 5px; height: 5px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: var(--cream-dark); border-radius: 3px; }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: var(--ivory);
+      color: var(--text-dark);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--cream-dark);
+      border-radius: 3px;
+    }
 
     /* ── HEADER ── */
     .header {
@@ -53,1355 +82,2588 @@
       gap: 16px;
       border-bottom: 1px solid var(--border);
       box-shadow: var(--shadow-sm);
-      position: sticky; top: 0; z-index: 100;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
-    .brand { flex-shrink: 0; }
-    .brand-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; color: var(--gold-light); letter-spacing: 3px; text-transform: uppercase; line-height: 1; }
-    .brand-tag  { font-size: 8px; color: rgba(212,175,90,0.4); letter-spacing: 4px; text-transform: uppercase; }
+
+    .brand {
+      flex-shrink: 0;
+    }
+
+    .brand-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 300;
+      color: var(--gold-light);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .brand-tag {
+      font-size: 8px;
+      color: rgba(212, 175, 90, 0.4);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
 
     /* ── NAV TABS ── */
-    .header-nav { display: flex; gap: 2px; flex: 1; }
+    .header-nav {
+      display: flex;
+      gap: 2px;
+      flex: 1;
+    }
+
     .nav-tab {
-      font-size: 11px; font-weight: 500; letter-spacing: 0.8px; text-transform: uppercase;
-      padding: 6px 13px; border: none; background: transparent; color: rgba(255,255,255,0.4);
-      cursor: pointer; border-radius: 20px; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-      display: flex; align-items: center; gap: 5px; white-space: nowrap;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 6px 13px;
+      border: none;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+      border-radius: 20px;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
     }
-    .nav-tab:hover { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.9); transform: translateY(-1px); }
-    .nav-tab.active { background: rgba(232, 62, 140, 0.25); color: var(--gold-light); }
+
+    .nav-tab:hover {
+      background: rgba(255, 255, 255, 0.07);
+      color: rgba(255, 255, 255, 0.9);
+      transform: translateY(-1px);
+    }
+
+    .nav-tab.active {
+      background: rgba(232, 62, 140, 0.25);
+      color: var(--gold-light);
+    }
+
     .nav-badge {
-      background: var(--gold); color: var(--navy); font-size: 9px; font-weight: 700;
-      min-width: 16px; height: 16px; border-radius: 8px;
-      display: inline-flex; align-items: center; justify-content: center; padding: 0 4px;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 9px;
+      font-weight: 700;
+      min-width: 16px;
+      height: 16px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 4px;
     }
-    .header-right { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
+
+    .header-right {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-shrink: 0;
+    }
 
     /* ── APP ── */
-    .app { display: flex; height: calc(100vh - 56px); overflow: hidden; }
+    .app {
+      display: flex;
+      height: calc(100vh - 56px);
+      overflow: hidden;
+    }
 
     /* ── SIDEBAR ── */
     .sidebar {
-      width: 200px; flex-shrink: 0; background: var(--cream);
+      width: 200px;
+      flex-shrink: 0;
+      background: var(--cream);
       border-left: 1px solid var(--cream-dark);
-      display: flex; flex-direction: column; overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
     }
-    .sidebar-head { padding: 13px 13px 9px; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--olive-light); font-weight: 600; border-bottom: 1px solid var(--cream-dark); }
-    .cat-list { flex: 1; }
+
+    .sidebar-head {
+      padding: 13px 13px 9px;
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--olive-light);
+      font-weight: 600;
+      border-bottom: 1px solid var(--cream-dark);
+    }
+
+    .cat-list {
+      flex: 1;
+    }
+
     .cat-item {
-      display: flex; align-items: center; gap: 8px; padding: 10px 13px;
-      cursor: pointer; border: none; background: transparent; width: 100%;
-      font-family: 'Inter', sans-serif; font-size: 12px; color: var(--text-mid);
-      border-bottom: 1px solid rgba(0,0,0,0.04); transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 13px;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      width: 100%;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: var(--text-mid);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      transition: all 0.2s;
     }
-    .cat-item:hover { background: rgba(232, 62, 140, 0.07); color: var(--gold); padding-left: 16px; }
-    .cat-item.active { background: var(--navy); color: var(--gold-light); padding-left: 16px; border-left: 3px solid var(--gold); }
-    .cat-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; opacity: 0.7; }
-    .cat-item.active .cat-dot { opacity: 1; }
-    .cat-name { flex: 1; text-align: right; }
-    .cat-badge { font-size: 10px; font-weight: 600; min-width: 18px; height: 18px; border-radius: 9px; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.08); color: inherit; padding: 0 5px; }
-    .cat-item.active .cat-badge { background: rgba(232, 62, 140, 0.3); }
-    .sidebar-footer { padding: 11px; border-top: 1px solid var(--cream-dark); }
-    .sidebar-stats { font-size: 10px; color: var(--text-muted); text-align: center; margin-bottom: 8px; }
+
+    .cat-item:hover {
+      background: rgba(232, 62, 140, 0.07);
+      color: var(--gold);
+      padding-left: 16px;
+    }
+
+    .cat-item.active {
+      background: var(--navy);
+      color: var(--gold-light);
+      padding-left: 16px;
+      border-left: 3px solid var(--gold);
+    }
+
+    .cat-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      opacity: 0.7;
+    }
+
+    .cat-item.active .cat-dot {
+      opacity: 1;
+    }
+
+    .cat-name {
+      flex: 1;
+      text-align: right;
+    }
+
+    .cat-badge {
+      font-size: 10px;
+      font-weight: 600;
+      min-width: 18px;
+      height: 18px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.08);
+      color: inherit;
+      padding: 0 5px;
+    }
+
+    .cat-item.active .cat-badge {
+      background: rgba(232, 62, 140, 0.3);
+    }
+
+    .sidebar-footer {
+      padding: 11px;
+      border-top: 1px solid var(--cream-dark);
+    }
+
+    .sidebar-stats {
+      font-size: 10px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 8px;
+    }
 
     /* ── MAIN ── */
-    .main { flex: 1; overflow: hidden; display: flex; flex-direction: column; background: var(--ivory); }
+    .main {
+      flex: 1;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background: var(--ivory);
+    }
 
-    .view-panel { display: none; flex: 1; overflow-y: auto; }
-    .view-panel.active { display: block; }
+    .view-panel {
+      display: none;
+      flex: 1;
+      overflow-y: auto;
+    }
 
-    .view-inner { padding: 20px 22px 28px; }
+    .view-panel.active {
+      display: block;
+    }
+
+    .view-inner {
+      padding: 20px 22px 28px;
+    }
 
     /* ── TOOLBAR ── */
-    .toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding-bottom: 13px; border-bottom: 1px solid var(--border); flex-wrap: wrap; gap: 10px; }
-    .page-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; color: var(--navy); }
-    .page-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
-    .toolbar-right { display: flex; gap: 8px; align-items: center; }
-    .sort-select { font-family: 'Inter', sans-serif; font-size: 11px; padding: 5px 9px; border: 1px solid var(--cream-dark); background: var(--white); color: var(--text-mid); cursor: pointer; outline: none; border-radius: var(--radius); }
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      padding-bottom: 13px;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--navy);
+    }
+
+    .page-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .toolbar-right {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .sort-select {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      padding: 5px 9px;
+      border: 1px solid var(--cream-dark);
+      background: var(--white);
+      color: var(--text-mid);
+      cursor: pointer;
+      outline: none;
+      border-radius: var(--radius);
+    }
 
     /* ── CARDS GRID ── */
-    .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(275px, 1fr)); gap: 12px; }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+      gap: 12px;
+    }
 
     /* ── CARD ── */
     .card {
-      background: var(--white); border: 1px solid rgba(232, 62, 140, 0.08); border-radius: var(--radius);
-      box-shadow: var(--shadow-sm); overflow: hidden;
+      background: var(--white);
+      border: 1px solid rgba(232, 62, 140, 0.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
       transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
-    .card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); border-color: rgba(232, 62, 140, 0.3); }
-    .card.in-shooting { border: 2px solid var(--gold); transform: scale(1.02); box-shadow: var(--shadow-lg); }
-    .card-stripe { height: 4px; width: 100%; }
-    .card-body { padding: 13px 13px 10px; }
 
-    .card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
-    .card-title { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 600; color: var(--navy); line-height: 1.3; flex: 1; }
-    .card-actions { display: flex; gap: 2px; opacity: 0; transition: opacity 0.15s; flex-shrink: 0; }
-    .card:hover .card-actions { opacity: 1; }
+    .card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+      border-color: rgba(232, 62, 140, 0.3);
+    }
 
-    .icon-btn { background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 12px; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 3px; transition: background 0.12s, color 0.12s; }
-    .icon-btn:hover { background: var(--ivory); color: var(--navy); }
-    .icon-btn.del:hover { background: #FFEAEA; color: var(--dislike); }
+    .card.in-shooting {
+      border: 2px solid var(--gold);
+      transform: scale(1.02);
+      box-shadow: var(--shadow-lg);
+    }
 
-    .card-meta { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; flex-wrap: wrap; }
+    .card-stripe {
+      height: 4px;
+      width: 100%;
+    }
 
-    .priority-chip { font-size: 8px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 2px 6px; border-radius: 3px; }
-    .p1 { background: var(--navy); color: var(--gold-light); }
-    .p2 { background: var(--olive); color: #D4E8C2; }
-    .p3 { background: var(--cream-dark); color: var(--text-mid); }
+    .card-body {
+      padding: 13px 13px 10px;
+    }
 
-    .type-chip { font-size: 10px; color: var(--white); padding: 2px 7px; border-radius: 3px; letter-spacing: 0.3px; background: var(--text-muted); }
-    .type-chip.photo    { background: #5C8FAF; }
-    .type-chip.carousel { background: #7B5EA7; }
-    .type-chip.reel     { background: #C13584; }
-    .type-chip.story    { background: #E1306C; }
-    .type-chip.video    { background: #1C2744; }
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
 
-    .card-desc { font-size: 12px; color: var(--text-muted); line-height: 1.6; margin-bottom: 10px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.3;
+      flex: 1;
+    }
 
-    .platforms { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 9px; }
-    .plat { font-size: 9px; letter-spacing: 0.8px; text-transform: uppercase; padding: 2px 7px; border-radius: 8px; border: 1px solid; cursor: pointer; transition: all 0.12s; user-select: none; font-weight: 500; }
-    .plat.inst      { border-color: #C13584; color: #C13584; }
-    .plat.inst.on   { background: #C13584; color: white; }
-    .plat.face      { border-color: #1877F2; color: #1877F2; }
-    .plat.face.on   { background: #1877F2; color: white; }
-    .plat.tik       { border-color: #555; color: #555; }
-    .plat.tik.on    { background: #333; color: white; }
+    .card-actions {
+      display: flex;
+      gap: 2px;
+      opacity: 0;
+      transition: opacity 0.15s;
+      flex-shrink: 0;
+    }
+
+    .card:hover .card-actions {
+      opacity: 1;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      font-size: 12px;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 3px;
+      transition: background 0.12s, color 0.12s;
+    }
+
+    .icon-btn:hover {
+      background: var(--ivory);
+      color: var(--navy);
+    }
+
+    .icon-btn.del:hover {
+      background: #FFEAEA;
+      color: var(--dislike);
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .priority-chip {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+
+    .p1 {
+      background: var(--navy);
+      color: var(--gold-light);
+    }
+
+    .p2 {
+      background: var(--olive);
+      color: #D4E8C2;
+    }
+
+    .p3 {
+      background: var(--cream-dark);
+      color: var(--text-mid);
+    }
+
+    .type-chip {
+      font-size: 10px;
+      color: var(--white);
+      padding: 2px 7px;
+      border-radius: 3px;
+      letter-spacing: 0.3px;
+      background: var(--text-muted);
+    }
+
+    .type-chip.photo {
+      background: #5C8FAF;
+    }
+
+    .type-chip.carousel {
+      background: #7B5EA7;
+    }
+
+    .type-chip.reel {
+      background: #C13584;
+    }
+
+    .type-chip.story {
+      background: #E1306C;
+    }
+
+    .type-chip.video {
+      background: #1C2744;
+    }
+
+    .card-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 10px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .platforms {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+      margin-bottom: 9px;
+    }
+
+    .plat {
+      font-size: 9px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 8px;
+      border: 1px solid;
+      cursor: pointer;
+      transition: all 0.12s;
+      user-select: none;
+      font-weight: 500;
+    }
+
+    .plat.inst {
+      border-color: #C13584;
+      color: #C13584;
+    }
+
+    .plat.inst.on {
+      background: #C13584;
+      color: white;
+    }
+
+    .plat.face {
+      border-color: #1877F2;
+      color: #1877F2;
+    }
+
+    .plat.face.on {
+      background: #1877F2;
+      color: white;
+    }
+
+    .plat.tik {
+      border-color: #555;
+      color: #555;
+    }
+
+    .plat.tik.on {
+      background: #333;
+      color: white;
+    }
 
     /* Card fields */
-    .card-fields { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
-    .field-row { display: flex; align-items: center; gap: 5px; }
-    .field-icon { font-size: 11px; color: var(--text-muted); flex-shrink: 0; width: 16px; text-align: center; }
-    .field-input { flex: 1; font-family: 'Inter', sans-serif; font-size: 11px; padding: 4px 7px; border: 1px solid var(--cream-dark); border-radius: 3px; background: var(--ivory); color: var(--text-dark); outline: none; min-width: 0; }
-    .field-input:focus { border-color: var(--gold); }
-    .field-open { font-size: 11px; color: var(--gold); text-decoration: none; padding: 3px 5px; border-radius: 3px; transition: background 0.12s; white-space: nowrap; flex-shrink: 0; }
-    .field-open:hover { background: var(--gold-pale); }
+    .card-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 10px;
+    }
+
+    .field-row {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .field-icon {
+      font-size: 11px;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      width: 16px;
+      text-align: center;
+    }
+
+    .field-input {
+      flex: 1;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      padding: 4px 7px;
+      border: 1px solid var(--cream-dark);
+      border-radius: 3px;
+      background: var(--ivory);
+      color: var(--text-dark);
+      outline: none;
+      min-width: 0;
+    }
+
+    .field-input:focus {
+      border-color: var(--gold);
+    }
+
+    .field-open {
+      font-size: 11px;
+      color: var(--gold);
+      text-decoration: none;
+      padding: 3px 5px;
+      border-radius: 3px;
+      transition: background 0.12s;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .field-open:hover {
+      background: var(--gold-pale);
+    }
 
     /* Card footer */
-    .card-footer { display: flex; align-items: center; gap: 5px; padding-top: 8px; border-top: 1px solid var(--ivory-dark); flex-wrap: wrap; }
-    .vote-btn { display: flex; align-items: center; gap: 3px; padding: 4px 8px; border: 1px solid; background: transparent; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500; border-radius: 3px; transition: all 0.12s; }
-    .vote-like    { border-color: var(--like); color: var(--like); }
-    .vote-like.on { background: var(--like); color: white; }
-    .vote-dislike    { border-color: var(--dislike); color: var(--dislike); }
-    .vote-dislike.on { background: var(--dislike); color: white; }
+    .card-footer {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding-top: 8px;
+      border-top: 1px solid var(--ivory-dark);
+      flex-wrap: wrap;
+    }
 
-    .prio-select { font-family: 'Inter', sans-serif; font-size: 10px; padding: 3px 5px; border: 1px solid var(--cream-dark); background: var(--ivory); color: var(--text-mid); cursor: pointer; outline: none; border-radius: 3px; }
+    .vote-btn {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      padding: 4px 8px;
+      border: 1px solid;
+      background: transparent;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      border-radius: 3px;
+      transition: all 0.12s;
+    }
 
-    .shoot-btn { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; padding: 4px 9px; border: 1px solid var(--gold); background: transparent; color: var(--gold); cursor: pointer; border-radius: 3px; transition: all 0.12s; white-space: nowrap; margin-right: auto; }
-    .shoot-btn:hover { background: var(--gold); color: white; }
-    .shoot-btn.in { background: var(--gold); color: white; }
+    .vote-like {
+      border-color: var(--like);
+      color: var(--like);
+    }
 
-    .ai-btn-card { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; padding: 4px 8px; border: 1px solid var(--olive); background: transparent; color: var(--olive); cursor: pointer; border-radius: 3px; transition: all 0.12s; }
-    .ai-btn-card:hover { background: var(--olive); color: white; }
+    .vote-like.on {
+      background: var(--like);
+      color: white;
+    }
+
+    .vote-dislike {
+      border-color: var(--dislike);
+      color: var(--dislike);
+    }
+
+    .vote-dislike.on {
+      background: var(--dislike);
+      color: white;
+    }
+
+    .prio-select {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      padding: 3px 5px;
+      border: 1px solid var(--cream-dark);
+      background: var(--ivory);
+      color: var(--text-mid);
+      cursor: pointer;
+      outline: none;
+      border-radius: 3px;
+    }
+
+    .shoot-btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 4px 9px;
+      border: 1px solid var(--gold);
+      background: transparent;
+      color: var(--gold);
+      cursor: pointer;
+      border-radius: 3px;
+      transition: all 0.12s;
+      white-space: nowrap;
+      margin-right: auto;
+    }
+
+    .shoot-btn:hover {
+      background: var(--gold);
+      color: white;
+    }
+
+    .shoot-btn.in {
+      background: var(--gold);
+      color: white;
+    }
+
+    .ai-btn-card {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 4px 8px;
+      border: 1px solid var(--olive);
+      background: transparent;
+      color: var(--olive);
+      cursor: pointer;
+      border-radius: 3px;
+      transition: all 0.12s;
+    }
+
+    .ai-btn-card:hover {
+      background: var(--olive);
+      color: white;
+    }
 
     /* ── VIDEO VIEW - Platform Groups ── */
-    .platform-section { margin-bottom: 28px; }
-    .platform-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; padding-bottom: 9px; border-bottom: 2px solid var(--border); }
-    .platform-icon { width: 30px; height: 30px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
-    .platform-icon.inst { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
-    .platform-icon.tik  { background: #000; }
-    .platform-icon.face { background: #1877F2; }
-    .platform-name { font-family: 'Cormorant Garamond', serif; font-size: 19px; color: var(--navy); font-weight: 600; }
-    .platform-count { font-size: 11px; color: var(--text-muted); margin-right: auto; }
+    .platform-section {
+      margin-bottom: 28px;
+    }
 
-    .priority-group { margin-bottom: 14px; }
-    .prio-group-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
-    .prio-group-label::after { content: ''; flex: 1; height: 1px; background: var(--cream-dark); }
+    .platform-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      padding-bottom: 9px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .platform-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .platform-icon.inst {
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    }
+
+    .platform-icon.tik {
+      background: #000;
+    }
+
+    .platform-icon.face {
+      background: #1877F2;
+    }
+
+    .platform-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px;
+      color: var(--navy);
+      font-weight: 600;
+    }
+
+    .platform-count {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-right: auto;
+    }
+
+    .priority-group {
+      margin-bottom: 14px;
+    }
+
+    .prio-group-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .prio-group-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--cream-dark);
+    }
 
     /* ── SHOOTING DAY ── */
-    .shooting-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 2px solid var(--gold); flex-wrap: wrap; gap: 10px; }
-    .shooting-title h2 { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 400; color: var(--navy); }
-    .shooting-title span { font-size: 11px; color: var(--text-muted); display: block; margin-top: 2px; }
-    .shooting-actions { display: flex; gap: 8px; }
-    .shooting-list { display: flex; flex-direction: column; gap: 8px; }
+    .shooting-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--gold);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
 
-    .shoot-item { background: var(--white); border: 1px solid rgba(0,0,0,0.07); border-radius: var(--radius); padding: 14px 14px 14px 16px; display: flex; align-items: flex-start; gap: 12px; box-shadow: var(--shadow-sm); transition: all 0.2s; }
-    .shoot-item.done { background: var(--ivory-dark); border-color: var(--cream-dark); opacity: 0.5; }
-    .shoot-item.done .shoot-item-title { text-decoration: line-through; color: var(--text-muted); }
+    .shooting-title h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      font-weight: 400;
+      color: var(--navy);
+    }
 
-    .done-toggle { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--cream-dark); background: transparent; cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 11px; color: transparent; transition: all 0.2s; margin-top: 1px; }
-    .done-toggle:hover { border-color: var(--like); }
-    .shoot-item.done .done-toggle { border-color: var(--like); background: var(--like); color: white; }
+    .shooting-title span {
+      font-size: 11px;
+      color: var(--text-muted);
+      display: block;
+      margin-top: 2px;
+    }
 
-    .shoot-item-bar { width: 3px; border-radius: 2px; align-self: stretch; flex-shrink: 0; }
-    .shoot-item-content { flex: 1; min-width: 0; }
-    .shoot-item-title { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 600; color: var(--navy); margin-bottom: 5px; }
-    .shoot-item-meta { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 6px; }
-    .shoot-item-tools { font-size: 11px; color: var(--text-muted); background: var(--ivory); padding: 4px 8px; border-radius: 3px; border: 1px solid var(--cream-dark); }
-    .shoot-item-tools strong { color: var(--olive); font-weight: 600; }
-    .shoot-item-link { font-size: 11px; color: var(--gold); text-decoration: none; }
-    .shoot-item-link:hover { text-decoration: underline; }
-    .shoot-remove { background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 14px; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 3px; transition: all 0.12s; flex-shrink: 0; }
-    .shoot-remove:hover { background: #FFEAEA; color: var(--dislike); }
-    .drag-handle { cursor: grab; color: var(--cream-dark); font-size: 14px; width: 20px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; user-select: none; }
-    .drag-handle:active { cursor: grabbing; }
-    .shoot-item.dragging { opacity: 0.35; }
-    .shoot-item.drag-over-top { border-top: 2px solid var(--gold); }
-    .shoot-item.drag-over-bot { border-bottom: 2px solid var(--gold); }
-    .shoot-expand-btn { background: none; border: none; cursor: pointer; font-size: 10px; color: var(--text-muted); padding: 2px 5px; border-radius: 3px; transition: all 0.12s; white-space: nowrap; }
-    .shoot-expand-btn:hover { background: var(--ivory-dark); color: var(--navy); }
-    .shoot-expanded { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--cream-dark); display: flex; flex-direction: column; gap: 7px; }
-    .shoot-expanded-desc { font-size: 12px; color: var(--text-mid); line-height: 1.6; }
-    .shoot-expanded-row { display: flex; align-items: flex-start; gap: 6px; font-size: 11px; color: var(--text-muted); }
-    .shoot-expanded-row strong { color: var(--olive); font-weight: 600; flex-shrink: 0; }
+    .shooting-actions {
+      display: flex;
+      gap: 8px;
+    }
 
-    .shoot-empty { text-align: center; padding: 70px 20px; }
-    .shoot-empty-icon { font-size: 36px; margin-bottom: 12px; opacity: 0.2; }
-    .shoot-empty-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--navy); margin-bottom: 6px; }
-    .shoot-empty-sub { font-size: 12px; color: var(--text-muted); }
+    .shooting-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .shoot-item {
+      background: var(--white);
+      border: 1px solid rgba(0, 0, 0, 0.07);
+      border-radius: var(--radius);
+      padding: 14px 14px 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s;
+    }
+
+    .shoot-item.done {
+      background: var(--ivory-dark);
+      border-color: var(--cream-dark);
+      opacity: 0.5;
+    }
+
+    .shoot-item.done .shoot-item-title {
+      text-decoration: line-through;
+      color: var(--text-muted);
+    }
+
+    .done-toggle {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid var(--cream-dark);
+      background: transparent;
+      cursor: pointer;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: transparent;
+      transition: all 0.2s;
+      margin-top: 1px;
+    }
+
+    .done-toggle:hover {
+      border-color: var(--like);
+    }
+
+    .shoot-item.done .done-toggle {
+      border-color: var(--like);
+      background: var(--like);
+      color: white;
+    }
+
+    .shoot-item-bar {
+      width: 3px;
+      border-radius: 2px;
+      align-self: stretch;
+      flex-shrink: 0;
+    }
+
+    .shoot-item-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .shoot-item-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 5px;
+    }
+
+    .shoot-item-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+
+    .shoot-item-tools {
+      font-size: 11px;
+      color: var(--text-muted);
+      background: var(--ivory);
+      padding: 4px 8px;
+      border-radius: 3px;
+      border: 1px solid var(--cream-dark);
+    }
+
+    .shoot-item-tools strong {
+      color: var(--olive);
+      font-weight: 600;
+    }
+
+    .shoot-item-link {
+      font-size: 11px;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .shoot-item-link:hover {
+      text-decoration: underline;
+    }
+
+    .shoot-remove {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      font-size: 14px;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 3px;
+      transition: all 0.12s;
+      flex-shrink: 0;
+    }
+
+    .shoot-remove:hover {
+      background: #FFEAEA;
+      color: var(--dislike);
+    }
+
+    .drag-handle {
+      cursor: grab;
+      color: var(--cream-dark);
+      font-size: 14px;
+      width: 20px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+    }
+
+    .drag-handle:active {
+      cursor: grabbing;
+    }
+
+    .shoot-item.dragging {
+      opacity: 0.35;
+    }
+
+    .shoot-item.drag-over-top {
+      border-top: 2px solid var(--gold);
+    }
+
+    .shoot-item.drag-over-bot {
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .shoot-expand-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 10px;
+      color: var(--text-muted);
+      padding: 2px 5px;
+      border-radius: 3px;
+      transition: all 0.12s;
+      white-space: nowrap;
+    }
+
+    .shoot-expand-btn:hover {
+      background: var(--ivory-dark);
+      color: var(--navy);
+    }
+
+    .shoot-expanded {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--cream-dark);
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .shoot-expanded-desc {
+      font-size: 12px;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+
+    .shoot-expanded-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .shoot-expanded-row strong {
+      color: var(--olive);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .shoot-empty {
+      text-align: center;
+      padding: 70px 20px;
+    }
+
+    .shoot-empty-icon {
+      font-size: 36px;
+      margin-bottom: 12px;
+      opacity: 0.2;
+    }
+
+    .shoot-empty-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .shoot-empty-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
 
     /* ── VISION PANEL ── */
-    .vision-panel { width: 300px; flex-shrink: 0; background: #1F0A15; border-right: 1px solid rgba(232, 62, 140, 0.15); display: none; flex-direction: column; overflow: hidden; }
-    .vision-panel.open { display: flex; }
-    .vision-head { padding: 12px 14px; border-bottom: 1px solid rgba(232, 62, 140, 0.15); display: flex; align-items: center; justify-content: space-between; }
-    .vision-title { font-family: 'Cormorant Garamond', serif; font-size: 16px; color: var(--gold-light); letter-spacing: 1px; }
-    .vision-close { background: none; border: none; color: rgba(255,255,255,0.35); cursor: pointer; font-size: 16px; transition: color 0.12s; }
-    .vision-close:hover { color: rgba(255,255,255,0.7); }
+    .vision-panel {
+      width: 300px;
+      flex-shrink: 0;
+      background: #1F0A15;
+      border-right: 1px solid rgba(232, 62, 140, 0.15);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
 
-    .vision-tabs { display: flex; border-bottom: 1px solid rgba(232, 62, 140, 0.12); }
-    .vision-tab { flex: 1; padding: 7px; background: none; border: none; color: rgba(255,255,255,0.3); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: all 0.15s; font-family: 'Inter', sans-serif; }
-    .vision-tab.active { color: var(--gold-light); background: rgba(232, 62, 140, 0.08); }
+    .vision-panel.open {
+      display: flex;
+    }
 
-    .vision-scroll { flex: 1; overflow-y: auto; }
+    .vision-head {
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(232, 62, 140, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .vision-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      color: var(--gold-light);
+      letter-spacing: 1px;
+    }
+
+    .vision-close {
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.35);
+      cursor: pointer;
+      font-size: 16px;
+      transition: color 0.12s;
+    }
+
+    .vision-close:hover {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .vision-tabs {
+      display: flex;
+      border-bottom: 1px solid rgba(232, 62, 140, 0.12);
+    }
+
+    .vision-tab {
+      flex: 1;
+      padding: 7px;
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.15s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .vision-tab.active {
+      color: var(--gold-light);
+      background: rgba(232, 62, 140, 0.08);
+    }
+
+    .vision-scroll {
+      flex: 1;
+      overflow-y: auto;
+    }
 
     /* Instagram-style grid */
-    .ig-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; padding: 2px; }
-    .ig-cell { aspect-ratio: 1/1; position: relative; cursor: pointer; overflow: hidden; }
-    .ig-cell-bg { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 22px; transition: transform 0.15s; }
-    .ig-cell:hover .ig-cell-bg { transform: scale(1.06); }
-    .ig-cell-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0); display: flex; flex-direction: column; align-items: center; justify-content: center; transition: background 0.15s; padding: 6px; }
-    .ig-cell:hover .ig-cell-overlay { background: rgba(0,0,0,0.65); }
-    .ig-cell-label { font-family: 'Cormorant Garamond', serif; font-size: 11px; color: white; text-align: center; line-height: 1.3; opacity: 0; transition: opacity 0.15s; }
-    .ig-cell:hover .ig-cell-label { opacity: 1; }
-    .ig-cell-sub { font-size: 8px; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-top: 3px; opacity: 0; transition: opacity 0.15s; }
-    .ig-cell:hover .ig-cell-sub { opacity: 1; }
-    .ig-grid-hint { padding: 7px 10px; font-size: 9px; letter-spacing: 1.5px; color: rgba(255, 107, 158, 0.5); text-transform: uppercase; }
+    .ig-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      padding: 2px;
+    }
+
+    .ig-cell {
+      aspect-ratio: 1/1;
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .ig-cell-bg {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      transition: transform 0.15s;
+    }
+
+    .ig-cell:hover .ig-cell-bg {
+      transform: scale(1.06);
+    }
+
+    .ig-cell-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+      padding: 6px;
+    }
+
+    .ig-cell:hover .ig-cell-overlay {
+      background: rgba(0, 0, 0, 0.65);
+    }
+
+    .ig-cell-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      color: white;
+      text-align: center;
+      line-height: 1.3;
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+
+    .ig-cell:hover .ig-cell-label {
+      opacity: 1;
+    }
+
+    .ig-cell-sub {
+      font-size: 8px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.55);
+      margin-top: 3px;
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+
+    .ig-cell:hover .ig-cell-sub {
+      opacity: 1;
+    }
+
+    .ig-grid-hint {
+      padding: 7px 10px;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      color: rgba(255, 107, 158, 0.5);
+      text-transform: uppercase;
+    }
 
     /* Feed list */
-    .feed-list { padding: 10px; display: flex; flex-direction: column; gap: 10px; }
-    .feed-card { border: 1px solid rgba(232, 62, 140, 0.15); background: rgba(255,255,255,0.04); border-radius: 8px; overflow: hidden; }
-    .feed-plat { padding: 6px 10px; font-size: 9px; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; border-bottom: 1px solid rgba(232, 62, 140, 0.1); }
-    .feed-visual { position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-    .feed-visual-inner { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px; text-align: center; }
-    .feed-type-icon { font-size: 24px; opacity: 0.35; margin-bottom: 6px; }
-    .feed-visual-label { font-family: 'Cormorant Garamond', serif; font-size: 12px; color: rgba(255, 107, 158, 0.8); line-height: 1.4; }
-    .feed-caption { padding: 7px 10px; font-size: 10px; color: rgba(255,255,255,0.45); font-style: italic; font-family: 'Cormorant Garamond', serif; line-height: 1.5; }
+    .feed-list {
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .feed-card {
+      border: 1px solid rgba(232, 62, 140, 0.15);
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .feed-plat {
+      padding: 6px 10px;
+      font-size: 9px;
+      letter-spacing: 2px;
+      color: var(--gold);
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(232, 62, 140, 0.1);
+    }
+
+    .feed-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .feed-visual-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .feed-type-icon {
+      font-size: 24px;
+      opacity: 0.35;
+      margin-bottom: 6px;
+    }
+
+    .feed-visual-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      color: rgba(255, 107, 158, 0.8);
+      line-height: 1.4;
+    }
+
+    .feed-caption {
+      padding: 7px 10px;
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.45);
+      font-style: italic;
+      font-family: 'Cormorant Garamond', serif;
+      line-height: 1.5;
+    }
 
     /* ── EMPTY ── */
-    .empty { grid-column: 1/-1; text-align: center; padding: 60px 20px; }
-    .empty-icon { font-size: 32px; margin-bottom: 12px; opacity: 0.2; }
-    .empty-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--navy); margin-bottom: 5px; }
-    .empty-sub { font-size: 12px; color: var(--text-muted); }
+    .empty {
+      grid-column: 1/-1;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .empty-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+      opacity: 0.2;
+    }
+
+    .empty-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      color: var(--navy);
+      margin-bottom: 5px;
+    }
+
+    .empty-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
 
     /* ── SUGGESTIONS ── */
-    .suggest-section { margin-top: 20px; background: var(--cream); border: 1px solid var(--gold); border-radius: var(--radius); padding: 16px; display: none; }
-    .suggest-head { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: var(--navy); margin-bottom: 12px; }
-    .suggest-list { display: flex; flex-direction: column; gap: 8px; }
-    .suggest-item { background: var(--white); border: 1px solid var(--cream-dark); border-radius: var(--radius); padding: 10px 12px; }
-    .suggest-name { font-size: 13px; font-weight: 500; color: var(--navy); margin-bottom: 3px; }
-    .suggest-desc { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
-    .suggest-btns { display: flex; gap: 6px; margin-top: 8px; }
+    .suggest-section {
+      margin-top: 20px;
+      background: var(--cream);
+      border: 1px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 16px;
+      display: none;
+    }
+
+    .suggest-head {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    .suggest-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .suggest-item {
+      background: var(--white);
+      border: 1px solid var(--cream-dark);
+      border-radius: var(--radius);
+      padding: 10px 12px;
+    }
+
+    .suggest-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 3px;
+    }
+
+    .suggest-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .suggest-btns {
+      display: flex;
+      gap: 6px;
+      margin-top: 8px;
+    }
 
     /* ── BUTTONS ── */
-    .btn { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 8px 18px; cursor: pointer; border-radius: 20px; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; box-shadow: 0 4px 12px rgba(232, 62, 140, 0.08); }
-    .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(232, 62, 140, 0.16); }
-    .btn-primary { border: 1px solid var(--gold); background: var(--gold); color: var(--white); }
-    .btn-primary:hover { background: var(--gold-light); }
-    .btn-outline { border: 1px solid var(--gold); background: transparent; color: var(--gold); }
-    .btn-outline:hover { background: var(--gold); color: white; }
-    .btn-ghost { border: 1px solid var(--cream-dark); background: transparent; color: var(--text-mid); box-shadow: none; }
-    .btn-ghost:hover { background: var(--cream); box-shadow: none; transform: none; }
-    .btn-ai { border: 1px solid var(--olive); background: var(--olive); color: white; }
-    .btn-ai:hover { background: var(--olive-light); }
-    .btn-sm { padding: 5px 12px; font-size: 10px; }
-    .btn-block { width: 100%; justify-content: center; }
+    .btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 8px 18px;
+      cursor: pointer;
+      border-radius: 20px;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(232, 62, 140, 0.08);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(232, 62, 140, 0.16);
+    }
+
+    .btn-primary {
+      border: 1px solid var(--gold);
+      background: var(--gold);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--gold);
+      background: transparent;
+      color: var(--gold);
+    }
+
+    .btn-outline:hover {
+      background: var(--gold);
+      color: white;
+    }
+
+    .btn-ghost {
+      border: 1px solid var(--cream-dark);
+      background: transparent;
+      color: var(--text-mid);
+      box-shadow: none;
+    }
+
+    .btn-ghost:hover {
+      background: var(--cream);
+      box-shadow: none;
+      transform: none;
+    }
+
+    .btn-ai {
+      border: 1px solid var(--olive);
+      background: var(--olive);
+      color: white;
+    }
+
+    .btn-ai:hover {
+      background: var(--olive-light);
+    }
+
+    .btn-sm {
+      padding: 5px 12px;
+      font-size: 10px;
+    }
+
+    .btn-block {
+      width: 100%;
+      justify-content: center;
+    }
 
     /* ── MODAL ── */
-    .overlay { display: none; position: fixed; inset: 0; background: rgba(28,39,68,0.65); backdrop-filter: blur(2px); z-index: 200; align-items: center; justify-content: center; }
-    .overlay.open { display: flex; }
-    .modal { background: var(--white); border-radius: 8px; border-top: 4px solid var(--gold); padding: 26px; width: 520px; max-width: 95vw; max-height: 90vh; overflow-y: auto; direction: rtl; box-shadow: var(--shadow-lg); }
-    .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--navy); margin-bottom: 20px; font-weight: 400; }
-    .form-row { margin-bottom: 13px; }
-    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 13px; }
-    .form-label { display: block; font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--olive-light); margin-bottom: 5px; }
-    .form-input, .form-select, .form-textarea { width: 100%; font-family: 'Inter', sans-serif; font-size: 13px; padding: 8px 10px; border: 1px solid var(--cream-dark); border-radius: var(--radius); background: var(--ivory); color: var(--text-dark); outline: none; transition: border-color 0.15s; }
-    .form-input:focus, .form-textarea:focus { border-color: var(--gold); }
-    .form-textarea { min-height: 78px; resize: vertical; }
-    .plat-select { display: flex; gap: 6px; flex-wrap: wrap; }
-    .plat-opt { font-size: 10px; font-weight: 500; padding: 4px 10px; border: 1px solid; border-radius: 8px; background: transparent; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.12s; }
-    .plat-opt.inst      { border-color: #C13584; color: #C13584; }
-    .plat-opt.inst.on   { background: #C13584; color: white; }
-    .plat-opt.face      { border-color: #1877F2; color: #1877F2; }
-    .plat-opt.face.on   { background: #1877F2; color: white; }
-    .plat-opt.tik       { border-color: #333; color: #333; }
-    .plat-opt.tik.on    { background: #333; color: white; }
-    .modal-footer { display: flex; gap: 8px; margin-top: 20px; }
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(28, 39, 68, 0.65);
+      backdrop-filter: blur(2px);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .overlay.open {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--white);
+      border-radius: 8px;
+      border-top: 4px solid var(--gold);
+      padding: 26px;
+      width: 520px;
+      max-width: 95vw;
+      max-height: 90vh;
+      overflow-y: auto;
+      direction: rtl;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .modal-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      color: var(--navy);
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+
+    .form-row {
+      margin-bottom: 13px;
+    }
+
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 13px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--olive-light);
+      margin-bottom: 5px;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      padding: 8px 10px;
+      border: 1px solid var(--cream-dark);
+      border-radius: var(--radius);
+      background: var(--ivory);
+      color: var(--text-dark);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      border-color: var(--gold);
+    }
+
+    .form-textarea {
+      min-height: 78px;
+      resize: vertical;
+    }
+
+    .plat-select {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .plat-opt {
+      font-size: 10px;
+      font-weight: 500;
+      padding: 4px 10px;
+      border: 1px solid;
+      border-radius: 8px;
+      background: transparent;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.12s;
+    }
+
+    .plat-opt.inst {
+      border-color: #C13584;
+      color: #C13584;
+    }
+
+    .plat-opt.inst.on {
+      background: #C13584;
+      color: white;
+    }
+
+    .plat-opt.face {
+      border-color: #1877F2;
+      color: #1877F2;
+    }
+
+    .plat-opt.face.on {
+      background: #1877F2;
+      color: white;
+    }
+
+    .plat-opt.tik {
+      border-color: #333;
+      color: #333;
+    }
+
+    .plat-opt.tik.on {
+      background: #333;
+      color: white;
+    }
+
+    .modal-footer {
+      display: flex;
+      gap: 8px;
+      margin-top: 20px;
+    }
 
     /* AI result */
-    .ai-result-box { background: var(--ivory); border: 1px solid var(--gold); border-radius: var(--radius); padding: 12px; margin-top: 12px; }
-    .ai-version-label { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--olive); margin-bottom: 6px; font-weight: 700; }
-    .ai-new-name { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: var(--navy); font-weight: 600; margin-bottom: 5px; }
-    .ai-new-desc { font-size: 12px; color: var(--text-muted); line-height: 1.7; }
+    .ai-result-box {
+      background: var(--ivory);
+      border: 1px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 12px;
+      margin-top: 12px;
+    }
+
+    .ai-version-label {
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--olive);
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .ai-new-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      color: var(--navy);
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .ai-new-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
 
     /* ── TOAST ── */
-    .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--navy); color: var(--gold-light); padding: 12px 24px; border-radius: 24px; border: 1px solid rgba(232, 62, 140, 0.4); font-size: 12px; font-weight: 500; letter-spacing: 1px; z-index: 999; display: none; white-space: nowrap; box-shadow: 0 10px 40px rgba(232, 62, 140, 0.25); text-transform: uppercase; }
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--navy);
+      color: var(--gold-light);
+      padding: 12px 24px;
+      border-radius: 24px;
+      border: 1px solid rgba(232, 62, 140, 0.4);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      z-index: 999;
+      display: none;
+      white-space: nowrap;
+      box-shadow: 0 10px 40px rgba(232, 62, 140, 0.25);
+      text-transform: uppercase;
+    }
 
     @media (max-width: 768px) {
-      .sidebar { display: none; }
-      .header { padding: 0 12px; }
+      .sidebar {
+        display: none;
+      }
+
+      .header {
+        padding: 0 12px;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<!-- HEADER -->
-<header class="header">
-  <div class="brand">
-    <div class="brand-name">✦ Studio Board</div>
-    <div class="brand-tag">Bakery Content</div>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="brand">
+      <div class="brand-name">✦ Michal Social</div>
+      <div class="brand-tag">לחם מן הארץ</div>
+    </div>
+
+    <nav class="header-nav">
+      <button class="nav-tab active" onclick="setView('all')" id="tab-all">All Ideas</button>
+      <button class="nav-tab" onclick="setView('photos')" id="tab-photos">📷 Photos</button>
+      <button class="nav-tab" onclick="setView('videos')" id="tab-videos">🎬 Videos</button>
+      <button class="nav-tab" onclick="setView('shooting')" id="tab-shooting">
+        📅 Shooting Day
+        <span class="nav-badge" id="shoot-badge" style="display:none">0</span>
+      </button>
+    </nav>
+
+    <div class="header-right">
+      <button class="btn btn-ghost btn-sm" onclick="saveToFile()" id="saveBtn">💾 Save</button>
+      <button class="btn btn-ghost btn-sm" onclick="toggleVision()" id="visionBtn">◫ Feed Preview</button>
+      <button class="btn btn-primary btn-sm" onclick="openAddModal()">+ Add Idea</button>
+    </div>
+  </header>
+
+  <!-- APP -->
+  <div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-head">Categories</div>
+      <div class="cat-list">
+        <button class="cat-item active" onclick="selectCat('all')" id="cat-all">
+          <span class="cat-dot" style="background:#E83E8C;"></span>
+          <span class="cat-name">All Ideas</span>
+          <span class="cat-badge" id="cnt-all">0</span>
+        </button>
+        <button class="cat-item" onclick="selectCat('product')" id="cat-product">
+          <span class="cat-dot" style="background:var(--cat-product);"></span>
+          <span class="cat-name">Product / Display</span>
+          <span class="cat-badge" id="cnt-product">0</span>
+        </button>
+        <button class="cat-item" onclick="selectCat('behind')" id="cat-behind">
+          <span class="cat-dot" style="background:var(--cat-behind);"></span>
+          <span class="cat-name">Behind the Scenes</span>
+          <span class="cat-badge" id="cnt-behind">0</span>
+        </button>
+        <button class="cat-item" onclick="selectCat('story')" id="cat-story">
+          <span class="cat-dot" style="background:var(--cat-story);"></span>
+          <span class="cat-name">Story / Narrative</span>
+          <span class="cat-badge" id="cnt-story">0</span>
+        </button>
+        <button class="cat-item" onclick="selectCat('reel')" id="cat-reel">
+          <span class="cat-dot" style="background:var(--cat-reel);"></span>
+          <span class="cat-name">Reel / Video</span>
+          <span class="cat-badge" id="cnt-reel">0</span>
+        </button>
+        <button class="cat-item" onclick="selectCat('collab')" id="cat-collab">
+          <span class="cat-dot" style="background:var(--cat-collab);"></span>
+          <span class="cat-name">Collaboration</span>
+          <span class="cat-badge" id="cnt-collab">0</span>
+        </button>
+        <button class="cat-item" onclick="selectCat('seasonal')" id="cat-seasonal">
+          <span class="cat-dot" style="background:var(--cat-seasonal);"></span>
+          <span class="cat-name">Seasonal / Holidays</span>
+          <span class="cat-badge" id="cnt-seasonal">0</span>
+        </button>
+      </div>
+      <div class="sidebar-footer">
+        <div class="sidebar-stats" id="sidebarStats">0 ideas</div>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+
+      <!-- ALL IDEAS -->
+      <div class="view-panel active" id="view-all">
+        <div class="view-inner">
+          <div class="toolbar">
+            <div>
+              <div class="page-title" id="pageTitle">All Ideas</div>
+              <div class="page-sub">Click ♥ to approve · Add to Shooting Day to plan your session</div>
+            </div>
+            <div class="toolbar-right">
+              <span style="font-size:11px;color:var(--text-muted);" id="statsBar"></span>
+              <select class="sort-select" onchange="setSortMode(this.value)">
+                <option value="priority">Sort: Priority</option>
+                <option value="likes">Sort: Most Liked</option>
+                <option value="newest">Sort: Newest</option>
+              </select>
+            </div>
+          </div>
+          <div class="cards-grid" id="cardsGrid"></div>
+          <div class="suggest-section" id="suggestSection">
+            <div class="suggest-head">✦ AI Suggestions</div>
+            <div class="suggest-list" id="suggestList"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHOTOS -->
+      <div class="view-panel" id="view-photos">
+        <div class="view-inner">
+          <div class="toolbar">
+            <div>
+              <div class="page-title">📷 Photo Ideas</div>
+              <div class="page-sub">Static photos & carousels — your image posts</div>
+            </div>
+            <div class="toolbar-right">
+              <span style="font-size:11px;color:var(--text-muted);" id="photosStats"></span>
+            </div>
+          </div>
+          <div class="cards-grid" id="photosGrid"></div>
+        </div>
+      </div>
+
+      <!-- VIDEOS -->
+      <div class="view-panel" id="view-videos">
+        <div class="view-inner">
+          <div class="toolbar">
+            <div>
+              <div class="page-title">🎬 Video Ideas</div>
+              <div class="page-sub">Reels, stories & videos — grouped by platform and priority</div>
+            </div>
+          </div>
+          <div id="videosByPlatform"></div>
+        </div>
+      </div>
+
+      <!-- SHOOTING DAY -->
+      <div class="view-panel" id="view-shooting">
+        <div class="view-inner">
+          <div class="shooting-header">
+            <div class="shooting-title">
+              <h2>📅 Shooting Day</h2>
+              <span id="shootingDaySub">Plan your filming session</span>
+            </div>
+            <div class="shooting-actions">
+              <button class="btn btn-ghost btn-sm" onclick="clearDoneItems()">✓ Clear Done Items</button>
+            </div>
+          </div>
+          <div class="shooting-list" id="shootingList"></div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- VISION PANEL -->
+    <div class="vision-panel" id="visionPanel">
+      <div class="vision-head">
+        <span class="vision-title">◫ Feed Preview</span>
+        <button class="vision-close" onclick="toggleVision()">✕</button>
+      </div>
+      <div class="vision-tabs">
+        <button class="vision-tab active" onclick="setVisionTab('grid')" id="vtab-grid">Grid View</button>
+        <button class="vision-tab" onclick="setVisionTab('feed')" id="vtab-feed">Feed View</button>
+      </div>
+      <div class="vision-scroll" id="visionScroll"></div>
+    </div>
+
   </div>
 
-  <nav class="header-nav">
-    <button class="nav-tab active" onclick="setView('all')" id="tab-all">All Ideas</button>
-    <button class="nav-tab" onclick="setView('photos')" id="tab-photos">📷 Photos</button>
-    <button class="nav-tab" onclick="setView('videos')" id="tab-videos">🎬 Videos</button>
-    <button class="nav-tab" onclick="setView('shooting')" id="tab-shooting">
-      📅 Shooting Day
-      <span class="nav-badge" id="shoot-badge" style="display:none">0</span>
-    </button>
-  </nav>
+  <!-- ADD / EDIT MODAL -->
+  <div class="overlay" id="addModal">
+    <div class="modal">
+      <div class="modal-title" id="modalTitle">✦ New Idea</div>
 
-  <div class="header-right">
-    <button class="btn btn-ghost btn-sm" onclick="saveToFile()" id="saveBtn">💾 Save</button>
-    <button class="btn btn-ghost btn-sm" onclick="toggleVision()" id="visionBtn">◫ Feed Preview</button>
-    <button class="btn btn-primary btn-sm" onclick="openAddModal()">+ Add Idea</button>
-  </div>
-</header>
+      <div class="form-row">
+        <label class="form-label">Idea Name</label>
+        <input class="form-input" id="f-name" placeholder="Short name for this content idea..." />
+      </div>
 
-<!-- APP -->
-<div class="app">
+      <div class="form-row">
+        <label class="form-label">Description & Visual Concept</label>
+        <textarea class="form-textarea" id="f-desc"
+          placeholder="What will the video/photo look like? What feeling should it convey?"></textarea>
+      </div>
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="sidebar-head">Categories</div>
-    <div class="cat-list">
-      <button class="cat-item active" onclick="selectCat('all')" id="cat-all">
-        <span class="cat-dot" style="background:#E83E8C;"></span>
-        <span class="cat-name">All Ideas</span>
-        <span class="cat-badge" id="cnt-all">0</span>
-      </button>
-      <button class="cat-item" onclick="selectCat('product')" id="cat-product">
-        <span class="cat-dot" style="background:var(--cat-product);"></span>
-        <span class="cat-name">Product / Display</span>
-        <span class="cat-badge" id="cnt-product">0</span>
-      </button>
-      <button class="cat-item" onclick="selectCat('behind')" id="cat-behind">
-        <span class="cat-dot" style="background:var(--cat-behind);"></span>
-        <span class="cat-name">Behind the Scenes</span>
-        <span class="cat-badge" id="cnt-behind">0</span>
-      </button>
-      <button class="cat-item" onclick="selectCat('story')" id="cat-story">
-        <span class="cat-dot" style="background:var(--cat-story);"></span>
-        <span class="cat-name">Story / Narrative</span>
-        <span class="cat-badge" id="cnt-story">0</span>
-      </button>
-      <button class="cat-item" onclick="selectCat('reel')" id="cat-reel">
-        <span class="cat-dot" style="background:var(--cat-reel);"></span>
-        <span class="cat-name">Reel / Video</span>
-        <span class="cat-badge" id="cnt-reel">0</span>
-      </button>
-      <button class="cat-item" onclick="selectCat('collab')" id="cat-collab">
-        <span class="cat-dot" style="background:var(--cat-collab);"></span>
-        <span class="cat-name">Collaboration</span>
-        <span class="cat-badge" id="cnt-collab">0</span>
-      </button>
-      <button class="cat-item" onclick="selectCat('seasonal')" id="cat-seasonal">
-        <span class="cat-dot" style="background:var(--cat-seasonal);"></span>
-        <span class="cat-name">Seasonal / Holidays</span>
-        <span class="cat-badge" id="cnt-seasonal">0</span>
-      </button>
-    </div>
-    <div class="sidebar-footer">
-      <div class="sidebar-stats" id="sidebarStats">0 ideas</div>
-    </div>
-  </aside>
-
-  <!-- MAIN -->
-  <main class="main">
-
-    <!-- ALL IDEAS -->
-    <div class="view-panel active" id="view-all">
-      <div class="view-inner">
-        <div class="toolbar">
-          <div>
-            <div class="page-title" id="pageTitle">All Ideas</div>
-            <div class="page-sub">Click ♥ to approve · Add to Shooting Day to plan your session</div>
-          </div>
-          <div class="toolbar-right">
-            <span style="font-size:11px;color:var(--text-muted);" id="statsBar"></span>
-            <select class="sort-select" onchange="setSortMode(this.value)">
-              <option value="priority">Sort: Priority</option>
-              <option value="likes">Sort: Most Liked</option>
-              <option value="newest">Sort: Newest</option>
-            </select>
-          </div>
+      <div class="form-row-2">
+        <div>
+          <label class="form-label">Category</label>
+          <select class="form-input form-select" id="f-cat">
+            <option value="product">Product / Display</option>
+            <option value="behind">Behind the Scenes</option>
+            <option value="story">Story / Narrative</option>
+            <option value="reel">Reel / Video</option>
+            <option value="collab">Collaboration</option>
+            <option value="seasonal">Seasonal / Holidays</option>
+          </select>
         </div>
-        <div class="cards-grid" id="cardsGrid"></div>
-        <div class="suggest-section" id="suggestSection">
-          <div class="suggest-head">✦ AI Suggestions</div>
-          <div class="suggest-list" id="suggestList"></div>
+        <div>
+          <label class="form-label">Content Type</label>
+          <select class="form-input form-select" id="f-type">
+            <option value="photo">📷 Static Photo</option>
+            <option value="carousel">🖼 Carousel</option>
+            <option value="reel">🎬 Reel</option>
+            <option value="story">⭕ Story</option>
+            <option value="video">📹 Long Video</option>
+          </select>
         </div>
       </div>
-    </div>
 
-    <!-- PHOTOS -->
-    <div class="view-panel" id="view-photos">
-      <div class="view-inner">
-        <div class="toolbar">
-          <div>
-            <div class="page-title">📷 Photo Ideas</div>
-            <div class="page-sub">Static photos & carousels — your image posts</div>
-          </div>
-          <div class="toolbar-right">
-            <span style="font-size:11px;color:var(--text-muted);" id="photosStats"></span>
+      <div class="form-row-2">
+        <div>
+          <label class="form-label">Priority</label>
+          <select class="form-input form-select" id="f-priority">
+            <option value="1">🔴 High Priority</option>
+            <option value="2" selected>🟡 Medium Priority</option>
+            <option value="3">🟢 Low Priority</option>
+          </select>
+        </div>
+        <div>
+          <label class="form-label">Platforms</label>
+          <div class="plat-select" style="padding-top:4px;">
+            <button class="plat-opt inst on" onclick="toggleModalPlat(this)">Instagram</button>
+            <button class="plat-opt face" onclick="toggleModalPlat(this)">Facebook</button>
+            <button class="plat-opt tik" onclick="toggleModalPlat(this)">TikTok</button>
           </div>
         </div>
-        <div class="cards-grid" id="photosGrid"></div>
+      </div>
+
+      <div class="form-row">
+        <label class="form-label">🔗 Reference / Inspiration Link</label>
+        <input class="form-input" id="f-link" placeholder="https://..." dir="ltr" />
+      </div>
+
+      <div class="form-row">
+        <label class="form-label">🎥 Tools & Equipment Needed</label>
+        <input class="form-input" id="f-tools"
+          placeholder="e.g. Camera, tripod, ring light, white backdrop, bread props..." />
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-primary" onclick="saveCard()">Save Idea</button>
+        <button class="btn btn-ghost" onclick="closeAddModal()">Cancel</button>
       </div>
     </div>
-
-    <!-- VIDEOS -->
-    <div class="view-panel" id="view-videos">
-      <div class="view-inner">
-        <div class="toolbar">
-          <div>
-            <div class="page-title">🎬 Video Ideas</div>
-            <div class="page-sub">Reels, stories & videos — grouped by platform and priority</div>
-          </div>
-        </div>
-        <div id="videosByPlatform"></div>
-      </div>
-    </div>
-
-    <!-- SHOOTING DAY -->
-    <div class="view-panel" id="view-shooting">
-      <div class="view-inner">
-        <div class="shooting-header">
-          <div class="shooting-title">
-            <h2>📅 Shooting Day</h2>
-            <span id="shootingDaySub">Plan your filming session</span>
-          </div>
-          <div class="shooting-actions">
-            <button class="btn btn-ghost btn-sm" onclick="clearDoneItems()">✓ Clear Done Items</button>
-          </div>
-        </div>
-        <div class="shooting-list" id="shootingList"></div>
-      </div>
-    </div>
-
-  </main>
-
-  <!-- VISION PANEL -->
-  <div class="vision-panel" id="visionPanel">
-    <div class="vision-head">
-      <span class="vision-title">◫ Feed Preview</span>
-      <button class="vision-close" onclick="toggleVision()">✕</button>
-    </div>
-    <div class="vision-tabs">
-      <button class="vision-tab active" onclick="setVisionTab('grid')" id="vtab-grid">Grid View</button>
-      <button class="vision-tab" onclick="setVisionTab('feed')" id="vtab-feed">Feed View</button>
-    </div>
-    <div class="vision-scroll" id="visionScroll"></div>
   </div>
 
-</div>
-
-<!-- ADD / EDIT MODAL -->
-<div class="overlay" id="addModal">
-  <div class="modal">
-    <div class="modal-title" id="modalTitle">✦ New Idea</div>
-
-    <div class="form-row">
-      <label class="form-label">Idea Name</label>
-      <input class="form-input" id="f-name" placeholder="Short name for this content idea..." />
-    </div>
-
-    <div class="form-row">
-      <label class="form-label">Description & Visual Concept</label>
-      <textarea class="form-textarea" id="f-desc" placeholder="What will the video/photo look like? What feeling should it convey?"></textarea>
-    </div>
-
-    <div class="form-row-2">
-      <div>
-        <label class="form-label">Category</label>
-        <select class="form-input form-select" id="f-cat">
-          <option value="product">Product / Display</option>
-          <option value="behind">Behind the Scenes</option>
-          <option value="story">Story / Narrative</option>
-          <option value="reel">Reel / Video</option>
-          <option value="collab">Collaboration</option>
-          <option value="seasonal">Seasonal / Holidays</option>
-        </select>
+  <!-- AI MODAL -->
+  <div class="overlay" id="aiModal">
+    <div class="modal">
+      <div class="modal-title">✦ AI Refining Your Idea</div>
+      <div id="aiContent" style="direction:rtl;line-height:1.8;font-size:13px;color:var(--text-mid);min-height:80px;">
       </div>
-      <div>
-        <label class="form-label">Content Type</label>
-        <select class="form-input form-select" id="f-type">
-          <option value="photo">📷 Static Photo</option>
-          <option value="carousel">🖼 Carousel</option>
-          <option value="reel">🎬 Reel</option>
-          <option value="story">⭕ Story</option>
-          <option value="video">📹 Long Video</option>
-        </select>
+      <div class="modal-footer">
+        <button class="btn btn-primary" onclick="applyAI()">✓ Apply Improvement</button>
+        <button class="btn btn-ghost" onclick="closeAIModal()">Close</button>
       </div>
-    </div>
-
-    <div class="form-row-2">
-      <div>
-        <label class="form-label">Priority</label>
-        <select class="form-input form-select" id="f-priority">
-          <option value="1">🔴 High Priority</option>
-          <option value="2" selected>🟡 Medium Priority</option>
-          <option value="3">🟢 Low Priority</option>
-        </select>
-      </div>
-      <div>
-        <label class="form-label">Platforms</label>
-        <div class="plat-select" style="padding-top:4px;">
-          <button class="plat-opt inst on" onclick="toggleModalPlat(this)">Instagram</button>
-          <button class="plat-opt face" onclick="toggleModalPlat(this)">Facebook</button>
-          <button class="plat-opt tik" onclick="toggleModalPlat(this)">TikTok</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-row">
-      <label class="form-label">🔗 Reference / Inspiration Link</label>
-      <input class="form-input" id="f-link" placeholder="https://..." dir="ltr" />
-    </div>
-
-    <div class="form-row">
-      <label class="form-label">🎥 Tools & Equipment Needed</label>
-      <input class="form-input" id="f-tools" placeholder="e.g. Camera, tripod, ring light, white backdrop, bread props..." />
-    </div>
-
-    <div class="modal-footer">
-      <button class="btn btn-primary" onclick="saveCard()">Save Idea</button>
-      <button class="btn btn-ghost" onclick="closeAddModal()">Cancel</button>
     </div>
   </div>
-</div>
 
-<!-- AI MODAL -->
-<div class="overlay" id="aiModal">
-  <div class="modal">
-    <div class="modal-title">✦ AI Refining Your Idea</div>
-    <div id="aiContent" style="direction:rtl;line-height:1.8;font-size:13px;color:var(--text-mid);min-height:80px;"></div>
-    <div class="modal-footer">
-      <button class="btn btn-primary" onclick="applyAI()">✓ Apply Improvement</button>
-      <button class="btn btn-ghost" onclick="closeAIModal()">Close</button>
-    </div>
-  </div>
-</div>
+  <div class="toast" id="toast"></div>
 
-<div class="toast" id="toast"></div>
+  <script>
+    /* ── STATE ── */
+    var ideas = [];
+    var shootingOrder = [];   // ordered array of idea IDs for shooting day
+    var expandedShootIds = {}; // id -> true when expanded
+    var dragSrcId = null;
+    var currentCat = 'all';
+    var currentView = 'all';
+    var visionTab = 'grid';
+    var visionOpen = false;
+    var sortMode = 'priority';
+    var editingId = null;
+    var aiTargetId = null;
+    var aiImprovedData = null;
 
-<script>
-/* ── STATE ── */
-var ideas = [];
-var shootingOrder = [];   // ordered array of idea IDs for shooting day
-var expandedShootIds = {}; // id -> true when expanded
-var dragSrcId = null;
-var currentCat = 'all';
-var currentView = 'all';
-var visionTab = 'grid';
-var visionOpen = false;
-var sortMode = 'priority';
-var editingId = null;
-var aiTargetId = null;
-var aiImprovedData = null;
+    var catMeta = {
+      all: { label: 'All Ideas', color: '#E83E8C' },
+      product: { label: 'Product / Display', color: '#E83E8C' },
+      behind: { label: 'Behind the Scenes', color: '#9C27B0' },
+      story: { label: 'Story / Narrative', color: '#301121' },
+      reel: { label: 'Reel / Video', color: '#7B5EA7' },
+      collab: { label: 'Collaboration', color: '#F50057' },
+      seasonal: { label: 'Seasonal / Holidays', color: '#FF9800' },
+    };
 
-var catMeta = {
-  all:      { label: 'All Ideas',           color: '#E83E8C' },
-  product:  { label: 'Product / Display',   color: '#E83E8C' },
-  behind:   { label: 'Behind the Scenes',   color: '#9C27B0' },
-  story:    { label: 'Story / Narrative',   color: '#301121' },
-  reel:     { label: 'Reel / Video',        color: '#7B5EA7' },
-  collab:   { label: 'Collaboration',       color: '#F50057' },
-  seasonal: { label: 'Seasonal / Holidays', color: '#FF9800' },
-};
+    var typeLabel = { photo: '📷 Photo', carousel: '🖼 Carousel', reel: '🎬 Reel', story: '⭕ Story', video: '📹 Video' };
+    var typeIcon = { photo: '📷', carousel: '🖼', reel: '🎬', story: '⭕', video: '📹' };
 
-var typeLabel = { photo: '📷 Photo', carousel: '🖼 Carousel', reel: '🎬 Reel', story: '⭕ Story', video: '📹 Video' };
-var typeIcon  = { photo: '📷', carousel: '🖼', reel: '🎬', story: '⭕', video: '📹' };
+    var seed = [
+      /* ── PHOTOS ── */
+      { name: 'Morning Bakery — 6AM', desc: 'Filming the dough preparation in the early morning hours. First light, hands in dough, the aroma you can almost feel.', cat: 'behind', type: 'reel', priority: 1, plats: ['inst', 'tik'], link: '', tools: 'Camera + gimbal, natural window light, close-up lens' },
+      { name: 'Croissant Cross-Section — Macro', desc: 'Knife splits a warm croissant revealing honeycomb layers inside. Overhead or 45° angle, steam rising, shot on white marble. Pure texture and warmth.', cat: 'product', type: 'photo', priority: 1, plats: ['inst', 'face'], link: '', tools: 'DSLR + macro lens, marble surface, steam trick with wet paper towel' },
+      { name: 'Sourdough Crust — Close-Up', desc: 'Extreme close-up of a scored sourdough loaf just out of the oven. The ear, the cracks, the deep mahogany color. Almost sculptural. One loaf, dark background.', cat: 'product', type: 'photo', priority: 1, plats: ['inst'], link: '', tools: 'DSLR + 100mm macro, dark slate board, side window light' },
+      { name: 'Morning Coffee & Pastry Pairing', desc: 'Flat lay of espresso cup next to an almond croissant on linen napkin. Warm ivory tones, a few scattered almond flakes. Calm morning energy.', cat: 'story', type: 'photo', priority: 2, plats: ['inst', 'face'], link: '', tools: 'Phone or mirrorless, linen fabric, espresso cup, overhead tripod arm' },
+      { name: 'Ingredients Flat-Lay', desc: 'Top-down shot of raw ingredients: flour, cracked eggs, butter block, vanilla pod, salt. Arranged on dark surface. Labels removed. Pure and beautiful chaos.', cat: 'behind', type: 'photo', priority: 2, plats: ['inst', 'face'], link: '', tools: 'Camera, dark slate/wood surface, overhead tripod, natural diffused light' },
+      { name: 'Baker\'s Hands — Shaping a Roll', desc: 'Hands caught mid-motion rolling a dough ball. Flour dusted knuckles, warm light from the side. Intimate, skilled, human. Shows the craft.', cat: 'behind', type: 'photo', priority: 1, plats: ['inst', 'tik'], link: '', tools: 'Second person to photograph, 50mm lens, window light from left' },
+      { name: 'Seasonal Tart — Overhead Flatlay', desc: 'Full tart with seasonal fruit (strawberries/figs/blueberries) arranged in perfect concentric circles. Overhead on cream linen. One stem of greenery for balance.', cat: 'product', type: 'carousel', priority: 1, plats: ['inst', 'face'], link: '', tools: 'DSLR, cream linen, overhead rig or ladder, natural window light' },
+      { name: 'Window Display at Golden Hour', desc: 'Exterior shot of the bakery window display at golden hour. Pastries on tiered stands inside, warm light pouring out. Nostalgic, inviting. Shot from outside.', cat: 'product', type: 'photo', priority: 2, plats: ['inst', 'face'], link: '', tools: 'Camera, shoot at ~5-6pm, no flash, wide lens' },
+      { name: 'Dark & Moody Chocolate Cake', desc: 'Single-layer dark chocolate cake on black slate. Ganache dripping slowly down the sides. One gold leaf accent. Moody studio light. Minimal and dramatic.', cat: 'product', type: 'photo', priority: 1, plats: ['inst'], link: '', tools: 'Black slate board, ring light dimmed + diffused, gold leaf sheet, reflector' },
+      { name: 'Bread & Butter — Before You Bite', desc: 'A thick slice of fresh sourdough, one side already spread with soft butter that\'s just melting in. Side angle shot. Soft focus background. Simple and deeply satisfying.', cat: 'product', type: 'carousel', priority: 2, plats: ['inst', 'face'], link: '', tools: 'Cutting board, soft butter at room temp, good window, 85mm lens' },
+      { name: 'Gift Box — Packaging Hero Shot', desc: 'Branded gift box open, revealing wrapped pastries inside with tissue paper and ribbon. Flat lay on ivory background. Holiday gift positioning.', cat: 'product', type: 'photo', priority: 2, plats: ['inst', 'face'], link: '', tools: 'Gift boxes, tissue paper, ribbon, ivory surface, overhead rig' },
+      { name: 'Cheese & Bread Board', desc: 'Charcuterie-style board — sourdough slices, brie, grapes, olives, honey drizzle. Mediterranean feel. Rich textures. Perfect for Friday or holiday content.', cat: 'story', type: 'carousel', priority: 2, plats: ['inst', 'face'], link: '', tools: 'Wooden board, cheese selection, grapes, honey jar, olive oil, daylight' },
+      { name: 'Raw Dough vs Baked — Before & After', desc: 'Split-frame carousel: left side raw shaped dough, right side same product golden and baked. Clean white background both shots. Shows the transformation.', cat: 'behind', type: 'carousel', priority: 3, plats: ['inst', 'face'], link: '', tools: 'Consistent lighting setup, white backdrop, same angle both shots' },
+      { name: 'Close-Up: Glaze Drip on Danish', desc: 'Macro shot of icing glaze being dripped onto a warm danish. The moment it hits and spreads. Pure sensory content. Very high engagement potential.', cat: 'product', type: 'photo', priority: 1, plats: ['inst', 'tik'], link: '', tools: 'Macro lens, warm danish, glaze in squeeze bottle, ring light from above' },
+      /* ── VIDEOS ── */
+      { name: 'The Cinnamon Roll Secret', desc: 'Full prep process from A to Z. Measurements, mixing, rolling. Gentle music, no voiceover. Viewer feels they are learning a secret.', cat: 'behind', type: 'reel', priority: 2, plats: ['inst', 'tik', 'face'], link: '', tools: 'Phone on tripod, overhead mount, ring light' },
+      { name: 'Bread Rising — Time-lapse', desc: '8-hour sourdough rise condensed into 30 seconds. Set the camera on a tripod, interval every 5 minutes. Add ambient bakery sounds. Deeply satisfying to watch.', cat: 'behind', type: 'reel', priority: 1, plats: ['inst', 'tik'], link: '', tools: 'Phone/camera on fixed tripod, interval timer, consistent artificial light (no window)' },
+      { name: 'Caramel Drizzle — Slow Motion', desc: 'Thick caramel being poured over a finished pastry in 240fps slow motion. Golden, viscous, dreamy. No talking, just music and the sound of the pour. 15 seconds max.', cat: 'product', type: 'reel', priority: 1, plats: ['inst', 'tik'], link: '', tools: 'iPhone slow-mo or camera 240fps, caramel warm in squeeze bottle, ring light overhead' },
+      { name: 'Bread Cutting ASMR', desc: 'A perfect sourdough loaf being sliced with a serrated knife. Close mic on the sound — the crunch of the crust, the soft interior. No music. Pure ASMR. Trending format.', cat: 'product', type: 'reel', priority: 1, plats: ['inst', 'tik', 'face'], link: '', tools: 'Lavalier mic or directional mic, phone on tripod, side camera angle, fresh hot loaf' },
+      { name: 'Cake Decorating Step-by-Step', desc: 'Tutorial-style: bare cake → crumb coat → final layer → decoration. Sped up 3x. Text overlays with each step. Educational and shareable. Ends on final product beauty shot.', cat: 'behind', type: 'video', priority: 2, plats: ['inst', 'face'], link: '', tools: 'Camera on tripod, overhead arm, ring light, turntable, palette knife, piping bag' },
+      { name: '60-Second Recipe Challenge', desc: 'Make one full recipe in under 60 seconds real-time. Fast cuts between steps. Trending format. Product shows in the first 3 seconds, final baked result in the last 5.', cat: 'reel', type: 'reel', priority: 1, plats: ['inst', 'tik'], link: '', tools: 'Multiple cameras pre-set at different angles, all ingredients prepped, ring light' },
+      { name: 'Day in the Life — Baker\'s POV', desc: 'First-person perspective from 5AM to noon. Chest-mount or phone held by baker. Loading ovens, arranging displays, first customer. Raw and authentic. No script.', cat: 'behind', type: 'reel', priority: 2, plats: ['inst', 'tik'], link: '', tools: 'Phone with chest harness or selfie grip, stabilizer, no tripod needed' },
+      { name: 'Customer Reaction — Blind Taste Test', desc: 'Ask 3 loyal customers to taste-test a new product blind. Capture genuine reactions. Short answers: "what do you taste?". Ends with the product reveal. Authentic and fun.', cat: 'story', type: 'reel', priority: 2, plats: ['inst', 'face', 'tik'], link: '', tools: 'Phone handheld, good mic, natural light or ring light, blindfold optional' },
+      { name: 'Packaging for Delivery — Behind the Scenes', desc: 'Story-style walkthrough of how we package orders for delivery. Tissue paper, stickers, ribbon. Ends with the box closing. Makes customers appreciate what they receive.', cat: 'behind', type: 'story', priority: 3, plats: ['inst'], link: '', tools: 'Phone handheld, good lighting in packing area, all packaging materials ready' },
+      { name: 'Friday Afternoon Table', desc: 'Table scene — focaccia, greens, olive oil, white wine. Mediterranean aesthetic. Perfect end-of-week content.', cat: 'story', type: 'carousel', priority: 2, plats: ['inst', 'face'], link: '', tools: 'Camera, table props, linen cloth, wine glass' },
+      { name: 'Holiday Special — Prep Reel', desc: 'The week before a major holiday: prep footage montage. Large trays, decorating in volume, the team working. Energetic music. Ends with the final display case filled.', cat: 'seasonal', type: 'reel', priority: 1, plats: ['inst', 'tik', 'face'], link: '', tools: 'Camera + gimbal for walk-around shots, wide lens for oven shots, team permission' },
+      { name: 'Sourdough Journey — Week 1', desc: 'Following the sourdough starter from day 1. Daily story updates, final reel summary. Audience lives the process.', cat: 'seasonal', type: 'story', priority: 3, plats: ['inst'], link: '', tools: 'Phone + jar, daily photos, consistent angle & light' },
+      { name: 'The Parisian Croissant — Inspiration Edit', desc: 'Mood reel: shots of croissants on marble, a cup of coffee, morning light through the window, a hand breaking the croissant open. Soft French music. 30 seconds. No talking.', cat: 'product', type: 'reel', priority: 1, plats: ['inst', 'tik'], link: '', tools: 'Gimbal or smooth handheld, soft morning window light, marble props' },
+      { name: 'Collab with Local Coffee Shop', desc: 'Joint content with a neighboring coffee shop. Their coffee + our pastry. Both accounts share. Behind-the-scenes of the collab setup + the final paired product shot.', cat: 'collab', type: 'reel', priority: 2, plats: ['inst', 'face'], link: '', tools: 'Camera, neutral location (coffee shop or bakery), coordinate with partner' },
+    ];
 
-var seed = [
-  /* ── PHOTOS ── */
-  { name: 'Morning Bakery — 6AM', desc: 'Filming the dough preparation in the early morning hours. First light, hands in dough, the aroma you can almost feel.', cat: 'behind', type: 'reel', priority: 1, plats: ['inst','tik'], link: '', tools: 'Camera + gimbal, natural window light, close-up lens' },
-  { name: 'Croissant Cross-Section — Macro', desc: 'Knife splits a warm croissant revealing honeycomb layers inside. Overhead or 45° angle, steam rising, shot on white marble. Pure texture and warmth.', cat: 'product', type: 'photo', priority: 1, plats: ['inst','face'], link: '', tools: 'DSLR + macro lens, marble surface, steam trick with wet paper towel' },
-  { name: 'Sourdough Crust — Close-Up', desc: 'Extreme close-up of a scored sourdough loaf just out of the oven. The ear, the cracks, the deep mahogany color. Almost sculptural. One loaf, dark background.', cat: 'product', type: 'photo', priority: 1, plats: ['inst'], link: '', tools: 'DSLR + 100mm macro, dark slate board, side window light' },
-  { name: 'Morning Coffee & Pastry Pairing', desc: 'Flat lay of espresso cup next to an almond croissant on linen napkin. Warm ivory tones, a few scattered almond flakes. Calm morning energy.', cat: 'story', type: 'photo', priority: 2, plats: ['inst','face'], link: '', tools: 'Phone or mirrorless, linen fabric, espresso cup, overhead tripod arm' },
-  { name: 'Ingredients Flat-Lay', desc: 'Top-down shot of raw ingredients: flour, cracked eggs, butter block, vanilla pod, salt. Arranged on dark surface. Labels removed. Pure and beautiful chaos.', cat: 'behind', type: 'photo', priority: 2, plats: ['inst','face'], link: '', tools: 'Camera, dark slate/wood surface, overhead tripod, natural diffused light' },
-  { name: 'Baker\'s Hands — Shaping a Roll', desc: 'Hands caught mid-motion rolling a dough ball. Flour dusted knuckles, warm light from the side. Intimate, skilled, human. Shows the craft.', cat: 'behind', type: 'photo', priority: 1, plats: ['inst','tik'], link: '', tools: 'Second person to photograph, 50mm lens, window light from left' },
-  { name: 'Seasonal Tart — Overhead Flatlay', desc: 'Full tart with seasonal fruit (strawberries/figs/blueberries) arranged in perfect concentric circles. Overhead on cream linen. One stem of greenery for balance.', cat: 'product', type: 'carousel', priority: 1, plats: ['inst','face'], link: '', tools: 'DSLR, cream linen, overhead rig or ladder, natural window light' },
-  { name: 'Window Display at Golden Hour', desc: 'Exterior shot of the bakery window display at golden hour. Pastries on tiered stands inside, warm light pouring out. Nostalgic, inviting. Shot from outside.', cat: 'product', type: 'photo', priority: 2, plats: ['inst','face'], link: '', tools: 'Camera, shoot at ~5-6pm, no flash, wide lens' },
-  { name: 'Dark & Moody Chocolate Cake', desc: 'Single-layer dark chocolate cake on black slate. Ganache dripping slowly down the sides. One gold leaf accent. Moody studio light. Minimal and dramatic.', cat: 'product', type: 'photo', priority: 1, plats: ['inst'], link: '', tools: 'Black slate board, ring light dimmed + diffused, gold leaf sheet, reflector' },
-  { name: 'Bread & Butter — Before You Bite', desc: 'A thick slice of fresh sourdough, one side already spread with soft butter that\'s just melting in. Side angle shot. Soft focus background. Simple and deeply satisfying.', cat: 'product', type: 'carousel', priority: 2, plats: ['inst','face'], link: '', tools: 'Cutting board, soft butter at room temp, good window, 85mm lens' },
-  { name: 'Gift Box — Packaging Hero Shot', desc: 'Branded gift box open, revealing wrapped pastries inside with tissue paper and ribbon. Flat lay on ivory background. Holiday gift positioning.', cat: 'product', type: 'photo', priority: 2, plats: ['inst','face'], link: '', tools: 'Gift boxes, tissue paper, ribbon, ivory surface, overhead rig' },
-  { name: 'Cheese & Bread Board', desc: 'Charcuterie-style board — sourdough slices, brie, grapes, olives, honey drizzle. Mediterranean feel. Rich textures. Perfect for Friday or holiday content.', cat: 'story', type: 'carousel', priority: 2, plats: ['inst','face'], link: '', tools: 'Wooden board, cheese selection, grapes, honey jar, olive oil, daylight' },
-  { name: 'Raw Dough vs Baked — Before & After', desc: 'Split-frame carousel: left side raw shaped dough, right side same product golden and baked. Clean white background both shots. Shows the transformation.', cat: 'behind', type: 'carousel', priority: 3, plats: ['inst','face'], link: '', tools: 'Consistent lighting setup, white backdrop, same angle both shots' },
-  { name: 'Close-Up: Glaze Drip on Danish', desc: 'Macro shot of icing glaze being dripped onto a warm danish. The moment it hits and spreads. Pure sensory content. Very high engagement potential.', cat: 'product', type: 'photo', priority: 1, plats: ['inst','tik'], link: '', tools: 'Macro lens, warm danish, glaze in squeeze bottle, ring light from above' },
-  /* ── VIDEOS ── */
-  { name: 'The Cinnamon Roll Secret', desc: 'Full prep process from A to Z. Measurements, mixing, rolling. Gentle music, no voiceover. Viewer feels they are learning a secret.', cat: 'behind', type: 'reel', priority: 2, plats: ['inst','tik','face'], link: '', tools: 'Phone on tripod, overhead mount, ring light' },
-  { name: 'Bread Rising — Time-lapse', desc: '8-hour sourdough rise condensed into 30 seconds. Set the camera on a tripod, interval every 5 minutes. Add ambient bakery sounds. Deeply satisfying to watch.', cat: 'behind', type: 'reel', priority: 1, plats: ['inst','tik'], link: '', tools: 'Phone/camera on fixed tripod, interval timer, consistent artificial light (no window)' },
-  { name: 'Caramel Drizzle — Slow Motion', desc: 'Thick caramel being poured over a finished pastry in 240fps slow motion. Golden, viscous, dreamy. No talking, just music and the sound of the pour. 15 seconds max.', cat: 'product', type: 'reel', priority: 1, plats: ['inst','tik'], link: '', tools: 'iPhone slow-mo or camera 240fps, caramel warm in squeeze bottle, ring light overhead' },
-  { name: 'Bread Cutting ASMR', desc: 'A perfect sourdough loaf being sliced with a serrated knife. Close mic on the sound — the crunch of the crust, the soft interior. No music. Pure ASMR. Trending format.', cat: 'product', type: 'reel', priority: 1, plats: ['inst','tik','face'], link: '', tools: 'Lavalier mic or directional mic, phone on tripod, side camera angle, fresh hot loaf' },
-  { name: 'Cake Decorating Step-by-Step', desc: 'Tutorial-style: bare cake → crumb coat → final layer → decoration. Sped up 3x. Text overlays with each step. Educational and shareable. Ends on final product beauty shot.', cat: 'behind', type: 'video', priority: 2, plats: ['inst','face'], link: '', tools: 'Camera on tripod, overhead arm, ring light, turntable, palette knife, piping bag' },
-  { name: '60-Second Recipe Challenge', desc: 'Make one full recipe in under 60 seconds real-time. Fast cuts between steps. Trending format. Product shows in the first 3 seconds, final baked result in the last 5.', cat: 'reel', type: 'reel', priority: 1, plats: ['inst','tik'], link: '', tools: 'Multiple cameras pre-set at different angles, all ingredients prepped, ring light' },
-  { name: 'Day in the Life — Baker\'s POV', desc: 'First-person perspective from 5AM to noon. Chest-mount or phone held by baker. Loading ovens, arranging displays, first customer. Raw and authentic. No script.', cat: 'behind', type: 'reel', priority: 2, plats: ['inst','tik'], link: '', tools: 'Phone with chest harness or selfie grip, stabilizer, no tripod needed' },
-  { name: 'Customer Reaction — Blind Taste Test', desc: 'Ask 3 loyal customers to taste-test a new product blind. Capture genuine reactions. Short answers: "what do you taste?". Ends with the product reveal. Authentic and fun.', cat: 'story', type: 'reel', priority: 2, plats: ['inst','face','tik'], link: '', tools: 'Phone handheld, good mic, natural light or ring light, blindfold optional' },
-  { name: 'Packaging for Delivery — Behind the Scenes', desc: 'Story-style walkthrough of how we package orders for delivery. Tissue paper, stickers, ribbon. Ends with the box closing. Makes customers appreciate what they receive.', cat: 'behind', type: 'story', priority: 3, plats: ['inst'], link: '', tools: 'Phone handheld, good lighting in packing area, all packaging materials ready' },
-  { name: 'Friday Afternoon Table', desc: 'Table scene — focaccia, greens, olive oil, white wine. Mediterranean aesthetic. Perfect end-of-week content.', cat: 'story', type: 'carousel', priority: 2, plats: ['inst','face'], link: '', tools: 'Camera, table props, linen cloth, wine glass' },
-  { name: 'Holiday Special — Prep Reel', desc: 'The week before a major holiday: prep footage montage. Large trays, decorating in volume, the team working. Energetic music. Ends with the final display case filled.', cat: 'seasonal', type: 'reel', priority: 1, plats: ['inst','tik','face'], link: '', tools: 'Camera + gimbal for walk-around shots, wide lens for oven shots, team permission' },
-  { name: 'Sourdough Journey — Week 1', desc: 'Following the sourdough starter from day 1. Daily story updates, final reel summary. Audience lives the process.', cat: 'seasonal', type: 'story', priority: 3, plats: ['inst'], link: '', tools: 'Phone + jar, daily photos, consistent angle & light' },
-  { name: 'The Parisian Croissant — Inspiration Edit', desc: 'Mood reel: shots of croissants on marble, a cup of coffee, morning light through the window, a hand breaking the croissant open. Soft French music. 30 seconds. No talking.', cat: 'product', type: 'reel', priority: 1, plats: ['inst','tik'], link: '', tools: 'Gimbal or smooth handheld, soft morning window light, marble props' },
-  { name: 'Collab with Local Coffee Shop', desc: 'Joint content with a neighboring coffee shop. Their coffee + our pastry. Both accounts share. Behind-the-scenes of the collab setup + the final paired product shot.', cat: 'collab', type: 'reel', priority: 2, plats: ['inst','face'], link: '', tools: 'Camera, neutral location (coffee shop or bakery), coordinate with partner' },
-];
+    function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
 
-function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
-
-function saveData() {
-  try { localStorage.setItem('bakery_ideas_cache', JSON.stringify({ ideas: ideas, shootingOrder: shootingOrder })); } catch(e) {}
-  autoSave();
-}
-function saveOrder() { saveData(); }
-
-function migrateIdeas() {
-  ideas.forEach(function(i) {
-    if (!i.tools) i.tools = '';
-    if (i.inShootingDay === undefined) i.inShootingDay = false;
-    if (i.shotDone === undefined) i.shotDone = false;
-  });
-}
-
-function syncOrder() {
-  shootingOrder = shootingOrder.filter(function(id) { return ideas.some(function(i) { return i.id === id && i.inShootingDay; }); });
-  ideas.filter(function(i) { return i.inShootingDay && shootingOrder.indexOf(i.id) === -1; }).forEach(function(i) { shootingOrder.push(i.id); });
-}
-
-async function init() {
-  var fromFile = false;
-  try {
-    var resp = await fetch('./data.json?t=' + Date.now());
-    if (resp.ok) {
-      var json = await resp.json();
-      if (json.ideas && json.ideas.length > 0) {
-        ideas = json.ideas;
-        shootingOrder = json.shootingOrder || [];
-        fromFile = true;
-      }
+    function saveData() {
+      try { localStorage.setItem('bakery_ideas_cache', JSON.stringify({ ideas: ideas, shootingOrder: shootingOrder })); } catch (e) { }
+      autoSave();
     }
-  } catch(e) {}
+    function saveOrder() { saveData(); }
 
-  if (!fromFile) {
-    try {
-      var cached = localStorage.getItem('bakery_ideas_cache');
-      if (!cached) cached = localStorage.getItem('bakery_ideas'); // old key migration
-      if (cached) {
-        var c = JSON.parse(cached);
-        // handle both old format (plain array) and new format (object)
-        if (Array.isArray(c) && c.length > 0) {
-          ideas = c;
-          var ord = localStorage.getItem('bakery_shoot_order');
-          shootingOrder = ord ? JSON.parse(ord) : [];
-        } else if (c.ideas && c.ideas.length > 0) {
-          ideas = c.ideas;
-          shootingOrder = c.shootingOrder || [];
+    function migrateIdeas() {
+      ideas.forEach(function (i) {
+        if (!i.tools) i.tools = '';
+        if (i.inShootingDay === undefined) i.inShootingDay = false;
+        if (i.shotDone === undefined) i.shotDone = false;
+      });
+    }
+
+    function syncOrder() {
+      shootingOrder = shootingOrder.filter(function (id) { return ideas.some(function (i) { return i.id === id && i.inShootingDay; }); });
+      ideas.filter(function (i) { return i.inShootingDay && shootingOrder.indexOf(i.id) === -1; }).forEach(function (i) { shootingOrder.push(i.id); });
+    }
+
+    async function init() {
+      var fromFile = false;
+      try {
+        var resp = await fetch('./data.json?t=' + Date.now());
+        if (resp.ok) {
+          var json = await resp.json();
+          if (json.ideas && json.ideas.length > 0) {
+            ideas = json.ideas;
+            shootingOrder = json.shootingOrder || [];
+            fromFile = true;
+          }
+        }
+      } catch (e) { }
+
+      if (!fromFile) {
+        try {
+          var cached = localStorage.getItem('bakery_ideas_cache');
+          if (!cached) cached = localStorage.getItem('bakery_ideas'); // old key migration
+          if (cached) {
+            var c = JSON.parse(cached);
+            // handle both old format (plain array) and new format (object)
+            if (Array.isArray(c) && c.length > 0) {
+              ideas = c;
+              var ord = localStorage.getItem('bakery_shoot_order');
+              shootingOrder = ord ? JSON.parse(ord) : [];
+            } else if (c.ideas && c.ideas.length > 0) {
+              ideas = c.ideas;
+              shootingOrder = c.shootingOrder || [];
+            }
+          }
+        } catch (e) { }
+      }
+
+      if (!ideas || ideas.length === 0) {
+        ideas = seed.map(function (s) {
+          return Object.assign({ id: uid(), likes: 0, dislikes: 0, voted: null, createdAt: Date.now(), inShootingDay: false, shotDone: false }, s);
+        });
+        shootingOrder = [];
+      }
+
+      migrateIdeas();
+      syncOrder();
+
+      if (!fromFile) {
+        setTimeout(function () { toast('💾 Click "Save" → save as data.json in this folder → commit & push'); }, 800);
+      }
+
+      render();
+    }
+
+    /* ── FILE HANDLE (persisted in IndexedDB so picker only shows once) ── */
+    var _fileHandle = null;
+    var _autoSaveTimer = null;
+    function autoSave() { } // forward declaration, overwritten below
+
+    function _openIdb() {
+      return new Promise(function (resolve, reject) {
+        var req = indexedDB.open('bakery_fs', 1);
+        req.onupgradeneeded = function (e) { e.target.result.createObjectStore('handles'); };
+        req.onsuccess = function (e) { resolve(e.target.result); };
+        req.onerror = reject;
+      });
+    }
+    async function _storeHandle(h) {
+      try { var db = await _openIdb(); var tx = db.transaction('handles', 'readwrite'); tx.objectStore('handles').put(h, 'dataJson'); } catch (e) { }
+    }
+    async function _loadHandle() {
+      try {
+        var db = await _openIdb();
+        return await new Promise(function (resolve) {
+          var tx = db.transaction('handles', 'readonly');
+          var r = tx.objectStore('handles').get('dataJson');
+          r.onsuccess = function () { resolve(r.result || null); };
+          r.onerror = function () { resolve(null); };
+        });
+      } catch (e) { return null; }
+    }
+    async function _getHandle() {
+      if (!_fileHandle) _fileHandle = await _loadHandle();
+      if (_fileHandle) {
+        try {
+          var perm = await _fileHandle.queryPermission({ mode: 'readwrite' });
+          if (perm !== 'granted') perm = await _fileHandle.requestPermission({ mode: 'readwrite' });
+          if (perm !== 'granted') _fileHandle = null;
+        } catch (e) { _fileHandle = null; }
+      }
+      return _fileHandle;
+    }
+
+    async function _writeToHandle(handle, content) {
+      var w = await handle.createWritable();
+      await w.write(content);
+      await w.close();
+    }
+
+    async function saveToFile() {
+      var content = JSON.stringify({ ideas: ideas, shootingOrder: shootingOrder }, null, 2);
+      var handle = await _getHandle();
+      if (!handle) {
+        // First time — show picker, remember the handle
+        try {
+          handle = await window.showSaveFilePicker({
+            suggestedName: 'data.json',
+            types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }]
+          });
+          _fileHandle = handle;
+          await _storeHandle(handle);
+        } catch (e) {
+          if (e.name === 'AbortError') return;
+          // browser doesn't support API — plain download fallback
+          var blob = new Blob([content], { type: 'application/json' });
+          var url = URL.createObjectURL(blob);
+          var a = document.createElement('a'); a.href = url; a.download = 'data.json'; a.click();
+          URL.revokeObjectURL(url);
+          toast('Downloaded data.json — put it in the project folder, then commit');
+          return;
         }
       }
-    } catch(e) {}
-  }
-
-  if (!ideas || ideas.length === 0) {
-    ideas = seed.map(function(s) {
-      return Object.assign({ id: uid(), likes: 0, dislikes: 0, voted: null, createdAt: Date.now(), inShootingDay: false, shotDone: false }, s);
-    });
-    shootingOrder = [];
-  }
-
-  migrateIdeas();
-  syncOrder();
-
-  if (!fromFile) {
-    setTimeout(function() { toast('💾 Click "Save" → save as data.json in this folder → commit & push'); }, 800);
-  }
-
-  render();
-}
-
-/* ── FILE HANDLE (persisted in IndexedDB so picker only shows once) ── */
-var _fileHandle = null;
-var _autoSaveTimer = null;
-function autoSave() {} // forward declaration, overwritten below
-
-function _openIdb() {
-  return new Promise(function(resolve, reject) {
-    var req = indexedDB.open('bakery_fs', 1);
-    req.onupgradeneeded = function(e) { e.target.result.createObjectStore('handles'); };
-    req.onsuccess = function(e) { resolve(e.target.result); };
-    req.onerror = reject;
-  });
-}
-async function _storeHandle(h) {
-  try { var db = await _openIdb(); var tx = db.transaction('handles','readwrite'); tx.objectStore('handles').put(h,'dataJson'); } catch(e) {}
-}
-async function _loadHandle() {
-  try {
-    var db = await _openIdb();
-    return await new Promise(function(resolve) {
-      var tx = db.transaction('handles','readonly');
-      var r = tx.objectStore('handles').get('dataJson');
-      r.onsuccess = function() { resolve(r.result || null); };
-      r.onerror   = function() { resolve(null); };
-    });
-  } catch(e) { return null; }
-}
-async function _getHandle() {
-  if (!_fileHandle) _fileHandle = await _loadHandle();
-  if (_fileHandle) {
-    try {
-      var perm = await _fileHandle.queryPermission({ mode: 'readwrite' });
-      if (perm !== 'granted') perm = await _fileHandle.requestPermission({ mode: 'readwrite' });
-      if (perm !== 'granted') _fileHandle = null;
-    } catch(e) { _fileHandle = null; }
-  }
-  return _fileHandle;
-}
-
-async function _writeToHandle(handle, content) {
-  var w = await handle.createWritable();
-  await w.write(content);
-  await w.close();
-}
-
-async function saveToFile() {
-  var content = JSON.stringify({ ideas: ideas, shootingOrder: shootingOrder }, null, 2);
-  var handle = await _getHandle();
-  if (!handle) {
-    // First time — show picker, remember the handle
-    try {
-      handle = await window.showSaveFilePicker({
-        suggestedName: 'data.json',
-        types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }]
-      });
-      _fileHandle = handle;
-      await _storeHandle(handle);
-    } catch(e) {
-      if (e.name === 'AbortError') return;
-      // browser doesn't support API — plain download fallback
-      var blob = new Blob([content], { type: 'application/json' });
-      var url = URL.createObjectURL(blob);
-      var a = document.createElement('a'); a.href = url; a.download = 'data.json'; a.click();
-      URL.revokeObjectURL(url);
-      toast('Downloaded data.json — put it in the project folder, then commit');
-      return;
+      try {
+        await _writeToHandle(handle, content);
+        var btn = document.getElementById('saveBtn');
+        if (btn) { btn.textContent = '✓ Saved'; setTimeout(function () { btn.textContent = '💾 Save'; }, 1800); }
+        toast('✓ data.json updated — ready to commit & push');
+      } catch (e) {
+        _fileHandle = null;
+        toast('Save failed — try again');
+      }
     }
-  }
-  try {
-    await _writeToHandle(handle, content);
-    var btn = document.getElementById('saveBtn');
-    if (btn) { btn.textContent = '✓ Saved'; setTimeout(function(){ btn.textContent = '💾 Save'; }, 1800); }
-    toast('✓ data.json updated — ready to commit & push');
-  } catch(e) {
-    _fileHandle = null;
-    toast('Save failed — try again');
-  }
-}
 
-/* auto-save 2s after any change, only if handle already linked */
-autoSave = function() {
-  clearTimeout(_autoSaveTimer);
-  _autoSaveTimer = setTimeout(async function() {
-    var handle = await _getHandle();
-    if (!handle) return; // no handle yet, user hasn't clicked Save once
-    var content = JSON.stringify({ ideas: ideas, shootingOrder: shootingOrder }, null, 2);
-    try { await _writeToHandle(handle, content); } catch(e) {}
-  }, 2000);
-}
+    /* auto-save 2s after any change, only if handle already linked */
+    autoSave = function () {
+      clearTimeout(_autoSaveTimer);
+      _autoSaveTimer = setTimeout(async function () {
+        var handle = await _getHandle();
+        if (!handle) return; // no handle yet, user hasn't clicked Save once
+        var content = JSON.stringify({ ideas: ideas, shootingOrder: shootingOrder }, null, 2);
+        try { await _writeToHandle(handle, content); } catch (e) { }
+      }, 2000);
+    }
 
-/* ── VIEW SWITCHING ── */
-function setView(v) {
-  currentView = v;
-  ['all','photos','videos','shooting'].forEach(function(t) {
-    var tab = document.getElementById('tab-' + t);
-    if (tab) tab.classList.toggle('active', t === v);
-    var panel = document.getElementById('view-' + t);
-    if (panel) panel.classList.toggle('active', t === v);
-  });
-  if (v === 'photos')   renderPhotos();
-  else if (v === 'videos')   renderVideos();
-  else if (v === 'shooting') renderShootingDay();
-  else renderCards();
-}
+    /* ── VIEW SWITCHING ── */
+    function setView(v) {
+      currentView = v;
+      ['all', 'photos', 'videos', 'shooting'].forEach(function (t) {
+        var tab = document.getElementById('tab-' + t);
+        if (tab) tab.classList.toggle('active', t === v);
+        var panel = document.getElementById('view-' + t);
+        if (panel) panel.classList.toggle('active', t === v);
+      });
+      if (v === 'photos') renderPhotos();
+      else if (v === 'videos') renderVideos();
+      else if (v === 'shooting') renderShootingDay();
+      else renderCards();
+    }
 
-/* ── RENDER ── */
-function render() {
-  updateCounts();
-  updateShootBadge();
-  renderStats();
-  if (currentView === 'all')      renderCards();
-  else if (currentView === 'photos')   renderPhotos();
-  else if (currentView === 'videos')   renderVideos();
-  else if (currentView === 'shooting') renderShootingDay();
-  renderVision();
-}
+    /* ── RENDER ── */
+    function render() {
+      updateCounts();
+      updateShootBadge();
+      renderStats();
+      if (currentView === 'all') renderCards();
+      else if (currentView === 'photos') renderPhotos();
+      else if (currentView === 'videos') renderVideos();
+      else if (currentView === 'shooting') renderShootingDay();
+      renderVision();
+    }
 
-function updateCounts() {
-  var counts = { all: ideas.length };
-  ['product','behind','story','reel','collab','seasonal'].forEach(function(k) { counts[k] = 0; });
-  ideas.forEach(function(i) { if (counts[i.cat] !== undefined) counts[i.cat]++; });
-  Object.keys(counts).forEach(function(k) { var el = document.getElementById('cnt-' + k); if (el) el.textContent = counts[k]; });
-}
+    function updateCounts() {
+      var counts = { all: ideas.length };
+      ['product', 'behind', 'story', 'reel', 'collab', 'seasonal'].forEach(function (k) { counts[k] = 0; });
+      ideas.forEach(function (i) { if (counts[i.cat] !== undefined) counts[i.cat]++; });
+      Object.keys(counts).forEach(function (k) { var el = document.getElementById('cnt-' + k); if (el) el.textContent = counts[k]; });
+    }
 
-function updateShootBadge() {
-  var total = ideas.filter(function(i) { return i.inShootingDay; }).length;
-  var badge = document.getElementById('shoot-badge');
-  if (badge) { badge.textContent = total; badge.style.display = total > 0 ? 'inline-flex' : 'none'; }
-}
+    function updateShootBadge() {
+      var total = ideas.filter(function (i) { return i.inShootingDay; }).length;
+      var badge = document.getElementById('shoot-badge');
+      if (badge) { badge.textContent = total; badge.style.display = total > 0 ? 'inline-flex' : 'none'; }
+    }
 
-function renderStats() {
-  var filtered = getFiltered();
-  var liked = ideas.filter(function(i) { return i.voted === 'like'; }).length;
-  var bar = document.getElementById('statsBar');
-  if (bar) bar.textContent = filtered.length + ' ideas · ' + liked + ' approved';
-  var ss = document.getElementById('sidebarStats');
-  if (ss) ss.textContent = ideas.length + ' total · ' + liked + ' approved';
-}
+    function renderStats() {
+      var filtered = getFiltered();
+      var liked = ideas.filter(function (i) { return i.voted === 'like'; }).length;
+      var bar = document.getElementById('statsBar');
+      if (bar) bar.textContent = filtered.length + ' ideas · ' + liked + ' approved';
+      var ss = document.getElementById('sidebarStats');
+      if (ss) ss.textContent = ideas.length + ' total · ' + liked + ' approved';
+    }
 
-function getFiltered() {
-  var list = currentCat === 'all' ? ideas.slice() : ideas.filter(function(i) { return i.cat === currentCat; });
-  return sortList(list);
-}
+    function getFiltered() {
+      var list = currentCat === 'all' ? ideas.slice() : ideas.filter(function (i) { return i.cat === currentCat; });
+      return sortList(list);
+    }
 
-function sortList(list) {
-  if (sortMode === 'priority') list.sort(function(a,b) { return a.priority - b.priority; });
-  else if (sortMode === 'likes') list.sort(function(a,b) { return b.likes - a.likes; });
-  else if (sortMode === 'newest') list.sort(function(a,b) { return (b.createdAt||0) - (a.createdAt||0); });
-  return list;
-}
+    function sortList(list) {
+      if (sortMode === 'priority') list.sort(function (a, b) { return a.priority - b.priority; });
+      else if (sortMode === 'likes') list.sort(function (a, b) { return b.likes - a.likes; });
+      else if (sortMode === 'newest') list.sort(function (a, b) { return (b.createdAt || 0) - (a.createdAt || 0); });
+      return list;
+    }
 
-function setSortMode(v) { sortMode = v; renderCards(); }
+    function setSortMode(v) { sortMode = v; renderCards(); }
 
-function selectCat(cat) {
-  currentCat = cat;
-  document.querySelectorAll('.cat-item').forEach(function(b) { b.classList.remove('active'); });
-  var btn = document.getElementById('cat-' + cat);
-  if (btn) btn.classList.add('active');
-  var pt = document.getElementById('pageTitle');
-  if (pt) pt.textContent = catMeta[cat] ? catMeta[cat].label : cat;
-  var ss = document.getElementById('suggestSection');
-  if (ss) ss.style.display = 'none';
-  render();
-}
+    function selectCat(cat) {
+      currentCat = cat;
+      document.querySelectorAll('.cat-item').forEach(function (b) { b.classList.remove('active'); });
+      var btn = document.getElementById('cat-' + cat);
+      if (btn) btn.classList.add('active');
+      var pt = document.getElementById('pageTitle');
+      if (pt) pt.textContent = catMeta[cat] ? catMeta[cat].label : cat;
+      var ss = document.getElementById('suggestSection');
+      if (ss) ss.style.display = 'none';
+      render();
+    }
 
-/* ── BUILD CARD HTML ── */
-function buildCardHtml(idea) {
-  var color = catMeta[idea.cat] ? catMeta[idea.cat].color : '#B8963E';
-  var platHtml = ['inst','face','tik'].map(function(p) {
-    var on = idea.plats.indexOf(p) > -1 ? ' on' : '';
-    var n = p === 'inst' ? 'Instagram' : p === 'face' ? 'Facebook' : 'TikTok';
-    return '<span class="plat ' + p + on + '" onclick="togglePlat(\'' + idea.id + '\',\'' + p + '\')">' + n + '</span>';
-  }).join('');
-  var prioChip = idea.priority === 1 ? '<span class="priority-chip p1">High</span>' :
-                 idea.priority === 2 ? '<span class="priority-chip p2">Medium</span>' :
-                                       '<span class="priority-chip p3">Low</span>';
-  var tClass = idea.type || 'photo';
-  var tChip = '<span class="type-chip ' + tClass + '">' + (typeLabel[idea.type] || idea.type) + '</span>';
-  var likeOn = idea.voted === 'like' ? ' on' : '';
-  var dislikeOn = idea.voted === 'dislike' ? ' on' : '';
-  var refOpen = idea.link ? '<a class="field-open" href="' + escAttr(idea.link) + '" target="_blank" title="Open reference">↗</a>' : '';
-  var shootClass = idea.inShootingDay ? ' in' : '';
-  var shootText = idea.inShootingDay ? '📅 In Shooting Day' : '+ Shooting Day';
+    /* ── BUILD CARD HTML ── */
+    function buildCardHtml(idea) {
+      var color = catMeta[idea.cat] ? catMeta[idea.cat].color : '#B8963E';
+      var platHtml = ['inst', 'face', 'tik'].map(function (p) {
+        var on = idea.plats.indexOf(p) > -1 ? ' on' : '';
+        var n = p === 'inst' ? 'Instagram' : p === 'face' ? 'Facebook' : 'TikTok';
+        return '<span class="plat ' + p + on + '" onclick="togglePlat(\'' + idea.id + '\',\'' + p + '\')">' + n + '</span>';
+      }).join('');
+      var prioChip = idea.priority === 1 ? '<span class="priority-chip p1">High</span>' :
+        idea.priority === 2 ? '<span class="priority-chip p2">Medium</span>' :
+          '<span class="priority-chip p3">Low</span>';
+      var tClass = idea.type || 'photo';
+      var tChip = '<span class="type-chip ' + tClass + '">' + (typeLabel[idea.type] || idea.type) + '</span>';
+      var likeOn = idea.voted === 'like' ? ' on' : '';
+      var dislikeOn = idea.voted === 'dislike' ? ' on' : '';
+      var refOpen = idea.link ? '<a class="field-open" href="' + escAttr(idea.link) + '" target="_blank" title="Open reference">↗</a>' : '';
+      var shootClass = idea.inShootingDay ? ' in' : '';
+      var shootText = idea.inShootingDay ? '📅 In Shooting Day' : '+ Shooting Day';
 
-  return '<div class="card' + (idea.inShootingDay ? ' in-shooting' : '') + '" id="card-' + idea.id + '">' +
-    '<div class="card-stripe" style="background:' + color + ';"></div>' +
-    '<div class="card-body">' +
-      '<div class="card-header">' +
+      return '<div class="card' + (idea.inShootingDay ? ' in-shooting' : '') + '" id="card-' + idea.id + '">' +
+        '<div class="card-stripe" style="background:' + color + ';"></div>' +
+        '<div class="card-body">' +
+        '<div class="card-header">' +
         '<div class="card-title">' + escHtml(idea.name) + '</div>' +
         '<div class="card-actions">' +
-          '<button class="icon-btn" onclick="editCard(\'' + idea.id + '\')" title="Edit">✎</button>' +
-          '<button class="icon-btn del" onclick="deleteCard(\'' + idea.id + '\')" title="Delete">✕</button>' +
+        '<button class="icon-btn" onclick="editCard(\'' + idea.id + '\')" title="Edit">✎</button>' +
+        '<button class="icon-btn del" onclick="deleteCard(\'' + idea.id + '\')" title="Delete">✕</button>' +
         '</div>' +
-      '</div>' +
-      '<div class="card-meta">' + prioChip + tChip + '</div>' +
-      '<div class="card-desc">' + escHtml(idea.desc) + '</div>' +
-      '<div class="platforms">' + platHtml + '</div>' +
-      '<div class="card-fields">' +
+        '</div>' +
+        '<div class="card-meta">' + prioChip + tChip + '</div>' +
+        '<div class="card-desc">' + escHtml(idea.desc) + '</div>' +
+        '<div class="platforms">' + platHtml + '</div>' +
+        '<div class="card-fields">' +
         '<div class="field-row">' +
-          '<span class="field-icon" title="Reference link">🔗</span>' +
-          '<input class="field-input" dir="ltr" placeholder="Reference / inspiration link..." value="' + escAttr(idea.link || '') + '" onchange="updateLink(\'' + idea.id + '\',this.value)" />' +
-          refOpen +
+        '<span class="field-icon" title="Reference link">🔗</span>' +
+        '<input class="field-input" dir="ltr" placeholder="Reference / inspiration link..." value="' + escAttr(idea.link || '') + '" onchange="updateLink(\'' + idea.id + '\',this.value)" />' +
+        refOpen +
         '</div>' +
         '<div class="field-row">' +
-          '<span class="field-icon" title="Tools needed">🎥</span>' +
-          '<input class="field-input" placeholder="Tools & equipment needed..." value="' + escAttr(idea.tools || '') + '" onchange="updateTools(\'' + idea.id + '\',this.value)" />' +
+        '<span class="field-icon" title="Tools needed">🎥</span>' +
+        '<input class="field-input" placeholder="Tools & equipment needed..." value="' + escAttr(idea.tools || '') + '" onchange="updateTools(\'' + idea.id + '\',this.value)" />' +
         '</div>' +
-      '</div>' +
-      '<div class="card-footer">' +
+        '</div>' +
+        '<div class="card-footer">' +
         '<button class="vote-btn vote-like' + likeOn + '" onclick="vote(\'' + idea.id + '\',\'like\')">♥ ' + idea.likes + '</button>' +
         '<button class="vote-btn vote-dislike' + dislikeOn + '" onclick="vote(\'' + idea.id + '\',\'dislike\')">✕ ' + idea.dislikes + '</button>' +
         '<select class="prio-select" onchange="changePrio(\'' + idea.id + '\',this.value)">' +
-          '<option value="1"' + (idea.priority===1?' selected':'') + '>High</option>' +
-          '<option value="2"' + (idea.priority===2?' selected':'') + '>Medium</option>' +
-          '<option value="3"' + (idea.priority===3?' selected':'') + '>Low</option>' +
+        '<option value="1"' + (idea.priority === 1 ? ' selected' : '') + '>High</option>' +
+        '<option value="2"' + (idea.priority === 2 ? ' selected' : '') + '>Medium</option>' +
+        '<option value="3"' + (idea.priority === 3 ? ' selected' : '') + '>Low</option>' +
         '</select>' +
         '<button class="shoot-btn' + shootClass + '" onclick="toggleShootingDay(\'' + idea.id + '\')">' + shootText + '</button>' +
-      '</div>' +
-    '</div>' +
-  '</div>';
-}
-
-/* ── RENDER CARDS ── */
-function renderCards() {
-  var grid = document.getElementById('cardsGrid');
-  if (!grid) return;
-  var filtered = getFiltered();
-  if (filtered.length === 0) {
-    grid.innerHTML = '<div class="empty"><div class="empty-icon">✦</div><div class="empty-title">No ideas here yet</div><div class="empty-sub">Press "+ Add Idea" to get started</div></div>';
-    return;
-  }
-  grid.innerHTML = filtered.map(buildCardHtml).join('');
-}
-
-/* ── PHOTOS VIEW ── */
-function renderPhotos() {
-  var grid = document.getElementById('photosGrid');
-  if (!grid) return;
-  var photoTypes = ['photo', 'carousel'];
-  var list = ideas.filter(function(i) { return photoTypes.indexOf(i.type) > -1 && (currentCat === 'all' || i.cat === currentCat); });
-  list = sortList(list);
-  var stats = document.getElementById('photosStats');
-  if (stats) stats.textContent = list.length + ' photo ideas';
-  if (list.length === 0) {
-    grid.innerHTML = '<div class="empty"><div class="empty-icon">📷</div><div class="empty-title">No photo ideas yet</div><div class="empty-sub">Add ideas with type "Photo" or "Carousel"</div></div>';
-    return;
-  }
-  grid.innerHTML = list.map(buildCardHtml).join('');
-}
-
-/* ── VIDEOS VIEW ── */
-function renderVideos() {
-  var container = document.getElementById('videosByPlatform');
-  if (!container) return;
-  var videoTypes = ['reel', 'story', 'video'];
-  var allVids = ideas.filter(function(i) { return videoTypes.indexOf(i.type) > -1 && (currentCat === 'all' || i.cat === currentCat); });
-  if (allVids.length === 0) {
-    container.innerHTML = '<div class="empty"><div class="empty-icon">🎬</div><div class="empty-title">No video ideas yet</div><div class="empty-sub">Add ideas with type "Reel", "Story", or "Long Video"</div></div>';
-    return;
-  }
-  var platforms = [
-    { key: 'inst', name: 'Instagram', icon: '📷', cls: 'inst' },
-    { key: 'tik',  name: 'TikTok',    icon: '🎵', cls: 'tik'  },
-    { key: 'face', name: 'Facebook',  icon: '👥', cls: 'face' },
-  ];
-  var html = '';
-  var seen = {};
-  platforms.forEach(function(plat) {
-    var platVids = allVids.filter(function(i) { return i.plats.indexOf(plat.key) > -1; });
-    if (platVids.length === 0) return;
-    platVids.forEach(function(i) { seen[i.id] = true; });
-    platVids.sort(function(a,b) { return a.priority - b.priority; });
-    var high   = platVids.filter(function(i) { return i.priority === 1; });
-    var medium = platVids.filter(function(i) { return i.priority === 2; });
-    var low    = platVids.filter(function(i) { return i.priority === 3; });
-    html += '<div class="platform-section">';
-    html += '<div class="platform-header"><div class="platform-icon ' + plat.cls + '">' + plat.icon + '</div><div class="platform-name">' + plat.name + '</div><div class="platform-count">' + platVids.length + ' videos</div></div>';
-    if (high.length)   html += '<div class="priority-group"><div class="prio-group-label">🔴 High Priority</div><div class="cards-grid">' + high.map(buildCardHtml).join('') + '</div></div>';
-    if (medium.length) html += '<div class="priority-group"><div class="prio-group-label">🟡 Medium Priority</div><div class="cards-grid">' + medium.map(buildCardHtml).join('') + '</div></div>';
-    if (low.length)    html += '<div class="priority-group"><div class="prio-group-label">🟢 Low Priority</div><div class="cards-grid">' + low.map(buildCardHtml).join('') + '</div></div>';
-    html += '</div>';
-  });
-  var unassigned = allVids.filter(function(i) { return !seen[i.id]; });
-  if (unassigned.length > 0) {
-    html += '<div class="platform-section"><div class="platform-header"><div class="platform-name" style="color:var(--text-muted);">No Platform Assigned</div></div><div class="cards-grid">' + unassigned.map(buildCardHtml).join('') + '</div></div>';
-  }
-  container.innerHTML = html;
-}
-
-/* ── SHOOTING DAY ── */
-function toggleShootingDay(id) {
-  var idea = ideas.find(function(i) { return i.id === id; });
-  if (!idea) return;
-  idea.inShootingDay = !idea.inShootingDay;
-  if (idea.inShootingDay) {
-    if (shootingOrder.indexOf(id) === -1) shootingOrder.push(id);
-  } else {
-    idea.shotDone = false;
-    shootingOrder = shootingOrder.filter(function(x) { return x !== id; });
-    delete expandedShootIds[id];
-  }
-  saveData(); saveOrder(); render();
-  toast(idea.inShootingDay ? '📅 Added to Shooting Day' : 'Removed from Shooting Day');
-}
-
-function markShotDone(id) {
-  var idea = ideas.find(function(i) { return i.id === id; });
-  if (!idea) return;
-  idea.shotDone = !idea.shotDone;
-  saveData(); renderShootingDay(); updateShootBadge();
-}
-
-function toggleShootExpand(id) {
-  expandedShootIds[id] = !expandedShootIds[id];
-  renderShootingDay();
-}
-
-function clearDoneItems() {
-  var count = ideas.filter(function(i) { return i.shotDone; }).length;
-  if (count === 0) { toast('No done items to clear'); return; }
-  ideas.forEach(function(i) { if (i.shotDone) { shootingOrder = shootingOrder.filter(function(x){return x!==i.id;}); i.inShootingDay = false; i.shotDone = false; delete expandedShootIds[i.id]; } });
-  saveData(); saveOrder(); render(); toast('✓ Done items cleared');
-}
-
-/* drag-and-drop for shooting day */
-function onDragStart(e, id) {
-  dragSrcId = id;
-  e.dataTransfer.effectAllowed = 'move';
-  var el = document.getElementById('sitem-' + id);
-  if (el) setTimeout(function(){ el.classList.add('dragging'); }, 0);
-}
-function onDragEnd(id) {
-  var el = document.getElementById('sitem-' + id);
-  if (el) el.classList.remove('dragging');
-  document.querySelectorAll('.shoot-item').forEach(function(el){ el.classList.remove('drag-over-top','drag-over-bot'); });
-}
-function onDragOver(e, id) {
-  e.preventDefault();
-  e.dataTransfer.dropEffect = 'move';
-  document.querySelectorAll('.shoot-item').forEach(function(el){ el.classList.remove('drag-over-top','drag-over-bot'); });
-  var el = document.getElementById('sitem-' + id);
-  if (!el) return;
-  var rect = el.getBoundingClientRect();
-  var mid = rect.top + rect.height / 2;
-  el.classList.add(e.clientY < mid ? 'drag-over-top' : 'drag-over-bot');
-}
-function onDragLeave(e) {
-  var el = e.currentTarget;
-  if (el) el.classList.remove('drag-over-top','drag-over-bot');
-}
-function onDrop(e, targetId) {
-  e.preventDefault();
-  document.querySelectorAll('.shoot-item').forEach(function(el){ el.classList.remove('drag-over-top','drag-over-bot','dragging'); });
-  if (!dragSrcId || dragSrcId === targetId) return;
-  var srcIdx = shootingOrder.indexOf(dragSrcId);
-  var dstIdx = shootingOrder.indexOf(targetId);
-  if (srcIdx < 0 || dstIdx < 0) return;
-  var el = document.getElementById('sitem-' + targetId);
-  var rect = el ? el.getBoundingClientRect() : null;
-  var insertAfter = rect && e.clientY >= rect.top + rect.height / 2;
-  shootingOrder.splice(srcIdx, 1);
-  dstIdx = shootingOrder.indexOf(targetId);
-  shootingOrder.splice(insertAfter ? dstIdx + 1 : dstIdx, 0, dragSrcId);
-  dragSrcId = null;
-  saveOrder(); renderShootingDay();
-}
-
-function renderShootingDay() {
-  var list = document.getElementById('shootingList');
-  if (!list) return;
-  // build ordered item array: respect shootingOrder, done items go to bottom
-  var pending = [], done = [];
-  shootingOrder.forEach(function(id) {
-    var idea = ideas.find(function(i){ return i.id === id; });
-    if (!idea) return;
-    if (idea.shotDone) done.push(idea); else pending.push(idea);
-  });
-  var items = pending.concat(done);
-  var sub = document.getElementById('shootingDaySub');
-  if (items.length === 0) {
-    if (sub) sub.textContent = 'No items scheduled yet';
-    list.innerHTML = '<div class="shoot-empty"><div class="shoot-empty-icon">📅</div><div class="shoot-empty-title">Nothing scheduled yet</div><div class="shoot-empty-sub">Click "+ Shooting Day" on any idea card to add it here</div></div>';
-    return;
-  }
-  if (sub) sub.textContent = pending.length + ' to film · ' + done.length + ' done · drag to reorder';
-  list.innerHTML = items.map(function(idea) {
-    var color = catMeta[idea.cat] ? catMeta[idea.cat].color : '#B8963E';
-    var expanded = !!expandedShootIds[idea.id];
-    var platHtml = idea.plats.map(function(p) {
-      var n = p==='inst'?'Instagram':p==='face'?'Facebook':'TikTok';
-      return '<span class="plat '+p+' on" style="pointer-events:none;">'+n+'</span>';
-    }).join('');
-    var prioChip = idea.priority===1?'<span class="priority-chip p1">High</span>':idea.priority===2?'<span class="priority-chip p2">Medium</span>':'<span class="priority-chip p3">Low</span>';
-    var tClass = idea.type || 'photo';
-    var expandedHtml = '';
-    if (expanded) {
-      expandedHtml = '<div class="shoot-expanded">' +
-        (idea.desc ? '<div class="shoot-expanded-desc">'+escHtml(idea.desc)+'</div>' : '') +
-        (idea.tools ? '<div class="shoot-expanded-row"><strong>🎥 Tools:</strong><span>'+escHtml(idea.tools)+'</span></div>' : '') +
-        (idea.link ? '<div class="shoot-expanded-row"><strong>🔗 Ref:</strong><a class="shoot-item-link" href="'+escAttr(idea.link)+'" target="_blank">Open Reference ↗</a></div>' : '') +
-        '<div class="shoot-expanded-row" style="gap:4px;">' + platHtml + '</div>' +
-      '</div>';
+        '</div>' +
+        '</div>' +
+        '</div>';
     }
-    return '<div class="shoot-item' + (idea.shotDone ? ' done' : '') + '" id="sitem-' + idea.id + '" draggable="true"' +
-      ' ondragstart="onDragStart(event,\'' + idea.id + '\')"' +
-      ' ondragend="onDragEnd(\'' + idea.id + '\')"' +
-      ' ondragover="onDragOver(event,\'' + idea.id + '\')"' +
-      ' ondragleave="onDragLeave(event)"' +
-      ' ondrop="onDrop(event,\'' + idea.id + '\')">' +
-      '<div class="drag-handle" title="Drag to reorder">⠿</div>' +
-      '<button class="done-toggle" onclick="markShotDone(\'' + idea.id + '\')" title="' + (idea.shotDone?'Mark pending':'Mark done') + '">' + (idea.shotDone?'✓':'') + '</button>' +
-      '<div class="shoot-item-bar" style="background:' + color + ';"></div>' +
-      '<div class="shoot-item-content">' +
-        '<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">' +
+
+    /* ── RENDER CARDS ── */
+    function renderCards() {
+      var grid = document.getElementById('cardsGrid');
+      if (!grid) return;
+      var filtered = getFiltered();
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div class="empty"><div class="empty-icon">✦</div><div class="empty-title">No ideas here yet</div><div class="empty-sub">Press "+ Add Idea" to get started</div></div>';
+        return;
+      }
+      grid.innerHTML = filtered.map(buildCardHtml).join('');
+    }
+
+    /* ── PHOTOS VIEW ── */
+    function renderPhotos() {
+      var grid = document.getElementById('photosGrid');
+      if (!grid) return;
+      var photoTypes = ['photo', 'carousel'];
+      var list = ideas.filter(function (i) { return photoTypes.indexOf(i.type) > -1 && (currentCat === 'all' || i.cat === currentCat); });
+      list = sortList(list);
+      var stats = document.getElementById('photosStats');
+      if (stats) stats.textContent = list.length + ' photo ideas';
+      if (list.length === 0) {
+        grid.innerHTML = '<div class="empty"><div class="empty-icon">📷</div><div class="empty-title">No photo ideas yet</div><div class="empty-sub">Add ideas with type "Photo" or "Carousel"</div></div>';
+        return;
+      }
+      grid.innerHTML = list.map(buildCardHtml).join('');
+    }
+
+    /* ── VIDEOS VIEW ── */
+    function renderVideos() {
+      var container = document.getElementById('videosByPlatform');
+      if (!container) return;
+      var videoTypes = ['reel', 'story', 'video'];
+      var allVids = ideas.filter(function (i) { return videoTypes.indexOf(i.type) > -1 && (currentCat === 'all' || i.cat === currentCat); });
+      if (allVids.length === 0) {
+        container.innerHTML = '<div class="empty"><div class="empty-icon">🎬</div><div class="empty-title">No video ideas yet</div><div class="empty-sub">Add ideas with type "Reel", "Story", or "Long Video"</div></div>';
+        return;
+      }
+      var platforms = [
+        { key: 'inst', name: 'Instagram', icon: '📷', cls: 'inst' },
+        { key: 'tik', name: 'TikTok', icon: '🎵', cls: 'tik' },
+        { key: 'face', name: 'Facebook', icon: '👥', cls: 'face' },
+      ];
+      var html = '';
+      var seen = {};
+      platforms.forEach(function (plat) {
+        var platVids = allVids.filter(function (i) { return i.plats.indexOf(plat.key) > -1; });
+        if (platVids.length === 0) return;
+        platVids.forEach(function (i) { seen[i.id] = true; });
+        platVids.sort(function (a, b) { return a.priority - b.priority; });
+        var high = platVids.filter(function (i) { return i.priority === 1; });
+        var medium = platVids.filter(function (i) { return i.priority === 2; });
+        var low = platVids.filter(function (i) { return i.priority === 3; });
+        html += '<div class="platform-section">';
+        html += '<div class="platform-header"><div class="platform-icon ' + plat.cls + '">' + plat.icon + '</div><div class="platform-name">' + plat.name + '</div><div class="platform-count">' + platVids.length + ' videos</div></div>';
+        if (high.length) html += '<div class="priority-group"><div class="prio-group-label">🔴 High Priority</div><div class="cards-grid">' + high.map(buildCardHtml).join('') + '</div></div>';
+        if (medium.length) html += '<div class="priority-group"><div class="prio-group-label">🟡 Medium Priority</div><div class="cards-grid">' + medium.map(buildCardHtml).join('') + '</div></div>';
+        if (low.length) html += '<div class="priority-group"><div class="prio-group-label">🟢 Low Priority</div><div class="cards-grid">' + low.map(buildCardHtml).join('') + '</div></div>';
+        html += '</div>';
+      });
+      var unassigned = allVids.filter(function (i) { return !seen[i.id]; });
+      if (unassigned.length > 0) {
+        html += '<div class="platform-section"><div class="platform-header"><div class="platform-name" style="color:var(--text-muted);">No Platform Assigned</div></div><div class="cards-grid">' + unassigned.map(buildCardHtml).join('') + '</div></div>';
+      }
+      container.innerHTML = html;
+    }
+
+    /* ── SHOOTING DAY ── */
+    function toggleShootingDay(id) {
+      var idea = ideas.find(function (i) { return i.id === id; });
+      if (!idea) return;
+      idea.inShootingDay = !idea.inShootingDay;
+      if (idea.inShootingDay) {
+        if (shootingOrder.indexOf(id) === -1) shootingOrder.push(id);
+      } else {
+        idea.shotDone = false;
+        shootingOrder = shootingOrder.filter(function (x) { return x !== id; });
+        delete expandedShootIds[id];
+      }
+      saveData(); saveOrder(); render();
+      toast(idea.inShootingDay ? '📅 Added to Shooting Day' : 'Removed from Shooting Day');
+    }
+
+    function markShotDone(id) {
+      var idea = ideas.find(function (i) { return i.id === id; });
+      if (!idea) return;
+      idea.shotDone = !idea.shotDone;
+      saveData(); renderShootingDay(); updateShootBadge();
+    }
+
+    function toggleShootExpand(id) {
+      expandedShootIds[id] = !expandedShootIds[id];
+      renderShootingDay();
+    }
+
+    function clearDoneItems() {
+      var count = ideas.filter(function (i) { return i.shotDone; }).length;
+      if (count === 0) { toast('No done items to clear'); return; }
+      ideas.forEach(function (i) { if (i.shotDone) { shootingOrder = shootingOrder.filter(function (x) { return x !== i.id; }); i.inShootingDay = false; i.shotDone = false; delete expandedShootIds[i.id]; } });
+      saveData(); saveOrder(); render(); toast('✓ Done items cleared');
+    }
+
+    /* drag-and-drop for shooting day */
+    function onDragStart(e, id) {
+      dragSrcId = id;
+      e.dataTransfer.effectAllowed = 'move';
+      var el = document.getElementById('sitem-' + id);
+      if (el) setTimeout(function () { el.classList.add('dragging'); }, 0);
+    }
+    function onDragEnd(id) {
+      var el = document.getElementById('sitem-' + id);
+      if (el) el.classList.remove('dragging');
+      document.querySelectorAll('.shoot-item').forEach(function (el) { el.classList.remove('drag-over-top', 'drag-over-bot'); });
+    }
+    function onDragOver(e, id) {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      document.querySelectorAll('.shoot-item').forEach(function (el) { el.classList.remove('drag-over-top', 'drag-over-bot'); });
+      var el = document.getElementById('sitem-' + id);
+      if (!el) return;
+      var rect = el.getBoundingClientRect();
+      var mid = rect.top + rect.height / 2;
+      el.classList.add(e.clientY < mid ? 'drag-over-top' : 'drag-over-bot');
+    }
+    function onDragLeave(e) {
+      var el = e.currentTarget;
+      if (el) el.classList.remove('drag-over-top', 'drag-over-bot');
+    }
+    function onDrop(e, targetId) {
+      e.preventDefault();
+      document.querySelectorAll('.shoot-item').forEach(function (el) { el.classList.remove('drag-over-top', 'drag-over-bot', 'dragging'); });
+      if (!dragSrcId || dragSrcId === targetId) return;
+      var srcIdx = shootingOrder.indexOf(dragSrcId);
+      var dstIdx = shootingOrder.indexOf(targetId);
+      if (srcIdx < 0 || dstIdx < 0) return;
+      var el = document.getElementById('sitem-' + targetId);
+      var rect = el ? el.getBoundingClientRect() : null;
+      var insertAfter = rect && e.clientY >= rect.top + rect.height / 2;
+      shootingOrder.splice(srcIdx, 1);
+      dstIdx = shootingOrder.indexOf(targetId);
+      shootingOrder.splice(insertAfter ? dstIdx + 1 : dstIdx, 0, dragSrcId);
+      dragSrcId = null;
+      saveOrder(); renderShootingDay();
+    }
+
+    function renderShootingDay() {
+      var list = document.getElementById('shootingList');
+      if (!list) return;
+      // build ordered item array: respect shootingOrder, done items go to bottom
+      var pending = [], done = [];
+      shootingOrder.forEach(function (id) {
+        var idea = ideas.find(function (i) { return i.id === id; });
+        if (!idea) return;
+        if (idea.shotDone) done.push(idea); else pending.push(idea);
+      });
+      var items = pending.concat(done);
+      var sub = document.getElementById('shootingDaySub');
+      if (items.length === 0) {
+        if (sub) sub.textContent = 'No items scheduled yet';
+        list.innerHTML = '<div class="shoot-empty"><div class="shoot-empty-icon">📅</div><div class="shoot-empty-title">Nothing scheduled yet</div><div class="shoot-empty-sub">Click "+ Shooting Day" on any idea card to add it here</div></div>';
+        return;
+      }
+      if (sub) sub.textContent = pending.length + ' to film · ' + done.length + ' done · drag to reorder';
+      list.innerHTML = items.map(function (idea) {
+        var color = catMeta[idea.cat] ? catMeta[idea.cat].color : '#B8963E';
+        var expanded = !!expandedShootIds[idea.id];
+        var platHtml = idea.plats.map(function (p) {
+          var n = p === 'inst' ? 'Instagram' : p === 'face' ? 'Facebook' : 'TikTok';
+          return '<span class="plat ' + p + ' on" style="pointer-events:none;">' + n + '</span>';
+        }).join('');
+        var prioChip = idea.priority === 1 ? '<span class="priority-chip p1">High</span>' : idea.priority === 2 ? '<span class="priority-chip p2">Medium</span>' : '<span class="priority-chip p3">Low</span>';
+        var tClass = idea.type || 'photo';
+        var expandedHtml = '';
+        if (expanded) {
+          expandedHtml = '<div class="shoot-expanded">' +
+            (idea.desc ? '<div class="shoot-expanded-desc">' + escHtml(idea.desc) + '</div>' : '') +
+            (idea.tools ? '<div class="shoot-expanded-row"><strong>🎥 Tools:</strong><span>' + escHtml(idea.tools) + '</span></div>' : '') +
+            (idea.link ? '<div class="shoot-expanded-row"><strong>🔗 Ref:</strong><a class="shoot-item-link" href="' + escAttr(idea.link) + '" target="_blank">Open Reference ↗</a></div>' : '') +
+            '<div class="shoot-expanded-row" style="gap:4px;">' + platHtml + '</div>' +
+            '</div>';
+        }
+        return '<div class="shoot-item' + (idea.shotDone ? ' done' : '') + '" id="sitem-' + idea.id + '" draggable="true"' +
+          ' ondragstart="onDragStart(event,\'' + idea.id + '\')"' +
+          ' ondragend="onDragEnd(\'' + idea.id + '\')"' +
+          ' ondragover="onDragOver(event,\'' + idea.id + '\')"' +
+          ' ondragleave="onDragLeave(event)"' +
+          ' ondrop="onDrop(event,\'' + idea.id + '\')">' +
+          '<div class="drag-handle" title="Drag to reorder">⠿</div>' +
+          '<button class="done-toggle" onclick="markShotDone(\'' + idea.id + '\')" title="' + (idea.shotDone ? 'Mark pending' : 'Mark done') + '">' + (idea.shotDone ? '✓' : '') + '</button>' +
+          '<div class="shoot-item-bar" style="background:' + color + ';"></div>' +
+          '<div class="shoot-item-content">' +
+          '<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">' +
           '<div class="shoot-item-title" style="flex:1;cursor:pointer;" onclick="toggleShootExpand(\'' + idea.id + '\')">' + escHtml(idea.name) + '</div>' +
           '<button class="shoot-expand-btn" onclick="toggleShootExpand(\'' + idea.id + '\')">' + (expanded ? '▲ Less' : '▼ Details') + '</button>' +
-        '</div>' +
-        '<div class="shoot-item-meta">' + prioChip + '<span class="type-chip ' + tClass + '">' + (typeLabel[idea.type]||idea.type) + '</span>' + (!expanded ? platHtml : '') + '</div>' +
-        (!expanded && idea.tools ? '<div class="shoot-item-tools"><strong>🎥</strong> ' + escHtml(idea.tools.slice(0,60)) + (idea.tools.length>60?'…':'') + '</div>' : '') +
-        expandedHtml +
-      '</div>' +
-      '<button class="shoot-remove" onclick="toggleShootingDay(\'' + idea.id + '\')" title="Remove from shooting day">✕</button>' +
-    '</div>';
-  }).join('');
-}
+          '</div>' +
+          '<div class="shoot-item-meta">' + prioChip + '<span class="type-chip ' + tClass + '">' + (typeLabel[idea.type] || idea.type) + '</span>' + (!expanded ? platHtml : '') + '</div>' +
+          (!expanded && idea.tools ? '<div class="shoot-item-tools"><strong>🎥</strong> ' + escHtml(idea.tools.slice(0, 60)) + (idea.tools.length > 60 ? '…' : '') + '</div>' : '') +
+          expandedHtml +
+          '</div>' +
+          '<button class="shoot-remove" onclick="toggleShootingDay(\'' + idea.id + '\')" title="Remove from shooting day">✕</button>' +
+          '</div>';
+      }).join('');
+    }
 
-/* ── VISION FEED ── */
-function toggleVision() {
-  visionOpen = !visionOpen;
-  var p = document.getElementById('visionPanel');
-  p.classList.toggle('open', visionOpen);
-  var btn = document.getElementById('visionBtn');
-  if (btn) btn.textContent = visionOpen ? '✕ Close Feed' : '◫ Feed Preview';
-  renderVision();
-}
+    /* ── VISION FEED ── */
+    function toggleVision() {
+      visionOpen = !visionOpen;
+      var p = document.getElementById('visionPanel');
+      p.classList.toggle('open', visionOpen);
+      var btn = document.getElementById('visionBtn');
+      if (btn) btn.textContent = visionOpen ? '✕ Close Feed' : '◫ Feed Preview';
+      renderVision();
+    }
 
-function setVisionTab(t) {
-  visionTab = t;
-  ['grid','feed'].forEach(function(tab) {
-    var el = document.getElementById('vtab-' + tab);
-    if (el) el.classList.toggle('active', tab === t);
-  });
-  renderVision();
-}
+    function setVisionTab(t) {
+      visionTab = t;
+      ['grid', 'feed'].forEach(function (tab) {
+        var el = document.getElementById('vtab-' + tab);
+        if (el) el.classList.toggle('active', tab === t);
+      });
+      renderVision();
+    }
 
-function renderVision() {
-  if (!visionOpen) return;
-  var scroll = document.getElementById('visionScroll');
-  if (!scroll) return;
-  var liked = ideas.filter(function(i) { return i.voted === 'like'; });
-  var shown = liked.length >= 3 ? liked : sortList(ideas.slice());
-  if (shown.length === 0) {
-    scroll.innerHTML = '<div style="font-size:12px;color:rgba(255,255,255,0.3);text-align:center;padding:30px 16px;font-family:\'Cormorant Garamond\',serif;font-style:italic;">Add ideas to preview your feed</div>';
-    return;
-  }
-  if (visionTab === 'grid') renderVisionGrid(scroll, shown);
-  else renderVisionFeed(scroll, shown);
-}
+    function renderVision() {
+      if (!visionOpen) return;
+      var scroll = document.getElementById('visionScroll');
+      if (!scroll) return;
+      var liked = ideas.filter(function (i) { return i.voted === 'like'; });
+      var shown = liked.length >= 3 ? liked : sortList(ideas.slice());
+      if (shown.length === 0) {
+        scroll.innerHTML = '<div style="font-size:12px;color:rgba(255,255,255,0.3);text-align:center;padding:30px 16px;font-family:\'Cormorant Garamond\',serif;font-style:italic;">Add ideas to preview your feed</div>';
+        return;
+      }
+      if (visionTab === 'grid') renderVisionGrid(scroll, shown);
+      else renderVisionFeed(scroll, shown);
+    }
 
-var catBg = {
-  product:  'linear-gradient(135deg,#501030,#8a205a)',
-  behind:   'linear-gradient(135deg,#301040,#602080)',
-  story:    'linear-gradient(135deg,#200a1a,#401830)',
-  reel:     'linear-gradient(135deg,#301A4F,#502a80)',
-  collab:   'linear-gradient(135deg,#600A2C,#90184A)',
-  seasonal: 'linear-gradient(135deg,#6A3800,#994000)',
-};
+    var catBg = {
+      product: 'linear-gradient(135deg,#501030,#8a205a)',
+      behind: 'linear-gradient(135deg,#301040,#602080)',
+      story: 'linear-gradient(135deg,#200a1a,#401830)',
+      reel: 'linear-gradient(135deg,#301A4F,#502a80)',
+      collab: 'linear-gradient(135deg,#600A2C,#90184A)',
+      seasonal: 'linear-gradient(135deg,#6A3800,#994000)',
+    };
 
-function renderVisionGrid(scroll, shown) {
-  var isLiked = shown === ideas.filter(function(i){return i.voted==='like';});
-  var hint = '<div class="ig-grid-hint">' + (shown.length > 0 ? shown.length + ' ideas · hover to see details' : 'No ideas') + '</div>';
-  var cells = shown.slice(0,18).map(function(idea) {
-    var bg = catBg[idea.cat] || catBg.product;
-    var icon = typeIcon[idea.type] || '📷';
-    var catColor = catMeta[idea.cat] ? catMeta[idea.cat].color : '#B8963E';
-    return '<div class="ig-cell">' +
-      '<div class="ig-cell-bg" style="background:' + bg + ';border:1px solid ' + catColor + '22;">' +
-        '<span style="opacity:0.4;">' + icon + '</span>' +
-      '</div>' +
-      '<div class="ig-cell-overlay">' +
-        '<div class="ig-cell-label">' + escHtml(idea.name) + '</div>' +
-        '<div class="ig-cell-sub">' + (typeLabel[idea.type]||'') + '</div>' +
-      '</div>' +
-    '</div>';
-  }).join('');
-  scroll.innerHTML = hint + '<div class="ig-grid">' + cells + '</div>';
-}
+    function renderVisionGrid(scroll, shown) {
+      var isLiked = shown === ideas.filter(function (i) { return i.voted === 'like'; });
+      var hint = '<div class="ig-grid-hint">' + (shown.length > 0 ? shown.length + ' ideas · hover to see details' : 'No ideas') + '</div>';
+      var cells = shown.slice(0, 18).map(function (idea) {
+        var bg = catBg[idea.cat] || catBg.product;
+        var icon = typeIcon[idea.type] || '📷';
+        var catColor = catMeta[idea.cat] ? catMeta[idea.cat].color : '#B8963E';
+        return '<div class="ig-cell">' +
+          '<div class="ig-cell-bg" style="background:' + bg + ';border:1px solid ' + catColor + '22;">' +
+          '<span style="opacity:0.4;">' + icon + '</span>' +
+          '</div>' +
+          '<div class="ig-cell-overlay">' +
+          '<div class="ig-cell-label">' + escHtml(idea.name) + '</div>' +
+          '<div class="ig-cell-sub">' + (typeLabel[idea.type] || '') + '</div>' +
+          '</div>' +
+          '</div>';
+      }).join('');
+      scroll.innerHTML = hint + '<div class="ig-grid">' + cells + '</div>';
+    }
 
-function renderVisionFeed(scroll, shown) {
-  var html = '<div class="feed-list">' + shown.slice(0,8).map(function(idea) {
-    var platLabel = idea.plats.length > 0 ? idea.plats.map(function(p){return p==='inst'?'Instagram':p==='face'?'Facebook':'TikTok';}).join(' · ') : 'No platform';
-    var ratio = (idea.type==='story'||idea.type==='reel') ? '9/16' : idea.type==='carousel' ? '1/1' : '4/5';
-    var bg = catBg[idea.cat] || catBg.product;
-    var icon = typeIcon[idea.type] || '📷';
-    return '<div class="feed-card">' +
-      '<div class="feed-plat">' + platLabel + '</div>' +
-      '<div class="feed-visual" style="aspect-ratio:' + ratio + ';background:' + bg + ';">' +
-        (idea.link ? '<img src="' + escAttr(idea.link) + '" style="width:100%;height:100%;object-fit:cover;position:absolute;" onerror="this.style.display=\'none\'" />' : '') +
-        '<div class="feed-visual-inner"><div class="feed-type-icon">' + icon + '</div><div class="feed-visual-label">' + escHtml(idea.name) + '</div></div>' +
-      '</div>' +
-      '<div class="feed-caption">' + escHtml(idea.desc.slice(0,80)) + (idea.desc.length>80?'…':'') + '</div>' +
-    '</div>';
-  }).join('') + '</div>';
-  scroll.innerHTML = html;
-}
+    function renderVisionFeed(scroll, shown) {
+      var html = '<div class="feed-list">' + shown.slice(0, 8).map(function (idea) {
+        var platLabel = idea.plats.length > 0 ? idea.plats.map(function (p) { return p === 'inst' ? 'Instagram' : p === 'face' ? 'Facebook' : 'TikTok'; }).join(' · ') : 'No platform';
+        var ratio = (idea.type === 'story' || idea.type === 'reel') ? '9/16' : idea.type === 'carousel' ? '1/1' : '4/5';
+        var bg = catBg[idea.cat] || catBg.product;
+        var icon = typeIcon[idea.type] || '📷';
+        return '<div class="feed-card">' +
+          '<div class="feed-plat">' + platLabel + '</div>' +
+          '<div class="feed-visual" style="aspect-ratio:' + ratio + ';background:' + bg + ';">' +
+          (idea.link ? '<img src="' + escAttr(idea.link) + '" style="width:100%;height:100%;object-fit:cover;position:absolute;" onerror="this.style.display=\'none\'" />' : '') +
+          '<div class="feed-visual-inner"><div class="feed-type-icon">' + icon + '</div><div class="feed-visual-label">' + escHtml(idea.name) + '</div></div>' +
+          '</div>' +
+          '<div class="feed-caption">' + escHtml(idea.desc.slice(0, 80)) + (idea.desc.length > 80 ? '…' : '') + '</div>' +
+          '</div>';
+      }).join('') + '</div>';
+      scroll.innerHTML = html;
+    }
 
-/* ── CARD ACTIONS ── */
-function vote(id, type) {
-  var idea = ideas.find(function(i) { return i.id === id; });
-  if (!idea) return;
-  if (idea.voted === type) { if (type === 'like') idea.likes--; else idea.dislikes--; idea.voted = null; }
-  else { if (idea.voted === 'like') idea.likes--; if (idea.voted === 'dislike') idea.dislikes--; idea.voted = type; if (type === 'like') idea.likes++; else idea.dislikes++; }
-  saveData(); render();
-  if (type === 'like') toast('♥ Idea approved');
-}
+    /* ── CARD ACTIONS ── */
+    function vote(id, type) {
+      var idea = ideas.find(function (i) { return i.id === id; });
+      if (!idea) return;
+      if (idea.voted === type) { if (type === 'like') idea.likes--; else idea.dislikes--; idea.voted = null; }
+      else { if (idea.voted === 'like') idea.likes--; if (idea.voted === 'dislike') idea.dislikes--; idea.voted = type; if (type === 'like') idea.likes++; else idea.dislikes++; }
+      saveData(); render();
+      if (type === 'like') toast('♥ Idea approved');
+    }
 
-function togglePlat(id, p) {
-  var idea = ideas.find(function(i) { return i.id === id; });
-  if (!idea) return;
-  var idx = idea.plats.indexOf(p);
-  if (idx > -1) idea.plats.splice(idx, 1); else idea.plats.push(p);
-  saveData(); render();
-}
+    function togglePlat(id, p) {
+      var idea = ideas.find(function (i) { return i.id === id; });
+      if (!idea) return;
+      var idx = idea.plats.indexOf(p);
+      if (idx > -1) idea.plats.splice(idx, 1); else idea.plats.push(p);
+      saveData(); render();
+    }
 
-function updateLink(id, val) { var idea = ideas.find(function(i){return i.id===id;}); if (idea) { idea.link = val; saveData(); } }
-function updateTools(id, val) { var idea = ideas.find(function(i){return i.id===id;}); if (idea) { idea.tools = val; saveData(); } }
+    function updateLink(id, val) { var idea = ideas.find(function (i) { return i.id === id; }); if (idea) { idea.link = val; saveData(); } }
+    function updateTools(id, val) { var idea = ideas.find(function (i) { return i.id === id; }); if (idea) { idea.tools = val; saveData(); } }
 
-function changePrio(id, val) {
-  var idea = ideas.find(function(i){return i.id===id;});
-  if (idea) { idea.priority = parseInt(val); saveData(); render(); }
-}
+    function changePrio(id, val) {
+      var idea = ideas.find(function (i) { return i.id === id; });
+      if (idea) { idea.priority = parseInt(val); saveData(); render(); }
+    }
 
-function deleteCard(id) {
-  if (!confirm('Delete this idea?')) return;
-  ideas = ideas.filter(function(i){return i.id !== id;});
-  saveData(); render(); toast('Idea removed');
-}
+    function deleteCard(id) {
+      if (!confirm('Delete this idea?')) return;
+      ideas = ideas.filter(function (i) { return i.id !== id; });
+      saveData(); render(); toast('Idea removed');
+    }
 
-function editCard(id) {
-  var idea = ideas.find(function(i){return i.id===id;});
-  if (!idea) return;
-  editingId = id;
-  document.getElementById('modalTitle').textContent = '✎ Edit Idea';
-  document.getElementById('f-name').value = idea.name;
-  document.getElementById('f-desc').value = idea.desc;
-  document.getElementById('f-cat').value = idea.cat;
-  document.getElementById('f-type').value = idea.type;
-  document.getElementById('f-priority').value = idea.priority;
-  document.getElementById('f-link').value = idea.link || '';
-  document.getElementById('f-tools').value = idea.tools || '';
-  document.querySelectorAll('.plat-opt').forEach(function(b) {
-    b.classList.remove('on');
-    ['inst','face','tik'].forEach(function(p) { if (b.classList.contains(p) && idea.plats.indexOf(p) > -1) b.classList.add('on'); });
-  });
-  document.getElementById('addModal').classList.add('open');
-}
+    function editCard(id) {
+      var idea = ideas.find(function (i) { return i.id === id; });
+      if (!idea) return;
+      editingId = id;
+      document.getElementById('modalTitle').textContent = '✎ Edit Idea';
+      document.getElementById('f-name').value = idea.name;
+      document.getElementById('f-desc').value = idea.desc;
+      document.getElementById('f-cat').value = idea.cat;
+      document.getElementById('f-type').value = idea.type;
+      document.getElementById('f-priority').value = idea.priority;
+      document.getElementById('f-link').value = idea.link || '';
+      document.getElementById('f-tools').value = idea.tools || '';
+      document.querySelectorAll('.plat-opt').forEach(function (b) {
+        b.classList.remove('on');
+        ['inst', 'face', 'tik'].forEach(function (p) { if (b.classList.contains(p) && idea.plats.indexOf(p) > -1) b.classList.add('on'); });
+      });
+      document.getElementById('addModal').classList.add('open');
+    }
 
-/* ── ADD MODAL ── */
-function openAddModal() {
-  editingId = null;
-  document.getElementById('modalTitle').textContent = '✦ New Idea';
-  document.getElementById('f-name').value = '';
-  document.getElementById('f-desc').value = '';
-  document.getElementById('f-cat').value = currentCat !== 'all' ? currentCat : 'product';
-  document.getElementById('f-type').value = 'photo';
-  document.getElementById('f-priority').value = '2';
-  document.getElementById('f-link').value = '';
-  document.getElementById('f-tools').value = '';
-  document.querySelectorAll('.plat-opt').forEach(function(b) { b.classList.remove('on'); if (b.classList.contains('inst')) b.classList.add('on'); });
-  document.getElementById('addModal').classList.add('open');
-}
+    /* ── ADD MODAL ── */
+    function openAddModal() {
+      editingId = null;
+      document.getElementById('modalTitle').textContent = '✦ New Idea';
+      document.getElementById('f-name').value = '';
+      document.getElementById('f-desc').value = '';
+      document.getElementById('f-cat').value = currentCat !== 'all' ? currentCat : 'product';
+      document.getElementById('f-type').value = 'photo';
+      document.getElementById('f-priority').value = '2';
+      document.getElementById('f-link').value = '';
+      document.getElementById('f-tools').value = '';
+      document.querySelectorAll('.plat-opt').forEach(function (b) { b.classList.remove('on'); if (b.classList.contains('inst')) b.classList.add('on'); });
+      document.getElementById('addModal').classList.add('open');
+    }
 
-function closeAddModal() { document.getElementById('addModal').classList.remove('open'); }
-function toggleModalPlat(btn) { btn.classList.toggle('on'); }
+    function closeAddModal() { document.getElementById('addModal').classList.remove('open'); }
+    function toggleModalPlat(btn) { btn.classList.toggle('on'); }
 
-function saveCard() {
-  var name = document.getElementById('f-name').value.trim();
-  if (!name) { toast('Please enter a name'); return; }
-  var plats = [];
-  document.querySelectorAll('.plat-opt.on').forEach(function(b) { ['inst','face','tik'].forEach(function(p) { if (b.classList.contains(p)) plats.push(p); }); });
-  var now = Date.now();
-  var card = { id: editingId || uid(), name: name, desc: document.getElementById('f-desc').value.trim(), cat: document.getElementById('f-cat').value, type: document.getElementById('f-type').value, priority: parseInt(document.getElementById('f-priority').value), plats: plats, link: document.getElementById('f-link').value.trim(), tools: document.getElementById('f-tools').value.trim(), createdAt: now, likes: 0, dislikes: 0, voted: null, inShootingDay: false, shotDone: false };
-  if (editingId) {
-    var idx = ideas.findIndex(function(i){return i.id===editingId;});
-    if (idx > -1) { card.likes = ideas[idx].likes; card.dislikes = ideas[idx].dislikes; card.voted = ideas[idx].voted; card.createdAt = ideas[idx].createdAt || now; card.inShootingDay = ideas[idx].inShootingDay||false; card.shotDone = ideas[idx].shotDone||false; ideas[idx] = card; }
-  } else { ideas.unshift(card); }
-  closeAddModal(); saveData(); render(); toast('✦ Idea saved');
-}
+    function saveCard() {
+      var name = document.getElementById('f-name').value.trim();
+      if (!name) { toast('Please enter a name'); return; }
+      var plats = [];
+      document.querySelectorAll('.plat-opt.on').forEach(function (b) { ['inst', 'face', 'tik'].forEach(function (p) { if (b.classList.contains(p)) plats.push(p); }); });
+      var now = Date.now();
+      var card = { id: editingId || uid(), name: name, desc: document.getElementById('f-desc').value.trim(), cat: document.getElementById('f-cat').value, type: document.getElementById('f-type').value, priority: parseInt(document.getElementById('f-priority').value), plats: plats, link: document.getElementById('f-link').value.trim(), tools: document.getElementById('f-tools').value.trim(), createdAt: now, likes: 0, dislikes: 0, voted: null, inShootingDay: false, shotDone: false };
+      if (editingId) {
+        var idx = ideas.findIndex(function (i) { return i.id === editingId; });
+        if (idx > -1) { card.likes = ideas[idx].likes; card.dislikes = ideas[idx].dislikes; card.voted = ideas[idx].voted; card.createdAt = ideas[idx].createdAt || now; card.inShootingDay = ideas[idx].inShootingDay || false; card.shotDone = ideas[idx].shotDone || false; ideas[idx] = card; }
+      } else { ideas.unshift(card); }
+      closeAddModal(); saveData(); render(); toast('✦ Idea saved');
+    }
 
-/* ── AI ── */
-async function runAI(id) {
-  var idea = ideas.find(function(i){return i.id===id;});
-  if (!idea) return;
-  aiTargetId = id; aiImprovedData = null;
-  document.getElementById('aiContent').innerHTML = '<div style="color:var(--gold);font-family:\'Cormorant Garamond\',serif;font-style:italic;font-size:15px;">✦ Thinking and refining…</div>';
-  document.getElementById('aiModal').classList.add('open');
-  var liked = ideas.filter(function(i){return i.voted==='like';}).map(function(i){return i.name;}).join(', ') || 'None yet';
-  var prompt = 'You are a content advisor for an Israeli luxury boutique bakery. Vibe: navy, olive, gold, ivory, exclusive, minimal.\n\nIdea to improve:\nName: ' + idea.name + '\nDescription: ' + idea.desc + '\nType: ' + idea.type + '\nCategory: ' + idea.cat + '\n\nApproved ideas: ' + liked + '\n\nImprove this idea. Give a new name and a detailed visual description including angle, lighting, mood, colors, and how the viewer should feel. Answer in Hebrew in one paragraph. At the end add: IMPROVED_NAME: [new name] | IMPROVED_DESC: [new description]';
-  try {
-    var resp = await fetch('https://api.anthropic.com/v1/messages', { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-api-key': getApiKey(), 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' }, body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 1000, messages: [{ role: 'user', content: prompt }] }) });
-    var data = await resp.json();
-    if (data.error) throw new Error(data.error.message);
-    var text = data.content && data.content[0] ? data.content[0].text : '';
-    var nameMatch = text.match(/IMPROVED_NAME:\s*([^\|]+)/);
-    var descMatch = text.match(/IMPROVED_DESC:\s*([\s\S]+)$/);
-    aiImprovedData = { name: nameMatch ? nameMatch[1].trim() : idea.name, desc: descMatch ? descMatch[1].trim() : idea.desc };
-    var displayText = text.replace(/IMPROVED_NAME:[\s\S]*$/, '').trim();
-    document.getElementById('aiContent').innerHTML = '<p style="margin-bottom:14px;color:var(--text-mid);line-height:1.8;">' + escHtml(displayText) + '</p><div class="ai-result-box"><div class="ai-version-label">Improved Version</div><div class="ai-new-name">' + escHtml(aiImprovedData.name) + '</div><div class="ai-new-desc">' + escHtml(aiImprovedData.desc.slice(0,300)) + '</div></div>';
-  } catch(e) {
-    document.getElementById('aiContent').innerHTML = '<div style="color:var(--dislike);">Error connecting to AI. Set your API key below.<br><br><input id="apiKeyInput" placeholder="sk-ant-..." style="width:100%;padding:8px;border:1px solid #ccc;border-radius:3px;font-size:12px;direction:ltr;" /><button onclick="saveApiKey()" class="btn btn-primary btn-sm" style="margin-top:8px;">Save Key</button></div>';
-  }
-}
+    /* ── AI ── */
+    async function runAI(id) {
+      var idea = ideas.find(function (i) { return i.id === id; });
+      if (!idea) return;
+      aiTargetId = id; aiImprovedData = null;
+      document.getElementById('aiContent').innerHTML = '<div style="color:var(--gold);font-family:\'Cormorant Garamond\',serif;font-style:italic;font-size:15px;">✦ Thinking and refining…</div>';
+      document.getElementById('aiModal').classList.add('open');
+      var liked = ideas.filter(function (i) { return i.voted === 'like'; }).map(function (i) { return i.name; }).join(', ') || 'None yet';
+      var prompt = 'You are a content advisor for an Israeli luxury boutique bakery. Vibe: navy, olive, gold, ivory, exclusive, minimal.\n\nIdea to improve:\nName: ' + idea.name + '\nDescription: ' + idea.desc + '\nType: ' + idea.type + '\nCategory: ' + idea.cat + '\n\nApproved ideas: ' + liked + '\n\nImprove this idea. Give a new name and a detailed visual description including angle, lighting, mood, colors, and how the viewer should feel. Answer in Hebrew in one paragraph. At the end add: IMPROVED_NAME: [new name] | IMPROVED_DESC: [new description]';
+      try {
+        var resp = await fetch('https://api.anthropic.com/v1/messages', { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-api-key': getApiKey(), 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' }, body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 1000, messages: [{ role: 'user', content: prompt }] }) });
+        var data = await resp.json();
+        if (data.error) throw new Error(data.error.message);
+        var text = data.content && data.content[0] ? data.content[0].text : '';
+        var nameMatch = text.match(/IMPROVED_NAME:\s*([^\|]+)/);
+        var descMatch = text.match(/IMPROVED_DESC:\s*([\s\S]+)$/);
+        aiImprovedData = { name: nameMatch ? nameMatch[1].trim() : idea.name, desc: descMatch ? descMatch[1].trim() : idea.desc };
+        var displayText = text.replace(/IMPROVED_NAME:[\s\S]*$/, '').trim();
+        document.getElementById('aiContent').innerHTML = '<p style="margin-bottom:14px;color:var(--text-mid);line-height:1.8;">' + escHtml(displayText) + '</p><div class="ai-result-box"><div class="ai-version-label">Improved Version</div><div class="ai-new-name">' + escHtml(aiImprovedData.name) + '</div><div class="ai-new-desc">' + escHtml(aiImprovedData.desc.slice(0, 300)) + '</div></div>';
+      } catch (e) {
+        document.getElementById('aiContent').innerHTML = '<div style="color:var(--dislike);">Error connecting to AI. Set your API key below.<br><br><input id="apiKeyInput" placeholder="sk-ant-..." style="width:100%;padding:8px;border:1px solid #ccc;border-radius:3px;font-size:12px;direction:ltr;" /><button onclick="saveApiKey()" class="btn btn-primary btn-sm" style="margin-top:8px;">Save Key</button></div>';
+      }
+    }
 
-function getApiKey() { try { return localStorage.getItem('anthropic_key') || ''; } catch(e) { return ''; } }
-function saveApiKey() { var v = document.getElementById('apiKeyInput') ? document.getElementById('apiKeyInput').value.trim() : ''; if (v) { try { localStorage.setItem('anthropic_key', v); } catch(e) {} toast('API key saved'); closeAIModal(); } }
-function applyAI() { if (!aiImprovedData || !aiTargetId) return; var idea = ideas.find(function(i){return i.id===aiTargetId;}); if (idea) { idea.name = aiImprovedData.name; idea.desc = aiImprovedData.desc; saveData(); render(); toast('✦ Idea updated with AI'); } closeAIModal(); }
-function closeAIModal() { document.getElementById('aiModal').classList.remove('open'); }
+    function getApiKey() { try { return localStorage.getItem('anthropic_key') || ''; } catch (e) { return ''; } }
+    function saveApiKey() { var v = document.getElementById('apiKeyInput') ? document.getElementById('apiKeyInput').value.trim() : ''; if (v) { try { localStorage.setItem('anthropic_key', v); } catch (e) { } toast('API key saved'); closeAIModal(); } }
+    function applyAI() { if (!aiImprovedData || !aiTargetId) return; var idea = ideas.find(function (i) { return i.id === aiTargetId; }); if (idea) { idea.name = aiImprovedData.name; idea.desc = aiImprovedData.desc; saveData(); render(); toast('✦ Idea updated with AI'); } closeAIModal(); }
+    function closeAIModal() { document.getElementById('aiModal').classList.remove('open'); }
 
-async function generateSuggestions() {
-  var liked = ideas.filter(function(i){return i.voted==='like';});
-  var disliked = ideas.filter(function(i){return i.voted==='dislike';});
-  var existing = ideas.map(function(i){return i.name;}).join(', ');
-  var catCtx = currentCat === 'all' ? 'all categories' : (catMeta[currentCat]?catMeta[currentCat].label:currentCat);
-  toast('✦ AI is generating ideas…');
-  var prompt = 'Content advisor for a luxury Israeli boutique bakery. Vibe: navy, olive, gold, ivory, exclusive, minimal.\n\nApproved: ' + (liked.map(function(i){return i.name+': '+i.desc;}).join(' | ')||'none') + '\nRejected: ' + (disliked.map(function(i){return i.name;}).join(', ')||'none') + '\nCategory: ' + catCtx + '\nExisting (do not repeat): ' + existing + '\n\nGenerate exactly 3 new content ideas. Reply ONLY as JSON array:\n[{"name":"...","desc":"...","type":"photo|reel|carousel|story","cat":"product|behind|story|reel|collab|seasonal","plats":["inst","face","tik"]},...]';
-  try {
-    var resp = await fetch('https://api.anthropic.com/v1/messages', { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-api-key': getApiKey(), 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' }, body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 1000, messages: [{ role: 'user', content: prompt }] }) });
-    var data = await resp.json();
-    if (data.error) throw new Error(data.error.message);
-    var text = data.content && data.content[0] ? data.content[0].text : '[]';
-    var suggestions = JSON.parse(text.replace(/```json|```/g,'').trim());
-    var sec = document.getElementById('suggestSection');
-    var list = document.getElementById('suggestList');
-    if (sec) sec.style.display = 'block';
-    if (list) list.innerHTML = suggestions.map(function(s,idx) {
-      var safe = JSON.stringify(s).replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/'/g,"&#39;");
-      return '<div class="suggest-item" id="sug-'+idx+'"><div class="suggest-name">'+escHtml(s.name)+'</div><div class="suggest-desc">'+escHtml(s.desc)+'</div><div class="suggest-btns"><button class="btn btn-primary btn-sm" onclick=\'approveSug('+idx+','+safe+')\'>✓ Add to Board</button><button class="btn btn-ghost btn-sm" onclick="document.getElementById(\'sug-'+idx+'\').remove()">✕ Dismiss</button></div></div>';
-    }).join('');
-    toast('✦ 3 new ideas ready');
-  } catch(e) { toast('Error generating ideas — check your API key'); }
-}
+    async function generateSuggestions() {
+      var liked = ideas.filter(function (i) { return i.voted === 'like'; });
+      var disliked = ideas.filter(function (i) { return i.voted === 'dislike'; });
+      var existing = ideas.map(function (i) { return i.name; }).join(', ');
+      var catCtx = currentCat === 'all' ? 'all categories' : (catMeta[currentCat] ? catMeta[currentCat].label : currentCat);
+      toast('✦ AI is generating ideas…');
+      var prompt = 'Content advisor for a luxury Israeli boutique bakery. Vibe: navy, olive, gold, ivory, exclusive, minimal.\n\nApproved: ' + (liked.map(function (i) { return i.name + ': ' + i.desc; }).join(' | ') || 'none') + '\nRejected: ' + (disliked.map(function (i) { return i.name; }).join(', ') || 'none') + '\nCategory: ' + catCtx + '\nExisting (do not repeat): ' + existing + '\n\nGenerate exactly 3 new content ideas. Reply ONLY as JSON array:\n[{"name":"...","desc":"...","type":"photo|reel|carousel|story","cat":"product|behind|story|reel|collab|seasonal","plats":["inst","face","tik"]},...]';
+      try {
+        var resp = await fetch('https://api.anthropic.com/v1/messages', { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-api-key': getApiKey(), 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' }, body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 1000, messages: [{ role: 'user', content: prompt }] }) });
+        var data = await resp.json();
+        if (data.error) throw new Error(data.error.message);
+        var text = data.content && data.content[0] ? data.content[0].text : '[]';
+        var suggestions = JSON.parse(text.replace(/```json|```/g, '').trim());
+        var sec = document.getElementById('suggestSection');
+        var list = document.getElementById('suggestList');
+        if (sec) sec.style.display = 'block';
+        if (list) list.innerHTML = suggestions.map(function (s, idx) {
+          var safe = JSON.stringify(s).replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/'/g, "&#39;");
+          return '<div class="suggest-item" id="sug-' + idx + '"><div class="suggest-name">' + escHtml(s.name) + '</div><div class="suggest-desc">' + escHtml(s.desc) + '</div><div class="suggest-btns"><button class="btn btn-primary btn-sm" onclick=\'approveSug(' + idx + ',' + safe + ')\'>✓ Add to Board</button><button class="btn btn-ghost btn-sm" onclick="document.getElementById(\'sug-' + idx + '\').remove()">✕ Dismiss</button></div></div>';
+        }).join('');
+        toast('✦ 3 new ideas ready');
+      } catch (e) { toast('Error generating ideas — check your API key'); }
+    }
 
-function approveSug(idx, s) {
-  var card = { id: uid(), name: s.name, desc: s.desc, cat: s.cat||'product', type: s.type||'photo', priority: 2, plats: s.plats||['inst'], link: '', tools: '', likes: 0, dislikes: 0, voted: null, createdAt: Date.now(), inShootingDay: false, shotDone: false };
-  ideas.unshift(card);
-  var el = document.getElementById('sug-' + idx);
-  if (el) el.remove();
-  saveData(); render(); toast('✦ Idea added to board');
-}
+    function approveSug(idx, s) {
+      var card = { id: uid(), name: s.name, desc: s.desc, cat: s.cat || 'product', type: s.type || 'photo', priority: 2, plats: s.plats || ['inst'], link: '', tools: '', likes: 0, dislikes: 0, voted: null, createdAt: Date.now(), inShootingDay: false, shotDone: false };
+      ideas.unshift(card);
+      var el = document.getElementById('sug-' + idx);
+      if (el) el.remove();
+      saveData(); render(); toast('✦ Idea added to board');
+    }
 
-function escHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-function escAttr(s) { return String(s).replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+    function escHtml(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+    function escAttr(s) { return String(s).replace(/"/g, '&quot;').replace(/'/g, '&#39;'); }
 
-function toast(msg) {
-  var el = document.getElementById('toast');
-  el.textContent = msg; el.style.display = 'block';
-  clearTimeout(el._t); el._t = setTimeout(function(){ el.style.display = 'none'; }, 2600);
-}
+    function toast(msg) {
+      var el = document.getElementById('toast');
+      el.textContent = msg; el.style.display = 'block';
+      clearTimeout(el._t); el._t = setTimeout(function () { el.style.display = 'none'; }, 2600);
+    }
 
-document.addEventListener('keydown', function(e) {
-  if ((e.metaKey||e.ctrlKey) && e.key === 'n') { e.preventDefault(); openAddModal(); }
-  if (e.key === 'Escape') { closeAddModal(); closeAIModal(); }
-});
-document.getElementById('addModal').addEventListener('click', function(e){ if (e.target===this) closeAddModal(); });
-document.getElementById('aiModal').addEventListener('click', function(e){ if (e.target===this) closeAIModal(); });
+    document.addEventListener('keydown', function (e) {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'n') { e.preventDefault(); openAddModal(); }
+      if (e.key === 'Escape') { closeAddModal(); closeAIModal(); }
+    });
+    document.getElementById('addModal').addEventListener('click', function (e) { if (e.target === this) closeAddModal(); });
+    document.getElementById('aiModal').addEventListener('click', function (e) { if (e.target === this) closeAIModal(); });
 
-init();
-</script>
+    init();
+  </script>
 </body>
+
 </html>
