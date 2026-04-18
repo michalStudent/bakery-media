@@ -672,22 +672,12 @@ function init() {
   var saved = loadData();
   if (saved && saved.length > 0) {
     ideas = saved;
-    // migrate older records
+    // migrate older records missing new fields
     ideas.forEach(function(i) {
       if (!i.tools) i.tools = '';
       if (i.inShootingDay === undefined) i.inShootingDay = false;
       if (i.shotDone === undefined) i.shotDone = false;
     });
-    // merge any new seed ideas that don't exist yet (matched by name)
-    var existingNames = ideas.map(function(i) { return i.name.toLowerCase(); });
-    var added = false;
-    seed.forEach(function(s) {
-      if (existingNames.indexOf(s.name.toLowerCase()) === -1) {
-        ideas.push(Object.assign({ id: uid(), likes: 0, dislikes: 0, voted: null, createdAt: Date.now() - Math.floor(Math.random()*86400000), inShootingDay: false, shotDone: false }, s));
-        added = true;
-      }
-    });
-    if (added) saveData();
   } else {
     ideas = seed.map(function(s) {
       return Object.assign({ id: uid(), likes: 0, dislikes: 0, voted: null, createdAt: Date.now(), inShootingDay: false, shotDone: false }, s);
