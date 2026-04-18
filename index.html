@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studio Board — Bakery Content Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ivory:        #F7F2E9;
+      --ivory-dark:   #EDE6D6;
+      --gold:         #B8963E;
+      --gold-light:   #D4AF5A;
+      --gold-pale:    rgba(184,150,62,0.12);
+      --olive:        #4A5240;
+      --olive-light:  #6B7260;
+      --navy:         #1C2744;
+      --navy-light:   #2C3A5C;
+      --navy-soft:    rgba(28,39,68,0.06);
+      --cream:        #EDE6D6;
+      --cream-dark:   #D9CFBC;
+      --white:        #FFFFFF;
+      --text-dark:    #1A1A1A;
+      --text-mid:     #3D3D3D;
+      --text-muted:   #7A7A6E;
+      --like:         #3D7A52;
+      --dislike:      #8B3A3A;
+      --border:       rgba(184,150,62,0.2);
+      --shadow-sm:    0 1px 3px rgba(28,39,68,0.08), 0 1px 2px rgba(28,39,68,0.04);
+      --shadow-md:    0 4px 16px rgba(28,39,68,0.10), 0 2px 4px rgba(28,39,68,0.06);
+      --shadow-lg:    0 8px 32px rgba(28,39,68,0.14), 0 4px 8px rgba(28,39,68,0.08);
+      --radius:       4px;
+      --cat-product:  #B8963E;
+      --cat-behind:   #4A5240;
+      --cat-story:    #1C2744;
+      --cat-reel:     #7B5EA7;
+      --cat-collab:   #2E6E9E;
+      --cat-seasonal: #B85C38;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: var(--ivory);
+      color: var(--text-dark);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--cream-dark); border-radius: 3px; }
+
+    /* ── HEADER ── */
+    .header {
+      background: var(--navy);
+      padding: 0 28px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--gold);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      flex-shrink: 0;
+    }
+
+    .brand { display: flex; flex-direction: column; gap: 1px; }
+
+    .brand-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 300;
+      color: var(--gold-light);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .brand-tag {
+      font-size: 9px;
+      color: rgba(212,175,90,0.5);
+      letter-spacing: 5px;
+      text-transform: uppercase;
+    }
+
+    .header-right { display: flex; gap: 8px; align-items: center; }
+
+    /* ── VIBE STRIP ── */
+    .vibe-strip {
+      background: linear-gradient(to right, var(--navy-light), var(--navy));
+      border-bottom: 1px solid rgba(184,150,62,0.15);
+      padding: 10px 28px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      flex-shrink: 0;
+    }
+
+    .vibe-label {
+      font-size: 9px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .vibe-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+
+    .vibe-tag {
+      background: rgba(184,150,62,0.12);
+      border: 1px solid rgba(184,150,62,0.3);
+      color: var(--gold-light);
+      font-size: 10px;
+      letter-spacing: 2px;
+      padding: 3px 10px;
+      text-transform: uppercase;
+      border-radius: 2px;
+    }
+
+    .vibe-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      font-style: italic;
+      color: rgba(255,255,255,0.4);
+      flex: 1;
+      min-width: 180px;
+      text-align: left;
+    }
+
+    /* ── LAYOUT ── */
+    .app { display: flex; height: calc(100vh - 95px); overflow: hidden; }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      width: 230px;
+      flex-shrink: 0;
+      background: var(--cream);
+      border-left: 1px solid var(--cream-dark);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    .sidebar-head {
+      padding: 16px 16px 10px;
+      font-size: 9px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--olive-light);
+      font-weight: 600;
+      border-bottom: 1px solid var(--cream-dark);
+    }
+
+    .cat-list { flex: 1; }
+
+    .cat-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 16px;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      width: 100%;
+      text-align: right;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--text-mid);
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+      transition: background 0.15s;
+      direction: rtl;
+      position: relative;
+    }
+
+    .cat-item:hover { background: rgba(184,150,62,0.07); }
+
+    .cat-item.active {
+      background: var(--navy);
+      color: var(--gold-light);
+    }
+
+    .cat-item.active .cat-dot { opacity: 1; filter: brightness(1.4); }
+
+    .cat-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      opacity: 0.7;
+    }
+
+    .cat-name { flex: 1; }
+
+    .cat-badge {
+      font-size: 10px;
+      font-weight: 600;
+      min-width: 20px;
+      height: 20px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.08);
+      color: inherit;
+      padding: 0 6px;
+    }
+
+    .cat-item.active .cat-badge { background: rgba(184,150,62,0.25); }
+
+    .sidebar-footer {
+      padding: 12px 14px;
+      border-top: 1px solid var(--cream-dark);
+    }
+
+    .sidebar-stats {
+      font-size: 10px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+      direction: rtl;
+    }
+
+    /* ── MAIN ── */
+    .main {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+      background: var(--ivory);
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .toolbar-left { direction: rtl; }
+
+    .page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      font-weight: 400;
+      color: var(--navy);
+      letter-spacing: 0.5px;
+    }
+
+    .page-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 3px;
+      letter-spacing: 0.3px;
+    }
+
+    .toolbar-right { display: flex; gap: 8px; align-items: center; }
+
+    .sort-select {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      padding: 6px 10px;
+      border: 1px solid var(--cream-dark);
+      background: var(--white);
+      color: var(--text-mid);
+      cursor: pointer;
+      outline: none;
+      border-radius: var(--radius);
+    }
+
+    /* ── GRID ── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 14px;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s;
+      direction: rtl;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-1px);
+    }
+
+    .card-stripe {
+      height: 3px;
+      width: 100%;
+    }
+
+    .card-body { padding: 14px 16px 12px; }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.3;
+      flex: 1;
+    }
+
+    .card-menu {
+      display: flex;
+      gap: 2px;
+      opacity: 0;
+      transition: opacity 0.15s;
+      flex-shrink: 0;
+    }
+
+    .card:hover .card-menu { opacity: 1; }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      font-size: 13px;
+      width: 26px;
+      height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 3px;
+      transition: background 0.12s, color 0.12s;
+    }
+
+    .icon-btn:hover { background: var(--ivory); color: var(--navy); }
+    .icon-btn.del:hover { background: #FFEAEA; color: var(--dislike); }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .priority-chip {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 2px;
+    }
+
+    .p1 { background: var(--navy); color: var(--gold-light); }
+    .p2 { background: var(--olive); color: #D4E8C2; }
+    .p3 { background: var(--cream-dark); color: var(--text-mid); }
+
+    .type-chip {
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+
+    .card-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 12px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .platforms {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .plat {
+      font-size: 9px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 10px;
+      border: 1px solid;
+      cursor: pointer;
+      transition: all 0.12s;
+      user-select: none;
+      font-weight: 500;
+    }
+
+    .plat.inst       { border-color: #C13584; color: #C13584; }
+    .plat.inst.on    { background: #C13584; color: white; }
+    .plat.face       { border-color: #1877F2; color: #1877F2; }
+    .plat.face.on    { background: #1877F2; color: white; }
+    .plat.tik        { border-color: #333; color: #333; }
+    .plat.tik.on     { background: #333; color: white; }
+
+    .link-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .link-input {
+      flex: 1;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      padding: 5px 8px;
+      border: 1px solid var(--cream-dark);
+      border-radius: 3px;
+      background: var(--ivory);
+      color: var(--text-dark);
+      outline: none;
+      direction: ltr;
+    }
+
+    .link-input:focus { border-color: var(--gold); }
+
+    .link-open {
+      font-size: 11px;
+      color: var(--gold);
+      text-decoration: none;
+      white-space: nowrap;
+      padding: 4px 6px;
+      border-radius: 3px;
+      transition: background 0.12s;
+    }
+
+    .link-open:hover { background: var(--gold-pale); }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding-top: 10px;
+      border-top: 1px solid var(--cream-dark);
+      flex-wrap: wrap;
+    }
+
+    .vote-btn {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 5px 10px;
+      border: 1px solid;
+      background: transparent;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      border-radius: 3px;
+      transition: all 0.12s;
+    }
+
+    .vote-like { border-color: var(--like); color: var(--like); }
+    .vote-like.on { background: var(--like); color: white; }
+    .vote-dislike { border-color: var(--dislike); color: var(--dislike); }
+    .vote-dislike.on { background: var(--dislike); color: white; }
+
+    .prio-select {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      padding: 4px 6px;
+      border: 1px solid var(--cream-dark);
+      background: var(--ivory);
+      color: var(--text-mid);
+      cursor: pointer;
+      outline: none;
+      border-radius: 3px;
+    }
+
+    .ai-btn-card {
+      margin-right: auto;
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      border: 1px solid var(--olive);
+      background: transparent;
+      color: var(--olive);
+      cursor: pointer;
+      border-radius: 3px;
+      transition: all 0.12s;
+    }
+
+    .ai-btn-card:hover { background: var(--olive); color: white; }
+
+    /* ── EMPTY STATE ── */
+    .empty {
+      grid-column: 1/-1;
+      text-align: center;
+      padding: 80px 20px;
+      direction: rtl;
+    }
+
+    .empty-icon { font-size: 36px; margin-bottom: 14px; opacity: 0.3; }
+
+    .empty-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .empty-sub { font-size: 12px; color: var(--text-muted); }
+
+    /* ── SUGGESTIONS ── */
+    .suggest-section {
+      margin-top: 24px;
+      background: var(--cream);
+      border: 1px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 18px;
+      direction: rtl;
+      display: none;
+    }
+
+    .suggest-head {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      color: var(--navy);
+      margin-bottom: 14px;
+    }
+
+    .suggest-list { display: flex; flex-direction: column; gap: 8px; }
+
+    .suggest-item {
+      background: var(--white);
+      border: 1px solid var(--cream-dark);
+      border-radius: var(--radius);
+      padding: 12px 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .suggest-info { flex: 1; }
+    .suggest-name { font-size: 13px; font-weight: 500; color: var(--navy); margin-bottom: 3px; }
+    .suggest-desc { font-size: 11.5px; color: var(--text-muted); line-height: 1.5; }
+    .suggest-btns { display: flex; gap: 6px; margin-top: 8px; }
+
+    /* ── VISION PANEL ── */
+    .vision-panel {
+      width: 300px;
+      flex-shrink: 0;
+      background: #141D35;
+      border-right: 1px solid rgba(184,150,62,0.15);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .vision-panel.open { display: flex; }
+
+    .vision-head {
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(184,150,62,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .vision-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      color: var(--gold-light);
+      letter-spacing: 1px;
+    }
+
+    .vision-close {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.35);
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 1;
+      transition: color 0.12s;
+    }
+
+    .vision-close:hover { color: rgba(255,255,255,0.7); }
+
+    .vision-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .feed-card { border: 1px solid rgba(184,150,62,0.15); background: rgba(255,255,255,0.03); border-radius: 3px; overflow: hidden; }
+
+    .feed-plat {
+      padding: 7px 10px 5px;
+      font-size: 9px;
+      letter-spacing: 2px;
+      color: var(--gold);
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(184,150,62,0.1);
+    }
+
+    .feed-visual {
+      background: rgba(255,255,255,0.04);
+      border-bottom: 1px solid rgba(184,150,62,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feed-visual-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      color: rgba(212,175,90,0.55);
+      text-align: center;
+      padding: 12px;
+      line-height: 1.4;
+      position: absolute;
+    }
+
+    .feed-caption {
+      padding: 8px 10px;
+      font-size: 10.5px;
+      color: rgba(255,255,255,0.4);
+      font-style: italic;
+      font-family: 'Cormorant Garamond', serif;
+      line-height: 1.5;
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      cursor: pointer;
+      border-radius: var(--radius);
+      transition: all 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .btn-outline { border: 1px solid var(--gold); background: transparent; color: var(--gold); }
+    .btn-outline:hover { background: var(--gold); color: white; }
+
+    .btn-primary { border: 1px solid var(--navy); background: var(--navy); color: var(--gold-light); }
+    .btn-primary:hover { background: var(--navy-light); }
+
+    .btn-ghost { border: 1px solid var(--cream-dark); background: transparent; color: var(--text-mid); }
+    .btn-ghost:hover { background: var(--cream); }
+
+    .btn-ai { border: 1px solid var(--olive); background: var(--olive); color: white; }
+    .btn-ai:hover { background: var(--olive-light); }
+
+    .btn-sm { padding: 5px 12px; font-size: 10px; }
+    .btn-block { width: 100%; justify-content: center; }
+
+    /* ── MODAL ── */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(28,39,68,0.65);
+      backdrop-filter: blur(2px);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .overlay.open { display: flex; }
+
+    .modal {
+      background: var(--white);
+      border-radius: 6px;
+      border-top: 4px solid var(--gold);
+      padding: 28px;
+      width: 500px;
+      max-width: 95vw;
+      max-height: 88vh;
+      overflow-y: auto;
+      direction: rtl;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+
+    .modal-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      color: var(--navy);
+      margin-bottom: 22px;
+      font-weight: 400;
+    }
+
+    .form-row { margin-bottom: 16px; }
+
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--olive-light);
+      margin-bottom: 5px;
+    }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      padding: 9px 11px;
+      border: 1px solid var(--cream-dark);
+      border-radius: var(--radius);
+      background: var(--ivory);
+      color: var(--text-dark);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .form-input:focus, .form-textarea:focus { border-color: var(--gold); }
+    .form-textarea { min-height: 90px; resize: vertical; }
+
+    .plat-select { display: flex; gap: 6px; flex-wrap: wrap; }
+
+    .plat-opt {
+      font-size: 10px;
+      font-weight: 500;
+      padding: 5px 12px;
+      border: 1px solid;
+      border-radius: 10px;
+      background: transparent;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.5px;
+      transition: all 0.12s;
+    }
+
+    .plat-opt.inst       { border-color: #C13584; color: #C13584; }
+    .plat-opt.inst.on    { background: #C13584; color: white; }
+    .plat-opt.face       { border-color: #1877F2; color: #1877F2; }
+    .plat-opt.face.on    { background: #1877F2; color: white; }
+    .plat-opt.tik        { border-color: #333; color: #333; }
+    .plat-opt.tik.on     { background: #333; color: white; }
+
+    .modal-footer { display: flex; gap: 8px; margin-top: 22px; justify-content: flex-start; }
+
+    /* ── AI MODAL ── */
+    .ai-result-box {
+      background: var(--ivory);
+      border: 1px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 14px;
+      margin-top: 14px;
+    }
+
+    .ai-version-label {
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--olive);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .ai-new-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      color: var(--navy);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .ai-new-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      background: var(--navy);
+      color: var(--gold-light);
+      padding: 10px 22px;
+      border-radius: 4px;
+      border: 1px solid rgba(184,150,62,0.4);
+      font-size: 12px;
+      letter-spacing: 1px;
+      z-index: 999;
+      display: none;
+      white-space: nowrap;
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .vibe-quote { display: none; }
+      .header { padding: 0 16px; }
+      .main { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="brand">
+    <div class="brand-name">✦ Studio Board</div>
+    <div class="brand-tag">Content Planning Dashboard</div>
+  </div>
+  <div class="header-right">
+    <button class="btn btn-ghost btn-sm" onclick="toggleVision()">◫ Vision Feed</button>
+    <button class="btn btn-primary btn-sm" onclick="openAddModal()">+ Add Idea</button>
+  </div>
+</header>
+
+<!-- VIBE STRIP -->
+<div class="vibe-strip">
+  <span class="vibe-label">Vibe</span>
+  <div class="vibe-tags">
+    <span class="vibe-tag">Navy</span>
+    <span class="vibe-tag">Olive</span>
+    <span class="vibe-tag">Gold</span>
+    <span class="vibe-tag">Ivory</span>
+    <span class="vibe-tag">Boutique</span>
+    <span class="vibe-tag">Exclusive</span>
+  </div>
+  <span class="vibe-quote">"חוויה מינימלית, אלגנטית — כל פריט מספר סיפור של איכות ויצירה"</span>
+</div>
+
+<!-- APP -->
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-head">Content Categories</div>
+    <div class="cat-list">
+      <button class="cat-item active" onclick="selectCat('all')" id="cat-all">
+        <span class="cat-dot" style="background:#B8963E;"></span>
+        <span class="cat-name">All Ideas</span>
+        <span class="cat-badge" id="cnt-all">0</span>
+      </button>
+      <button class="cat-item" onclick="selectCat('product')" id="cat-product">
+        <span class="cat-dot" style="background:var(--cat-product);"></span>
+        <span class="cat-name">Product / Display</span>
+        <span class="cat-badge" id="cnt-product">0</span>
+      </button>
+      <button class="cat-item" onclick="selectCat('behind')" id="cat-behind">
+        <span class="cat-dot" style="background:var(--cat-behind);"></span>
+        <span class="cat-name">Behind the Scenes</span>
+        <span class="cat-badge" id="cnt-behind">0</span>
+      </button>
+      <button class="cat-item" onclick="selectCat('story')" id="cat-story">
+        <span class="cat-dot" style="background:var(--cat-story);"></span>
+        <span class="cat-name">Story / Narrative</span>
+        <span class="cat-badge" id="cnt-story">0</span>
+      </button>
+      <button class="cat-item" onclick="selectCat('reel')" id="cat-reel">
+        <span class="cat-dot" style="background:var(--cat-reel);"></span>
+        <span class="cat-name">Reel / Video</span>
+        <span class="cat-badge" id="cnt-reel">0</span>
+      </button>
+      <button class="cat-item" onclick="selectCat('collab')" id="cat-collab">
+        <span class="cat-dot" style="background:var(--cat-collab);"></span>
+        <span class="cat-name">Collaboration</span>
+        <span class="cat-badge" id="cnt-collab">0</span>
+      </button>
+      <button class="cat-item" onclick="selectCat('seasonal')" id="cat-seasonal">
+        <span class="cat-dot" style="background:var(--cat-seasonal);"></span>
+        <span class="cat-name">Seasonal / Holidays</span>
+        <span class="cat-badge" id="cnt-seasonal">0</span>
+      </button>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-stats" id="sidebarStats">0 ideas · 0 approved</div>
+      <button class="btn btn-ai btn-block btn-sm" onclick="generateSuggestions()">✦ Generate AI Ideas</button>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+    <div class="toolbar">
+      <div class="toolbar-left">
+        <div class="page-title" id="pageTitle">All Ideas</div>
+        <div class="page-sub" id="pageSub">Click ♥ to approve ideas · Use AI to refine</div>
+      </div>
+      <div class="toolbar-right">
+        <span style="font-size:11px; color:var(--text-muted); direction:rtl;" id="statsBar"></span>
+        <select class="sort-select" onchange="setSortMode(this.value)">
+          <option value="priority">Sort: Priority</option>
+          <option value="likes">Sort: Most Liked</option>
+          <option value="newest">Sort: Newest</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="cards-grid" id="cardsGrid"></div>
+
+    <div class="suggest-section" id="suggestSection">
+      <div class="suggest-head">✦ AI Suggestions — based on what you liked</div>
+      <div class="suggest-list" id="suggestList"></div>
+    </div>
+  </main>
+
+  <!-- VISION PANEL -->
+  <div class="vision-panel" id="visionPanel">
+    <div class="vision-head">
+      <span class="vision-title">◫ Feed Preview</span>
+      <button class="vision-close" onclick="toggleVision()">✕</button>
+    </div>
+    <div class="vision-scroll" id="visionScroll">
+      <div style="font-size:12px; color:rgba(255,255,255,0.3); text-align:center; padding:30px 16px; font-family:'Cormorant Garamond',serif; font-style:italic; direction:rtl;">
+        הוסף רעיונות ועשי לייק כדי לבנות את הפיד
+      </div>
+    </div>
+  </div>
+
+</div><!-- /app -->
+
+
+<!-- ADD / EDIT MODAL -->
+<div class="overlay" id="addModal">
+  <div class="modal">
+    <div class="modal-title" id="modalTitle">✦ New Idea</div>
+
+    <div class="form-row">
+      <label class="form-label">Idea Name</label>
+      <input class="form-input" id="f-name" placeholder="תאר את הרעיון בקצרה..." />
+    </div>
+
+    <div class="form-row">
+      <label class="form-label">Description & Visual Concept</label>
+      <textarea class="form-textarea" id="f-desc" placeholder="מה ייראה הסרטון / התמונה? מה הרגש שרוצים להעביר?"></textarea>
+    </div>
+
+    <div class="form-row-2">
+      <div>
+        <label class="form-label">Category</label>
+        <select class="form-input form-select" id="f-cat">
+          <option value="product">Product / Display</option>
+          <option value="behind">Behind the Scenes</option>
+          <option value="story">Story / Narrative</option>
+          <option value="reel">Reel / Video</option>
+          <option value="collab">Collaboration</option>
+          <option value="seasonal">Seasonal / Holidays</option>
+        </select>
+      </div>
+      <div>
+        <label class="form-label">Content Type</label>
+        <select class="form-input form-select" id="f-type">
+          <option value="photo">Static Photo</option>
+          <option value="carousel">Carousel</option>
+          <option value="reel">Reel</option>
+          <option value="story">Story</option>
+          <option value="video">Long Video</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row-2">
+      <div>
+        <label class="form-label">Priority</label>
+        <select class="form-input form-select" id="f-priority">
+          <option value="1">High ★★★</option>
+          <option value="2" selected>Medium ★★</option>
+          <option value="3">Low ★</option>
+        </select>
+      </div>
+      <div>
+        <label class="form-label">Platforms</label>
+        <div class="plat-select">
+          <button class="plat-opt inst on" onclick="toggleModalPlat(this,'inst')">Instagram</button>
+          <button class="plat-opt face" onclick="toggleModalPlat(this,'face')">Facebook</button>
+          <button class="plat-opt tik" onclick="toggleModalPlat(this,'tik')">TikTok</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label class="form-label">Media Link (video / photo)</label>
+      <input class="form-input" id="f-link" placeholder="https://..." dir="ltr" />
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn btn-primary" onclick="saveCard()">Save Idea</button>
+      <button class="btn btn-ghost" onclick="closeAddModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- AI MODAL -->
+<div class="overlay" id="aiModal">
+  <div class="modal">
+    <div class="modal-title">✦ AI Refining Your Idea</div>
+    <div id="aiContent" style="direction:rtl; line-height:1.8; font-size:13px; color:var(--text-mid); min-height:80px;"></div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" onclick="applyAI()">✓ Apply Improvement</button>
+      <button class="btn btn-ghost" onclick="closeAIModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+
+<script>
+/* ── STATE ── */
+var ideas = [];
+var currentCat = 'all';
+var sortMode = 'priority';
+var visionOpen = false;
+var editingId = null;
+var aiTargetId = null;
+var aiImprovedData = null;
+
+var catMeta = {
+  all:      { label: 'All Ideas',           color: '#B8963E' },
+  product:  { label: 'Product / Display',   color: '#B8963E' },
+  behind:   { label: 'Behind the Scenes',   color: '#4A5240' },
+  story:    { label: 'Story / Narrative',   color: '#1C2744' },
+  reel:     { label: 'Reel / Video',        color: '#7B5EA7' },
+  collab:   { label: 'Collaboration',       color: '#2E6E9E' },
+  seasonal: { label: 'Seasonal / Holidays', color: '#B85C38' },
+};
+
+var typeLabel = {
+  photo:    '📷 Photo',
+  carousel: '🖼 Carousel',
+  reel:     '🎬 Reel',
+  story:    '⭕ Story',
+  video:    '📹 Video',
+};
+
+/* ── SEED DATA ── */
+var seed = [
+  { name: 'בוקר במאפיה — שעת ה-6', desc: 'מצלמים את הכנת הבצק בשעות הבוקר המוקדמות. תאורת אור ראשון, ידיים בבצק, ניחוח שאי אפשר לצלם אבל מרגישים.', cat: 'behind', type: 'reel', priority: 1, plats: ['inst','tik'], link: '' },
+  { name: 'גאלים בפריז — השראה', desc: 'עריכה של קרואסון בסגנון פריזאי על שיש לבן. פרספקטיבה מלמעלה, שכבות של בצק פריך, טקסטורה זהובה.', cat: 'product', type: 'photo', priority: 1, plats: ['inst','face'], link: '' },
+  { name: 'הסוד שמאחורי הקינמון רול', desc: 'תהליך הכנה מלא מ-A ל-Z. מדידות, מרידה, גלגול. מוסיקה עדינה בלי מלל. הצופה מרגיש שהוא לומד סוד.', cat: 'behind', type: 'reel', priority: 2, plats: ['inst','tik','face'], link: '' },
+  { name: 'שולחן שישי בצהריים', desc: "סצנת שולחן — פוקצ'ה, עלים, שמן זית, יין לבן. אסתטיקה ים תיכונית. מזמין לסיום שבוע מפנק.", cat: 'story', type: 'carousel', priority: 2, plats: ['inst','face'], link: '' },
+  { name: 'לחם שאור — שבוע ראשון', desc: 'מסע של השאור מיום 1. מעקב יומי בסטורי, מסכם בריל. הקהל חי את התהליך.', cat: 'seasonal', type: 'story', priority: 3, plats: ['inst'], link: '' },
+];
+
+function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
+
+/* ── INIT / STORAGE ── */
+function loadData() {
+  try {
+    var saved = localStorage.getItem('bakery_ideas');
+    if (saved) return JSON.parse(saved);
+  } catch(e) {}
+  return null;
+}
+
+function saveData() {
+  try { localStorage.setItem('bakery_ideas', JSON.stringify(ideas)); } catch(e) {}
+}
+
+function init() {
+  var saved = loadData();
+  if (saved && saved.length > 0) {
+    ideas = saved;
+  } else {
+    ideas = seed.map(function(s) {
+      return Object.assign({ id: uid(), likes: 0, dislikes: 0, voted: null, createdAt: Date.now() }, s);
+    });
+    saveData();
+  }
+  render();
+}
+
+/* ── RENDER ── */
+function render() {
+  updateCounts();
+  renderCards();
+  renderVision();
+  renderStats();
+}
+
+function updateCounts() {
+  var counts = { all: ideas.length };
+  ['product','behind','story','reel','collab','seasonal'].forEach(function(k) { counts[k] = 0; });
+  ideas.forEach(function(i) { if (counts[i.cat] !== undefined) counts[i.cat]++; });
+  Object.keys(counts).forEach(function(k) {
+    var el = document.getElementById('cnt-' + k);
+    if (el) el.textContent = counts[k];
+  });
+}
+
+function renderStats() {
+  var filtered = getFiltered();
+  var liked = ideas.filter(function(i) { return i.voted === 'like'; }).length;
+  var bar = document.getElementById('statsBar');
+  if (bar) bar.textContent = filtered.length + ' ideas · ' + liked + ' approved';
+  var ss = document.getElementById('sidebarStats');
+  if (ss) ss.textContent = ideas.length + ' ideas · ' + liked + ' approved';
+}
+
+function getFiltered() {
+  var list = currentCat === 'all' ? ideas.slice() : ideas.filter(function(i) { return i.cat === currentCat; });
+  if (sortMode === 'priority') list.sort(function(a,b) { return a.priority - b.priority; });
+  else if (sortMode === 'likes') list.sort(function(a,b) { return b.likes - a.likes; });
+  else if (sortMode === 'newest') list.sort(function(a,b) { return (b.createdAt||0) - (a.createdAt||0); });
+  return list;
+}
+
+function setSortMode(v) { sortMode = v; renderCards(); }
+
+function selectCat(cat) {
+  currentCat = cat;
+  document.querySelectorAll('.cat-item').forEach(function(b) { b.classList.remove('active'); });
+  var btn = document.getElementById('cat-' + cat);
+  if (btn) btn.classList.add('active');
+  document.getElementById('pageTitle').textContent = catMeta[cat] ? catMeta[cat].label : cat;
+  document.getElementById('suggestSection').style.display = 'none';
+  renderCards();
+  renderStats();
+}
+
+function renderCards() {
+  var grid = document.getElementById('cardsGrid');
+  var filtered = getFiltered();
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '<div class="empty"><div class="empty-icon">✦</div><div class="empty-title">No ideas here yet</div><div class="empty-sub">Press "+ Add Idea" to get started</div></div>';
+    return;
+  }
+
+  grid.innerHTML = filtered.map(function(idea) {
+    var color = catMeta[idea.cat] ? catMeta[idea.cat].color : '#B8963E';
+    var platHtml = ['inst','face','tik'].map(function(p) {
+      var on = idea.plats.indexOf(p) > -1 ? ' on' : '';
+      var n = p === 'inst' ? 'Instagram' : p === 'face' ? 'Facebook' : 'TikTok';
+      return '<span class="plat ' + p + on + '" onclick="togglePlat(\'' + idea.id + '\',\'' + p + '\')">' + n + '</span>';
+    }).join('');
+
+    var prioChip = idea.priority === 1 ? '<span class="priority-chip p1">High</span>' :
+                   idea.priority === 2 ? '<span class="priority-chip p2">Medium</span>' :
+                                         '<span class="priority-chip p3">Low</span>';
+    var tLabel = typeLabel[idea.type] || idea.type;
+    var likeOn = idea.voted === 'like' ? ' on' : '';
+    var dislikeOn = idea.voted === 'dislike' ? ' on' : '';
+    var linkOpen = idea.link ? '<a class="link-open" href="' + idea.link + '" target="_blank">↗ Open</a>' : '';
+
+    return '<div class="card" id="card-' + idea.id + '">' +
+      '<div class="card-stripe" style="background:' + color + ';"></div>' +
+      '<div class="card-body">' +
+        '<div class="card-header">' +
+          '<div class="card-title">' + escHtml(idea.name) + '</div>' +
+          '<div class="card-menu">' +
+            '<button class="icon-btn" title="Edit" onclick="editCard(\'' + idea.id + '\')">✎</button>' +
+            '<button class="icon-btn del" title="Delete" onclick="deleteCard(\'' + idea.id + '\')">✕</button>' +
+          '</div>' +
+        '</div>' +
+        '<div class="card-meta">' +
+          prioChip +
+          '<span class="type-chip">' + tLabel + '</span>' +
+        '</div>' +
+        '<div class="card-desc">' + escHtml(idea.desc) + '</div>' +
+        '<div class="platforms">' + platHtml + '</div>' +
+        '<div class="link-row">' +
+          '<input class="link-input" placeholder="Media link…" value="' + escAttr(idea.link || '') + '" onchange="updateLink(\'' + idea.id + '\',this.value)" />' +
+          linkOpen +
+        '</div>' +
+        '<div class="card-footer">' +
+          '<button class="vote-btn vote-like' + likeOn + '" onclick="vote(\'' + idea.id + '\',\'like\')">♥ ' + idea.likes + '</button>' +
+          '<button class="vote-btn vote-dislike' + dislikeOn + '" onclick="vote(\'' + idea.id + '\',\'dislike\')">✕ ' + idea.dislikes + '</button>' +
+          '<select class="prio-select" onchange="changePrio(\'' + idea.id + '\',this.value)">' +
+            '<option value="1"' + (idea.priority===1?' selected':'') + '>★★★ High</option>' +
+            '<option value="2"' + (idea.priority===2?' selected':'') + '>★★ Medium</option>' +
+            '<option value="3"' + (idea.priority===3?' selected':'') + '>★ Low</option>' +
+          '</select>' +
+          '<button class="ai-btn-card" onclick="runAI(\'' + idea.id + '\')">✦ AI</button>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+/* ── CARD ACTIONS ── */
+function vote(id, type) {
+  var idea = ideas.find(function(i) { return i.id === id; });
+  if (!idea) return;
+  if (idea.voted === type) {
+    if (type === 'like') idea.likes--; else idea.dislikes--;
+    idea.voted = null;
+  } else {
+    if (idea.voted === 'like') idea.likes--;
+    if (idea.voted === 'dislike') idea.dislikes--;
+    idea.voted = type;
+    if (type === 'like') idea.likes++; else idea.dislikes++;
+  }
+  saveData(); render();
+  if (type === 'like') toast('♥ Approved — AI is learning your taste');
+}
+
+function togglePlat(id, p) {
+  var idea = ideas.find(function(i) { return i.id === id; });
+  if (!idea) return;
+  var idx = idea.plats.indexOf(p);
+  if (idx > -1) idea.plats.splice(idx, 1); else idea.plats.push(p);
+  saveData(); renderCards(); renderVision();
+}
+
+function updateLink(id, val) {
+  var idea = ideas.find(function(i) { return i.id === id; });
+  if (idea) { idea.link = val; saveData(); renderCards(); }
+}
+
+function changePrio(id, val) {
+  var idea = ideas.find(function(i) { return i.id === id; });
+  if (idea) { idea.priority = parseInt(val); saveData(); renderCards(); }
+}
+
+function deleteCard(id) {
+  if (!confirm('Delete this idea?')) return;
+  ideas = ideas.filter(function(i) { return i.id !== id; });
+  saveData(); render(); toast('Idea removed');
+}
+
+function editCard(id) {
+  var idea = ideas.find(function(i) { return i.id === id; });
+  if (!idea) return;
+  editingId = id;
+  document.getElementById('modalTitle').textContent = '✎ Edit Idea';
+  document.getElementById('f-name').value = idea.name;
+  document.getElementById('f-desc').value = idea.desc;
+  document.getElementById('f-cat').value = idea.cat;
+  document.getElementById('f-type').value = idea.type;
+  document.getElementById('f-priority').value = idea.priority;
+  document.getElementById('f-link').value = idea.link || '';
+  document.querySelectorAll('.plat-opt').forEach(function(b) {
+    b.classList.remove('on');
+    ['inst','face','tik'].forEach(function(p) {
+      if (b.classList.contains(p) && idea.plats.indexOf(p) > -1) b.classList.add('on');
+    });
+  });
+  document.getElementById('addModal').classList.add('open');
+}
+
+/* ── ADD MODAL ── */
+function openAddModal() {
+  editingId = null;
+  document.getElementById('modalTitle').textContent = '✦ New Idea';
+  document.getElementById('f-name').value = '';
+  document.getElementById('f-desc').value = '';
+  document.getElementById('f-cat').value = currentCat !== 'all' ? currentCat : 'product';
+  document.getElementById('f-type').value = 'photo';
+  document.getElementById('f-priority').value = '2';
+  document.getElementById('f-link').value = '';
+  document.querySelectorAll('.plat-opt').forEach(function(b) {
+    b.classList.remove('on');
+    if (b.classList.contains('inst')) b.classList.add('on');
+  });
+  document.getElementById('addModal').classList.add('open');
+}
+
+function closeAddModal() { document.getElementById('addModal').classList.remove('open'); }
+
+function toggleModalPlat(btn) { btn.classList.toggle('on'); }
+
+function saveCard() {
+  var name = document.getElementById('f-name').value.trim();
+  if (!name) { toast('Please enter a name for the idea'); return; }
+  var plats = [];
+  document.querySelectorAll('.plat-opt.on').forEach(function(b) {
+    ['inst','face','tik'].forEach(function(p) { if (b.classList.contains(p)) plats.push(p); });
+  });
+  var now = Date.now();
+  var card = {
+    id: editingId || uid(),
+    name: name,
+    desc: document.getElementById('f-desc').value.trim(),
+    cat: document.getElementById('f-cat').value,
+    type: document.getElementById('f-type').value,
+    priority: parseInt(document.getElementById('f-priority').value),
+    plats: plats,
+    link: document.getElementById('f-link').value.trim(),
+    createdAt: now,
+    likes: 0, dislikes: 0, voted: null
+  };
+  if (editingId) {
+    var idx = ideas.findIndex(function(i) { return i.id === editingId; });
+    if (idx > -1) {
+      card.likes = ideas[idx].likes;
+      card.dislikes = ideas[idx].dislikes;
+      card.voted = ideas[idx].voted;
+      card.createdAt = ideas[idx].createdAt || now;
+      ideas[idx] = card;
+    }
+  } else {
+    ideas.unshift(card);
+  }
+  closeAddModal();
+  saveData(); render();
+  toast('✦ Idea saved successfully');
+}
+
+/* ── VISION BOARD ── */
+function toggleVision() {
+  visionOpen = !visionOpen;
+  var p = document.getElementById('visionPanel');
+  p.classList.toggle('open', visionOpen);
+  renderVision();
+}
+
+function renderVision() {
+  if (!visionOpen) return;
+  var scroll = document.getElementById('visionScroll');
+  var liked = ideas.filter(function(i) { return i.voted === 'like'; });
+  var shown = liked.length > 0 ? liked : ideas.slice(0, 4);
+  if (shown.length === 0) {
+    scroll.innerHTML = '<div style="font-size:12px;color:rgba(255,255,255,0.3);text-align:center;padding:30px 16px;font-family:\'Cormorant Garamond\',serif;font-style:italic;direction:rtl;">הוסף רעיונות ועשי לייק לבניית הפיד</div>';
+    return;
+  }
+  scroll.innerHTML = shown.map(function(idea) {
+    var platLabel = idea.plats.length > 0
+      ? idea.plats.map(function(p) { return p==='inst'?'Instagram':p==='face'?'Facebook':'TikTok'; }).join(' · ')
+      : 'No platform';
+    var ratio = (idea.type==='story'||idea.type==='reel') ? '9/16' : idea.type==='carousel' ? '1/1' : '4/5';
+    return '<div class="feed-card">' +
+      '<div class="feed-plat">' + platLabel + '</div>' +
+      '<div class="feed-visual" style="aspect-ratio:' + ratio + ';">' +
+        (idea.link ? '<img src="' + escAttr(idea.link) + '" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display=\'none\'" />' : '') +
+        '<div class="feed-visual-label">' + escHtml(idea.name) + '<br><span style="font-size:10px;opacity:0.6;">' + (typeLabel[idea.type]||'') + '</span></div>' +
+      '</div>' +
+      '<div class="feed-caption">' + escHtml(idea.desc.slice(0,80)) + (idea.desc.length>80?'…':'') + '</div>' +
+    '</div>';
+  }).join('');
+}
+
+/* ── AI IMPROVE ── */
+async function runAI(id) {
+  var idea = ideas.find(function(i) { return i.id === id; });
+  if (!idea) return;
+  aiTargetId = id;
+  aiImprovedData = null;
+  document.getElementById('aiContent').innerHTML = '<div style="color:var(--gold);font-family:\'Cormorant Garamond\',serif;font-style:italic;font-size:15px;">✦ Thinking and refining…</div>';
+  document.getElementById('aiModal').classList.add('open');
+
+  var liked = ideas.filter(function(i) { return i.voted==='like'; }).map(function(i) { return i.name; }).join(', ') || 'None yet';
+  var disliked = ideas.filter(function(i) { return i.voted==='dislike'; }).map(function(i) { return i.name; }).join(', ') || 'None yet';
+
+  var prompt = 'You are a content advisor for an Israeli luxury boutique bakery. Vibe: navy, olive, gold, ivory, exclusive, minimal.\n\nIdea to improve:\nName: ' + idea.name + '\nDescription: ' + idea.desc + '\nType: ' + idea.type + '\nCategory: ' + idea.cat + '\n\nApproved ideas: ' + liked + '\nRejected ideas: ' + disliked + '\n\nImprove this idea. Give a new name and a detailed visual description including angle, lighting, mood, colors, and how the viewer should feel. Answer in Hebrew in one paragraph. At the end add: IMPROVED_NAME: [new name] | IMPROVED_DESC: [new description]';
+
+  try {
+    var resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-api-key': getApiKey(), 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
+      body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 1000, messages: [{ role: 'user', content: prompt }] })
+    });
+    var data = await resp.json();
+    if (data.error) throw new Error(data.error.message);
+    var text = data.content && data.content[0] ? data.content[0].text : '';
+    var nameMatch = text.match(/IMPROVED_NAME:\s*([^\|]+)/);
+    var descMatch = text.match(/IMPROVED_DESC:\s*([\s\S]+)$/);
+    var displayText = text.replace(/IMPROVED_NAME:[\s\S]*$/, '').trim();
+    aiImprovedData = {
+      name: nameMatch ? nameMatch[1].trim() : idea.name,
+      desc: descMatch ? descMatch[1].trim() : idea.desc
+    };
+    document.getElementById('aiContent').innerHTML =
+      '<p style="margin-bottom:14px;color:var(--text-mid);line-height:1.8;">' + escHtml(displayText) + '</p>' +
+      '<div class="ai-result-box">' +
+        '<div class="ai-version-label">Improved Version</div>' +
+        '<div class="ai-new-name">' + escHtml(aiImprovedData.name) + '</div>' +
+        '<div class="ai-new-desc">' + escHtml(aiImprovedData.desc.slice(0,300)) + '</div>' +
+      '</div>';
+  } catch(e) {
+    document.getElementById('aiContent').innerHTML = '<div style="color:var(--dislike);">' + (e.message.includes('API key') ? 'Please set your Anthropic API key below.' : 'Error connecting to AI. Try again.') + '<br><br><input id="apiKeyInput" placeholder="sk-ant-..." style="width:100%;padding:8px;border:1px solid #ccc;border-radius:3px;font-size:12px;direction:ltr;" /><button onclick="saveApiKey()" class="btn btn-primary btn-sm" style="margin-top:8px;">Save Key</button></div>';
+  }
+}
+
+function getApiKey() { try { return localStorage.getItem('anthropic_key') || ''; } catch(e) { return ''; } }
+function saveApiKey() {
+  var v = document.getElementById('apiKeyInput').value.trim();
+  if (v) { try { localStorage.setItem('anthropic_key', v); } catch(e) {} toast('API key saved'); closeAIModal(); }
+}
+
+function applyAI() {
+  if (!aiImprovedData || !aiTargetId) return;
+  var idea = ideas.find(function(i) { return i.id === aiTargetId; });
+  if (idea) { idea.name = aiImprovedData.name; idea.desc = aiImprovedData.desc; saveData(); render(); toast('✦ Idea updated with AI improvement'); }
+  closeAIModal();
+}
+
+function closeAIModal() { document.getElementById('aiModal').classList.remove('open'); }
+
+/* ── AI GENERATE ── */
+async function generateSuggestions() {
+  var liked = ideas.filter(function(i) { return i.voted==='like'; });
+  var disliked = ideas.filter(function(i) { return i.voted==='dislike'; });
+  var existing = ideas.map(function(i) { return i.name; }).join(', ');
+  var catCtx = currentCat === 'all' ? 'all categories' : (catMeta[currentCat] ? catMeta[currentCat].label : currentCat);
+  toast('✦ AI is generating ideas…');
+
+  var prompt = 'Content advisor for a luxury Israeli boutique bakery. Vibe: navy, olive, gold, ivory, exclusive, minimal, elegant.\n\nApproved: ' + (liked.map(function(i){return i.name+': '+i.desc;}).join(' | ')||'none') + '\nRejected: ' + (disliked.map(function(i){return i.name;}).join(', ')||'none') + '\nCategory: ' + catCtx + '\nExisting (do not repeat): ' + existing + '\n\nGenerate exactly 3 new content ideas in Hebrew. Reply ONLY as JSON array:\n[{"name":"...","desc":"...","type":"photo|reel|carousel|story","cat":"product|behind|story|reel|collab|seasonal","plats":["inst","face","tik"]},...]';
+
+  try {
+    var resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-api-key': getApiKey(), 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
+      body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 1000, messages: [{ role: 'user', content: prompt }] })
+    });
+    var data = await resp.json();
+    if (data.error) throw new Error(data.error.message);
+    var text = data.content && data.content[0] ? data.content[0].text : '[]';
+    var suggestions = JSON.parse(text.replace(/```json|```/g,'').trim());
+    var sec = document.getElementById('suggestSection');
+    var list = document.getElementById('suggestList');
+    sec.style.display = 'block';
+    list.innerHTML = suggestions.map(function(s, idx) {
+      var safe = JSON.stringify(s).replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/'/g,"&#39;");
+      return '<div class="suggest-item" id="sug-'+idx+'">' +
+        '<div class="suggest-info">' +
+          '<div class="suggest-name">' + escHtml(s.name) + '</div>' +
+          '<div class="suggest-desc">' + escHtml(s.desc) + '</div>' +
+          '<div class="suggest-btns">' +
+            '<button class="btn btn-primary btn-sm" onclick=\'approveSug('+idx+','+safe+')\'>✓ Approve</button>' +
+            '<button class="btn btn-ghost btn-sm" onclick="document.getElementById(\'sug-'+idx+'\').remove()">✕ Dismiss</button>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+    toast('✦ 3 new ideas ready for review');
+  } catch(e) {
+    toast('Error generating ideas — check your API key');
+  }
+}
+
+function approveSug(idx, s) {
+  var card = { id: uid(), name: s.name, desc: s.desc, cat: s.cat||'product', type: s.type||'photo', priority: 2, plats: s.plats||['inst'], link: '', likes: 0, dislikes: 0, voted: null, createdAt: Date.now() };
+  ideas.unshift(card);
+  var el = document.getElementById('sug-' + idx);
+  if (el) el.remove();
+  saveData(); render(); toast('✦ Idea added to the board');
+}
+
+/* ── UTILITIES ── */
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function escAttr(s) {
+  return String(s).replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+function toast(msg) {
+  var el = document.getElementById('toast');
+  el.textContent = msg;
+  el.style.display = 'block';
+  el.style.transform = 'translateX(-50%) translateY(0)';
+  clearTimeout(el._t);
+  el._t = setTimeout(function() {
+    el.style.display = 'none';
+  }, 2600);
+}
+
+/* ── KEYBOARD ── */
+document.addEventListener('keydown', function(e) {
+  if ((e.metaKey || e.ctrlKey) && e.key === 'n') { e.preventDefault(); openAddModal(); }
+  if (e.key === 'Escape') {
+    closeAddModal();
+    closeAIModal();
+  }
+});
+
+/* ── CLOSE MODALS ON BACKDROP CLICK ── */
+document.getElementById('addModal').addEventListener('click', function(e) {
+  if (e.target === this) closeAddModal();
+});
+document.getElementById('aiModal').addEventListener('click', function(e) {
+  if (e.target === this) closeAIModal();
+});
+
+init();
+</script>
+</body>
+</html>
