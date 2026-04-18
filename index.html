@@ -666,6 +666,7 @@ function uid() { return Date.now().toString(36) + Math.random().toString(36).sli
 
 function saveData() {
   try { localStorage.setItem('bakery_ideas_cache', JSON.stringify({ ideas: ideas, shootingOrder: shootingOrder })); } catch(e) {}
+  autoSave();
 }
 function saveOrder() { saveData(); }
 
@@ -732,26 +733,94 @@ async function init() {
   render();
 }
 
+/* ── FILE HANDLE (persisted in IndexedDB so picker only shows once) ── */
+var _fileHandle = null;
+var _autoSaveTimer = null;
+function autoSave() {} // forward declaration, overwritten below
+
+function _openIdb() {
+  return new Promise(function(resolve, reject) {
+    var req = indexedDB.open('bakery_fs', 1);
+    req.onupgradeneeded = function(e) { e.target.result.createObjectStore('handles'); };
+    req.onsuccess = function(e) { resolve(e.target.result); };
+    req.onerror = reject;
+  });
+}
+async function _storeHandle(h) {
+  try { var db = await _openIdb(); var tx = db.transaction('handles','readwrite'); tx.objectStore('handles').put(h,'dataJson'); } catch(e) {}
+}
+async function _loadHandle() {
+  try {
+    var db = await _openIdb();
+    return await new Promise(function(resolve) {
+      var tx = db.transaction('handles','readonly');
+      var r = tx.objectStore('handles').get('dataJson');
+      r.onsuccess = function() { resolve(r.result || null); };
+      r.onerror   = function() { resolve(null); };
+    });
+  } catch(e) { return null; }
+}
+async function _getHandle() {
+  if (!_fileHandle) _fileHandle = await _loadHandle();
+  if (_fileHandle) {
+    try {
+      var perm = await _fileHandle.queryPermission({ mode: 'readwrite' });
+      if (perm !== 'granted') perm = await _fileHandle.requestPermission({ mode: 'readwrite' });
+      if (perm !== 'granted') _fileHandle = null;
+    } catch(e) { _fileHandle = null; }
+  }
+  return _fileHandle;
+}
+
+async function _writeToHandle(handle, content) {
+  var w = await handle.createWritable();
+  await w.write(content);
+  await w.close();
+}
+
 async function saveToFile() {
   var content = JSON.stringify({ ideas: ideas, shootingOrder: shootingOrder }, null, 2);
-  try {
-    var handle = await window.showSaveFilePicker({
-      suggestedName: 'data.json',
-      types: [{ description: 'JSON Data', accept: { 'application/json': ['.json'] } }]
-    });
-    var writable = await handle.createWritable();
-    await writable.write(content);
-    await writable.close();
-    toast('✓ data.json saved — now commit & push in Claude Code');
-  } catch(e) {
-    if (e.name === 'AbortError') return;
-    var blob = new Blob([content], { type: 'application/json' });
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement('a');
-    a.href = url; a.download = 'data.json'; a.click();
-    URL.revokeObjectURL(url);
-    toast('data.json downloaded — move it into the project folder, then commit');
+  var handle = await _getHandle();
+  if (!handle) {
+    // First time — show picker, remember the handle
+    try {
+      handle = await window.showSaveFilePicker({
+        suggestedName: 'data.json',
+        types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }]
+      });
+      _fileHandle = handle;
+      await _storeHandle(handle);
+    } catch(e) {
+      if (e.name === 'AbortError') return;
+      // browser doesn't support API — plain download fallback
+      var blob = new Blob([content], { type: 'application/json' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a'); a.href = url; a.download = 'data.json'; a.click();
+      URL.revokeObjectURL(url);
+      toast('Downloaded data.json — put it in the project folder, then commit');
+      return;
+    }
   }
+  try {
+    await _writeToHandle(handle, content);
+    var btn = document.getElementById('saveBtn');
+    if (btn) { btn.textContent = '✓ Saved'; setTimeout(function(){ btn.textContent = '💾 Save'; }, 1800); }
+    toast('✓ data.json updated — ready to commit & push');
+  } catch(e) {
+    _fileHandle = null;
+    toast('Save failed — try again');
+  }
+}
+
+/* auto-save 2s after any change, only if handle already linked */
+autoSave = function() {
+  clearTimeout(_autoSaveTimer);
+  _autoSaveTimer = setTimeout(async function() {
+    var handle = await _getHandle();
+    if (!handle) return; // no handle yet, user hasn't clicked Save once
+    var content = JSON.stringify({ ideas: ideas, shootingOrder: shootingOrder }, null, 2);
+    try { await _writeToHandle(handle, content); } catch(e) {}
+  }, 2000);
 }
 
 /* ── VIEW SWITCHING ── */
